@@ -1,0 +1,35 @@
+.font-600{
+  font-weight: 600;
+}
+
+.font-bold{
+  font-weight: 800;
+}
+
+.text{
+  &-medium{
+    font-size: 18px;
+    line-height: 1.8;
+  }
+  &-teal{
+    color: #009688;
+  }
+  &-grey{
+    color:#6e6e6e;
+  }
+}
+
+.w{
+  &-75{
+    width:auto!important;
+    @media (min-width: 768px) {
+      width:75%!important;
+    }
+  }
+}
+
+.fs{
+  &-5s{
+    font-size: 18px;
+  }
+}

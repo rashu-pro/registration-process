@@ -1,0 +1,6 @@
+*.DS_Store
+*.log
+*.zip
+.idea
+.sass-cache/
+/node_modules/

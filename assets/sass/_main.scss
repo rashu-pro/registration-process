@@ -1,0 +1,181 @@
+.main{
+  background-color: #f8f7fa;
+  &-wrapper{
+    background-color: #f8f7fa;
+  }
+}
+
+.breadcrumb{
+  display: none;
+}
+
+.section{
+  &-title{
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.4;
+    @media (min-width: 576px) {
+      letter-spacing: 1px;
+    }
+
+    span{
+      position: relative;
+      &:after{
+        content:'';
+        position: absolute;
+        left:50%;
+        transform:translateX(-50%);
+        width: 60%;
+        height: 4px;
+        background-color: $color-red-dark;
+        border-radius: 8px;
+        bottom: -18px;
+      }
+    }
+  }
+}
+
+.icon{
+  &-list{
+    line-height: 1.8;
+    &-group{
+
+    }
+
+    img{
+      max-height:18px;
+      margin-right:7px;
+      position: relative;
+      top:-2px;
+    }
+  }
+}
+
+.card{
+  &-accordion{
+    margin-bottom: 30px;
+    //height: calc(100% - 30px);
+    border-bottom-width: 0;
+
+    .card{
+      &-header{
+        cursor: pointer;
+      }
+    }
+
+    .card-body{
+      display: none;
+    }
+
+    &-icon{
+      .plus{
+        display: block;
+      }
+      .minus{
+        display: none;
+      }
+    }
+
+    &.active{
+      border-bottom-width: 1px;
+      .card-body{
+        display: block;
+      }
+      .card{
+        &-accordion{
+          &-icon{
+            .plus{
+              display: none;
+            }
+            .minus{
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.otp{
+  &-wrapper{
+    display: none;
+    &.active{
+      display: block;
+    }
+  }
+}
+
+.email{
+  &-wrapper{
+    display: none;
+    &.active{
+      display: block;
+    }
+  }
+}
+
+.secure{
+  &-alert{
+    img{
+      max-height:22px;
+    }
+  }
+}
+
+.auto-renew-wrapper{
+  padding: 8px 15px;
+  background-color: #f2f2f2;
+  border-radius: 0 0 4px 4px;
+  border: 1px solid #ddd;
+  border-top: 0;
+}
+
+.after-hr{
+  margin-top:-16px;
+}
+
+.donation{
+  &-wrapper{
+    &-title{
+      background: #2196f3;
+      color: #fff;
+      margin: -17px;
+      margin-bottom: 10px;
+      padding: 8px 15px;
+      text-transform: uppercase;
+    }
+
+    .input{
+      &-group{
+        &-text{
+          //font-size: 1.4rem;
+          //padding: 0.4rem 1rem;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        .form{
+          &-control{
+
+          }
+        }
+      }
+    }
+  }
+}
+
+.alert{
+  &-note{
+    margin:0 -1rem -1rem -1rem;
+    border-radius: 0 0 0.375rem 0.375rem;
+    font-size:.94rem;
+    line-height: 1.4;
+    padding:.64rem 1rem;
+  }
+}
+
+.iti__selected-flag{
+  border-right:1px solid #ddd;
+}

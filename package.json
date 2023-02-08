@@ -1,0 +1,35 @@
+{
+  "name": "registration-process",
+  "version": "1.0.0",
+  "description": "Step Form for registration process",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass assets/sass:assets/css -w"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rashu-pro/registration-process.git"
+  },
+  "keywords": [
+    "form",
+    "step",
+    "form",
+    "registration",
+    "school",
+    "registration",
+    "form",
+    "design",
+    "step",
+    "form",
+    "design"
+  ],
+  "author": "rashu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rashu-pro/registration-process/issues"
+  },
+  "homepage": "https://github.com/rashu-pro/registration-process#readme"
+}
