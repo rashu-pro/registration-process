@@ -46,8 +46,863 @@
 
   </header>
 
-  <div class="main-wrapper mt-4 main-wrapper-js">
+  <div class="main-wrapper main-wrapper-js">
 
+    <!-- step form body -->
+    <div id="step-form-wrapper" class="step-form-wrapper py-5 m-auto">
+
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-12 col-lg-10 col-xl-9 col-xxl-9">
+            <div class="step-form-main">
+              <form action="#" method="post">
+                <div class="row flex-row-reverse step-form-main-row">
+                  <!-- sidebar -->
+                  <div class="col-md-4 step-form-sidebar">
+                    <div class="step-list-sidebar">
+
+                      <div class="step-list completed" data-step="1">
+                      <span class="step-mark">
+                        <img src="assets/images/tick.png" alt="complete">
+                      </span>
+                        <p class="step-title">Parent/Guardian</p>
+                        <div class="step-summary">
+                          <p class="m-0">Lorem ipsum dolor sit amet, consectetur.</p>
+                        </div>
+                      </div>
+
+                      <div class="step-list active" data-step="2">
+                      <span class="step-mark">
+                        <img src="assets/images/tick.png" alt="complete">
+                      </span>
+                        <p class="step-title">Spouse</p>
+
+                        <div class="step-summary">
+                          <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                        </div>
+
+                        <div class="edit mt-2">
+                          <button type="button" class="btn btn-sm btn-secondary">
+                            <img src="assets/images/edit.png" alt="edit">
+                            <span class="">Edit</span>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="step-list" data-step="3">
+                        <span class="step-mark">
+                          <img src="assets/images/tick.png" alt="complete">
+                        </span>
+                        <p class="step-title">Students</p>
+
+                        <div class="step-summary">
+                          <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                        </div>
+
+                        <div class="edit mt-2">
+                          <button type="button" class="btn btn-secondary btn-sm"><img src="assets/images/edit.png"
+                                                                                      alt="edit"> Edit
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="step-list" data-step="4">
+                        <span class="step-mark">
+                          <img src="assets/images/tick.png" alt="complete">
+                        </span>
+                        <p class="step-title">Plan</p>
+
+                        <div class="step-summary">
+                          <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                        </div>
+
+                        <div class="edit mt-2">
+                          <button type="button" class="btn btn-secondary btn-sm"><img src="assets/images/edit.png"
+                                                                                      alt="edit"> Edit
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="step-list last" data-step="5">
+                        <span class="step-mark">
+                          <img src="assets/images/tick.png" alt="complete">
+                        </span>
+                        <p class="step-title">Payment Information</p>
+
+                        <div class="step-summary">
+                          <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                        </div>
+
+                        <div class="edit mt-2">
+                          <button type="button" class="btn btn-secondary btn-sm"><img src="assets/images/edit.png"
+                                                                                      alt="edit"> Edit
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- content -->
+                  <div class="col-md-8">
+                    <div class="step-details">
+
+                      <!-- step 1  -->
+                      <div class="step-box" data-step="1">
+                        <div class="step-box-wrapper">
+                          <div class="step-box-head">
+                            <h3 class="font-600">Parent/Guardian Information</h3>
+                            <p class="m-0 text-danger">(Fields marked with * are required to fill up)</p>
+                          </div>
+
+                          <div class="step-box-body">
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="email-guardian" class="form-control-label">Email <span class="text-danger">*</span> </label>
+                                  <input type="email"
+                                         id="email-guardian"
+                                         class="form-control"
+                                         name="EmailGuardian">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="phone-guardian" class="form-control-label">Phone <span class="text-danger">*</span> </label>
+                                  <input type="text"
+                                         id="phone-guardian"
+                                         class="form-control"
+                                         name="PhoneGuardian">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="fname-guardian" class="form-control-label">First Name <span class="text-danger">*</span> </label>
+                                  <input type="text"
+                                         id="fname-guardian"
+                                         class="form-control"
+                                         name="FnameGuardian">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="lname-guardian" class="form-control-label">Last Name <span class="text-danger">*</span> </label>
+                                  <input type="text"
+                                         id="lname-guardian"
+                                         class="form-control"
+                                         name="LnameGuardian">
+                                </div>
+                              </div>
+
+                              <div class="col-md-12">
+                                <div class="form-group mb-4">
+                                  <label for="address-guardian" class="form-control-label">Address <span class="text-danger">*</span> </label>
+                                  <textarea id="address-guardian"
+                                            class="form-control"
+                                            name="AddressGuardian"
+                                            rows="2"> </textarea>
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="country" class="form-control-label">Country <span class="text-danger">*</span> </label>
+                                  <input type="text"
+                                         id="country"
+                                         class="form-control"
+                                         name="Country">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="state" class="form-control-label">State <span class="text-danger">*</span> </label>
+                                  <input type="text"
+                                         id="state"
+                                         class="form-control"
+                                         name="State">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="city" class="form-control-label">City <span class="text-danger">*</span> </label>
+                                  <input type="text"
+                                         id="city"
+                                         class="form-control"
+                                         name="City">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="zipcode" class="form-control-label">Zipcode <span class="text-danger">*</span> </label>
+                                  <input type="text"
+                                         id="zipcode"
+                                         class="form-control"
+                                         name="Zipcode">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="income-per-year" class="form-control-label">Income Per Year <span class="text-danger">*</span> </label>
+                                  <select id="income-per-year"
+                                          class="form-select"
+                                          name="IncomePerYear">
+                                    <option value="">Select an Option</option>
+                                    <option value="1">$32,048 or less</option>
+                                    <option value="2">$32,048 - $53,413</option>
+                                    <option value="3">$53,413 - $106,827</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="number-people-household" class="form-control-label">Number of people <span class="text-danger">*</span> </label>
+                                  <input type="number"
+                                         id="number-people-household"
+                                         class="form-control"
+                                         name="NumberPeopleHousehold">
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                <div class="form-check check-group">
+                                  <input type="checkbox"
+                                         id="interested-pto"
+                                         class="form-check-input check-md"
+                                         data-value="terms"
+                                         value="">
+                                  <label class="form-check-label" for="interested-pto">
+                                    I have read and agree to the code fo conduct and terms & conditions.
+                                  </label>
+                                  <input type="hidden" class="form-control validation-radio">
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- step 2  -->
+                      <div class="step-box" data-step="2">
+                        <div class="step-box-wrapper">
+                          <div class="step-box-head">
+                            <h3 class="font-600">Spouse Information</h3>
+                            <p class="m-0 text-danger">(Fields marked with * are required to fill up)</p>
+                          </div>
+
+                          <div class="step-box-body">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="fname-spouse" class="form-control-label">First Name <span class="text-danger">*</span> </label>
+                                  <input type="text"
+                                         id="fname-spouse"
+                                         class="form-control"
+                                         name="FnameSpouse">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="lname-spouse" class="form-control-label">Last Name <span class="text-danger">*</span> </label>
+                                  <input type="text"
+                                         id="lname-spouse"
+                                         class="form-control"
+                                         name="LnameSpuse">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="email-spouse" class="form-control-label">Email <span class="text-danger">*</span> </label>
+                                  <input type="email"
+                                         id="email-spouse"
+                                         class="form-control"
+                                         name="EmailSpouse">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                  <label for="phone-spouse" class="form-control-label">Phone <span class="text-danger">*</span> </label>
+                                  <input type="text"
+                                         id="phone-spouse"
+                                         class="form-control"
+                                         name="PhoneSpouse">
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- step 3 -->
+                      <div class="step-box active" data-step="3">
+                        <div class="step-box-wrapper">
+                          <div class="step-box-head">
+                            <h3 class="font-600">Students Information</h3>
+                            <p class="m-0 text-danger">(Fields marked with * are required to fill up)</p>
+                          </div>
+
+                          <div class="step-box-body">
+
+                            <div class="info-card added mb-5">
+                              <h3 class="fs-4 mb-3 fw-semibold info-card-title text-uppercase"><span>Student 1</span></h3>
+                              <div class="info-summary">
+                                <div class="row">
+                                  <div class="col-6">
+                                    <p class="m-0 mb-2"><strong>Name: </strong>Jon Doe</p>
+                                  </div>
+                                  <div class="col-6">
+                                    <p class="m-0 mb-2"><strong>Gender: </strong>Male</p>
+                                  </div>
+                                </div>
+
+                                <p class="m-0 mb-2"><strong>Date of Birth: </strong>05/12/2006</p>
+
+                                <div class="table-responsive">
+                                  <table class="table table-striped table-bordered">
+                                    <tbody>
+                                    <tr>
+                                      <td>Islamic Studies Grade</td>
+                                      <td>Grade 1</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Quranic Studies Grade</td>
+                                      <td>Grade 4</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Islamic Studies Grade</td>
+                                      <td>Grade 1</td>
+                                    </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+
+                                <p class="m-0 mb-2"><strong>Notes: </strong>Lorem ipsum dolor sit amet, consectetur.</p>
+
+                              </div>
+                              <div class="row d-none">
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="fname-student" class="form-control-label">First Name</label>
+                                    <input type="text"
+                                           id="fname-student"
+                                           class="form-control"
+                                           name="FirstNameStudent">
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="lname-student" class="form-control-label">Last Name</label>
+                                    <input type="text"
+                                           id="lname-student"
+                                           class="form-control"
+                                           name="LastNameStudent">
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="dob-student" class="form-control-label">Date of Birth</label>
+                                    <input type="text"
+                                           id="dob-student"
+                                           class="form-control"
+                                           name="DobStudent">
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="gender-student" class="form-control-label">Gender</label>
+                                    <select id="gender-student"
+                                            class="form-control"
+                                            name="GenderStudent">
+                                      <option>Choose Gender</option>
+                                      <option value="male">Male</option>
+                                      <option value="female">Female</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="grade-sub1" class="form-control-label">Islamic Studies Grade</label>
+                                    <select id="grade-sub1"
+                                            class="form-control"
+                                            name="GenderStudent">
+                                      <option>Choose Grade</option>
+                                      <option value="e9a23e20-c605-4666-901b-1527326d4807">
+                                        KG
+                                      </option>
+                                      <option value="cb209b02-f3c1-44df-9983-2f713e28fbe0">
+                                        1ST GRADE
+                                      </option>
+                                      <option value="b12b549a-f837-44a2-a1d1-2ce349e35b5d">
+                                        2ND GRADE
+                                      </option>
+                                      <option value="9f2c4078-f8db-4b81-9070-5e55f42c2d81">
+                                        3RD GRADE
+                                      </option>
+                                      <option value="531448a0-d49a-4d1f-aee6-ac6c2cbbdaeb">
+                                        4TH GRADE
+                                      </option>
+                                      <option value="02fe7ea7-cc2a-4665-8300-7f7e53518262">
+                                        5TH GRADE
+                                      </option>
+                                      <option value="25450b0e-cc68-4030-9221-6687d76fe318">
+                                        6TH GRADE
+                                      </option>
+                                      <option value="0e2ae62f-7fd5-485f-a5a4-49f25d8c8ef3">
+                                        7TH GRADE
+                                      </option>
+                                      <option value="28e961ba-f5a7-4266-be6e-12b0c2b32e21">
+                                        8TH GRADE
+                                      </option>
+                                      <option value="db02499b-26b6-4723-8905-62bfe2263371">
+                                        9TH GRADE
+                                      </option>
+                                      <option value="21b1f588-9f63-465f-b0db-801c933f6671">
+                                        10TH GRADE
+                                      </option>
+                                      <option value="29e8b9ad-5489-4619-8c0a-fd82d7d2d136">
+                                        11TH GRADE
+                                      </option>
+                                      <option value="77ce2c76-1210-47ac-88a2-5d3a7975bd33">
+                                        12TH GRADE
+                                      </option>
+                                      <option value="03ad2cf0-a4ff-4c6a-a010-4accd60a24a7">
+                                        SPECIAL CLASS
+                                      </option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="grade-sub2" class="form-control-label">Quranic Studies Grade</label>
+                                    <select id="grade-sub2"
+                                            class="form-control"
+                                            name="GenderStudent">
+                                      <option>Choose Grade</option>
+                                      <option value="e9a23e20-c605-4666-901b-1527326d4807">
+                                        KG
+                                      </option>
+                                      <option value="cb209b02-f3c1-44df-9983-2f713e28fbe0">
+                                        1ST GRADE
+                                      </option>
+                                      <option value="b12b549a-f837-44a2-a1d1-2ce349e35b5d">
+                                        2ND GRADE
+                                      </option>
+                                      <option value="9f2c4078-f8db-4b81-9070-5e55f42c2d81">
+                                        3RD GRADE
+                                      </option>
+                                      <option value="531448a0-d49a-4d1f-aee6-ac6c2cbbdaeb">
+                                        4TH GRADE
+                                      </option>
+                                      <option value="02fe7ea7-cc2a-4665-8300-7f7e53518262">
+                                        5TH GRADE
+                                      </option>
+                                      <option value="25450b0e-cc68-4030-9221-6687d76fe318">
+                                        6TH GRADE
+                                      </option>
+                                      <option value="0e2ae62f-7fd5-485f-a5a4-49f25d8c8ef3">
+                                        7TH GRADE
+                                      </option>
+                                      <option value="28e961ba-f5a7-4266-be6e-12b0c2b32e21">
+                                        8TH GRADE
+                                      </option>
+                                      <option value="db02499b-26b6-4723-8905-62bfe2263371">
+                                        9TH GRADE
+                                      </option>
+                                      <option value="21b1f588-9f63-465f-b0db-801c933f6671">
+                                        10TH GRADE
+                                      </option>
+                                      <option value="29e8b9ad-5489-4619-8c0a-fd82d7d2d136">
+                                        11TH GRADE
+                                      </option>
+                                      <option value="77ce2c76-1210-47ac-88a2-5d3a7975bd33">
+                                        12TH GRADE
+                                      </option>
+                                      <option value="03ad2cf0-a4ff-4c6a-a010-4accd60a24a7">
+                                        SPECIAL CLASS
+                                      </option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                  <div class="form-group">
+                                    <label for="notes-student" class="form-control-label">Notes</label>
+                                    <textarea type="text"
+                                              id="notes-student"
+                                              class="form-control"
+                                              name="notesStudent"
+                                              rows="2"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="info-card-foot text-end pe-4">
+                                <button type="button" class="btn btn-outline-primary btn-outline-primary2 text-uppercase fw-semibold">
+                                  <span>Edit Info</span>
+                                </button>
+                              </div>
+                            </div>
+
+                            <div class="info-card">
+                              <h3 class="fs-4 mb-3 fw-semibold info-card-title text-uppercase"><span>Student 2</span></h3>
+                              <div class="row">
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="fname-student2" class="form-control-label">First Name</label>
+                                    <input type="text"
+                                           id="fname-student2"
+                                           class="form-control"
+                                           name="FirstNameStudent2">
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="lname-student2" class="form-control-label">Last Name</label>
+                                    <input type="text"
+                                           id="lname-student2"
+                                           class="form-control"
+                                           name="LastNameStudent2">
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="dob-student2" class="form-control-label">Date of Birth</label>
+                                    <input type="text"
+                                           id="dob-student2"
+                                           class="form-control"
+                                           name="DobStudent2">
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="gender-student2" class="form-control-label">Gender</label>
+                                    <select id="gender-student2"
+                                            class="form-control"
+                                            name="GenderStudent2">
+                                      <option>Choose Gender</option>
+                                      <option value="male">Male</option>
+                                      <option value="female">Female</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="grade-sub2-1" class="form-control-label">Islamic Studies Grade</label>
+                                    <select id="grade-sub2-1"
+                                            class="form-control"
+                                            name="GenderStudent21">
+                                      <option>Choose Grade</option>
+                                      <option value="e9a23e20-c605-4666-901b-1527326d4807">
+                                        KG
+                                      </option>
+                                      <option value="cb209b02-f3c1-44df-9983-2f713e28fbe0">
+                                        1ST GRADE
+                                      </option>
+                                      <option value="b12b549a-f837-44a2-a1d1-2ce349e35b5d">
+                                        2ND GRADE
+                                      </option>
+                                      <option value="9f2c4078-f8db-4b81-9070-5e55f42c2d81">
+                                        3RD GRADE
+                                      </option>
+                                      <option value="531448a0-d49a-4d1f-aee6-ac6c2cbbdaeb">
+                                        4TH GRADE
+                                      </option>
+                                      <option value="02fe7ea7-cc2a-4665-8300-7f7e53518262">
+                                        5TH GRADE
+                                      </option>
+                                      <option value="25450b0e-cc68-4030-9221-6687d76fe318">
+                                        6TH GRADE
+                                      </option>
+                                      <option value="0e2ae62f-7fd5-485f-a5a4-49f25d8c8ef3">
+                                        7TH GRADE
+                                      </option>
+                                      <option value="28e961ba-f5a7-4266-be6e-12b0c2b32e21">
+                                        8TH GRADE
+                                      </option>
+                                      <option value="db02499b-26b6-4723-8905-62bfe2263371">
+                                        9TH GRADE
+                                      </option>
+                                      <option value="21b1f588-9f63-465f-b0db-801c933f6671">
+                                        10TH GRADE
+                                      </option>
+                                      <option value="29e8b9ad-5489-4619-8c0a-fd82d7d2d136">
+                                        11TH GRADE
+                                      </option>
+                                      <option value="77ce2c76-1210-47ac-88a2-5d3a7975bd33">
+                                        12TH GRADE
+                                      </option>
+                                      <option value="03ad2cf0-a4ff-4c6a-a010-4accd60a24a7">
+                                        SPECIAL CLASS
+                                      </option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                  <div class="form-group">
+                                    <label for="grade-sub2-2" class="form-control-label">Quranic Studies Grade</label>
+                                    <select id="grade-sub2-2"
+                                            class="form-control"
+                                            name="GenderStudent22">
+                                      <option>Choose Grade</option>
+                                      <option value="e9a23e20-c605-4666-901b-1527326d4807">
+                                        KG
+                                      </option>
+                                      <option value="cb209b02-f3c1-44df-9983-2f713e28fbe0">
+                                        1ST GRADE
+                                      </option>
+                                      <option value="b12b549a-f837-44a2-a1d1-2ce349e35b5d">
+                                        2ND GRADE
+                                      </option>
+                                      <option value="9f2c4078-f8db-4b81-9070-5e55f42c2d81">
+                                        3RD GRADE
+                                      </option>
+                                      <option value="531448a0-d49a-4d1f-aee6-ac6c2cbbdaeb">
+                                        4TH GRADE
+                                      </option>
+                                      <option value="02fe7ea7-cc2a-4665-8300-7f7e53518262">
+                                        5TH GRADE
+                                      </option>
+                                      <option value="25450b0e-cc68-4030-9221-6687d76fe318">
+                                        6TH GRADE
+                                      </option>
+                                      <option value="0e2ae62f-7fd5-485f-a5a4-49f25d8c8ef3">
+                                        7TH GRADE
+                                      </option>
+                                      <option value="28e961ba-f5a7-4266-be6e-12b0c2b32e21">
+                                        8TH GRADE
+                                      </option>
+                                      <option value="db02499b-26b6-4723-8905-62bfe2263371">
+                                        9TH GRADE
+                                      </option>
+                                      <option value="21b1f588-9f63-465f-b0db-801c933f6671">
+                                        10TH GRADE
+                                      </option>
+                                      <option value="29e8b9ad-5489-4619-8c0a-fd82d7d2d136">
+                                        11TH GRADE
+                                      </option>
+                                      <option value="77ce2c76-1210-47ac-88a2-5d3a7975bd33">
+                                        12TH GRADE
+                                      </option>
+                                      <option value="03ad2cf0-a4ff-4c6a-a010-4accd60a24a7">
+                                        SPECIAL CLASS
+                                      </option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                  <div class="form-group">
+                                    <label for="notes-student2" class="form-control-label">Notes</label>
+                                    <textarea type="text"
+                                              id="notes-student2"
+                                              class="form-control"
+                                              name="notesStudent2"
+                                              rows="2"></textarea>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="info-card-foot text-end pe-4">
+                                <button type="button" class="btn btn-outline-primary btn-outline-primary2 text-uppercase fw-semibold">
+                                  <img src="assets/images/plus-circle-violet.png" alt="add" class="btn-image">
+                                  <img src="assets/images/plus-circle-white.png" alt="add" class="btn-image-hover">
+                                  <span>Add Another</span>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- step 4  -->
+                      <div class="step-box" data-step="4">
+                        <div class="step-box-wrapper">
+                          <div class="step-box-head">
+                            <h3 class="font-600">Pick a Plan</h3>
+                            <p class="m-0 text-danger">(Fields marked with * are required to fill up)</p>
+                          </div>
+
+                          <div class="step-box-body">
+                            <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-group required-group">
+                                  <label for="street-address">Street Address <span class="required-mark text-danger">*</span></label>
+                                  <input type="text" class="form-control" id="street-address" name="StreetAddress">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group required-group">
+                                  <label for="zip-code">ZIP Code <span class="required-mark text-danger">*</span></label>
+                                  <input type="text" class="form-control validation-number" id="zip-code" data-max-length="5" data-min-length="5">
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- step 5  -->
+                      <div class="step-box" data-step="5">
+                        <div class="step-box-wrapper">
+                          <div class="step-box-head">
+                            <h3 class="font-600">Payment Information</h3>
+                            <p class="m-0 text-danger">(Fields marked with * are required to fill up)</p>
+                          </div>
+
+                          <div class="step-box-body">
+
+                            <div class="payment-info payment-info-js">
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <div class="form-group required-group is-require">
+                                    <label for="card-number">Card Number <span
+                                      class="text-danger required-mark">*</span></label>
+                                    <div class="cc-number-holder">
+                                      <input type="text" maxlength="16" class="form-control validation-cc-number cc-number"
+                                             id="card-number" name="CardNumber">
+                                      <div class="cc-card-identity">
+                                        <img src="https://secure-api.net/Content/event-management-assets/individual-multiple-assets/images/card_mockup.png" alt="card icon">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-4">
+                                  <div class="form-group required-group is-require">
+                                    <label for="exp-month">Exp. Month <span
+                                      class="text-danger required-mark">*</span></label>
+                                    <select class="form-select form-control" id="exp-month" name="ExpMonth">
+                                      <option value>Expiry Month</option>
+                                      <option value="1">01</option>
+                                      <option value="2">02</option>
+                                      <option value="3">03</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-4">
+                                  <div class="form-group required-group is-require">
+                                    <label for="exp-year">Exp. Year <span
+                                      class="text-danger required-mark">*</span></label>
+                                    <select class="form-select form-control" id="exp-year" name="ExpYear">
+                                      <option value>Expiry Year</option>
+                                      <option value="1">01</option>
+                                      <option value="2">02</option>
+                                      <option value="3">03</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6 col-md-4">
+                                  <div class="form-group is-require">
+                                    <label for="cvc">CVC <span
+                                      class="text-danger required-mark">*</span></label>
+                                    <input type="text" class="form-control validation-number" id="cvc" name="Cvc" data-max-length="3" data-min-length="3">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                  <div class="form-group is-require">
+                                    <label for="cc-zipcode">Zipcode <span
+                                      class="text-danger required-mark">*</span></label>
+                                    <input type="text" class="form-control validation-number" id="cc-zipcode" name="CcZipcode" data-min-length="5" data-max-length="5">
+                                  </div>
+                                </div>
+
+                                <div class="col-md-8">
+                                  <div class="form-group required-group is-require">
+                                    <label for="cardholder-name">Cardholder Name <span
+                                      class="text-danger required-mark">*</span></label>
+                                    <input type="text" class="form-control validation-text" id="cardholder-name" name="CardholderName" data-min-length="6">
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+
+                            <div class="waiver-wrapper pt-4">
+
+                              <div class="alert alert-secondary bg-white">
+                                <div class="callout callout-info mb-2">
+                                  <p class="text-medium font-600 m-0">Read
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-waiver">Code of Conduct</a>
+                                  </p>
+                                </div>
+
+                                <div class="callout callout-info mb-2">
+                                  <p class="text-medium font-600 m-0">Read <a href="#" data-bs-toggle="modal"
+                                                                              data-bs-target="#modal-terms">Terms &
+                                    Conditions</a></p>
+                                </div>
+
+                                <div class="pt-2">
+                                  <div class="form-group required-group">
+                                    <div class="form-check check-group">
+                                      <input class="form-check-input check-md" type="checkbox"
+                                             value=""
+                                             id="flexCheckDefault_"
+                                             data-value="terms">
+                                      <label class="form-check-label" for="flexCheckDefault_">
+                                        I have read and agree to the code fo conduct and terms & conditions.
+                                      </label>
+                                      <input type="hidden" class="form-control validation-radio">
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="step-box-foot mt-4">
+                        <div class="button-group">
+                          <button type="button" class="btn btn-dark btn-lg btn-long btn-prev me-3 btn-navigation-js"
+                                  data-step="1" data-action="decrease"><img src="assets/images/back.png" alt="prev"><span>Prev</span>
+                          </button>
+                          <button type="button" data-text="Next" data-submit-text="Submit"
+                                  class="btn btn-primary btn-lg btn-long btn-navigation-js" data-step="1"
+                                  data-action="increase"><span>Next</span> <img src="assets/images/next.png" alt="next">
+                          </button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- footer -->
@@ -87,8 +942,20 @@
 </div>
 
 
+<!--jquery -->
+<script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+<!--bootstrap-->
+<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
 <!-- script -->
 <script src="assets/js/script.js"></script>
+
+<script>
+  function submitTheForm(){
+    console.log('Form submitted!');
+  }
+</script>
 
 </body>
 </html>

@@ -49,6 +49,27 @@
     }
   }
 
+  &-outline{
+    &-primary2{
+      border-width:2px;
+      border-color:$color-primary2;
+      color:$color-primary2;
+      &:hover{
+        background-color: $color-primary2;
+      }
+    }
+  }
+
+  &-image{
+    max-height: 18px;
+    position: relative;
+    top: -2px;
+    &-hover{
+      max-height: 18px;
+      display: none;
+    }
+  }
+
   &:hover{
     .btn-icon{
       margin-left:5px;
@@ -56,6 +77,13 @@
         &:before{
           opacity: 1;
         }
+      }
+    }
+
+    .btn-image{
+      display: none;
+      &-hover{
+        display: inline-block;
       }
     }
 

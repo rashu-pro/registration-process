@@ -1,0 +1,40 @@
+.info{
+  &-card{
+    padding: 15px;
+    border: 1px solid $color-primary2;
+    border-radius: 0.4rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
+
+    &-title{
+      margin-top:-30px;
+      color:$color-primary2;
+      span{
+        background-color: #fff;
+        padding:0 15px;
+      }
+    }
+
+    &-foot{
+      margin-bottom:-30px;
+      .btn{
+        background-color: #fff;
+        &:hover{
+          background-color: $color-primary2;
+          color:#fff;
+          border-color:$color-primary2;
+        }
+      }
+    }
+
+    &.added{
+      background-color: #f1f1f7;
+    }
+  }
+
+  &-summary{
+    max-height: 238px;
+    overflow-y: auto;
+    /* box-sizing: border-box; */
+    overflow-x: hidden;
+  }
+}
