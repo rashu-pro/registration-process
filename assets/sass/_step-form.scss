@@ -46,7 +46,9 @@ $color-border-sidebar: #ddd;
     .step{
       &-summary{
         display: none;
-        padding-bottom: 15px;
+        padding-bottom: 5px;
+        border-top: 1px solid #c3c3c3;
+        padding-top: 6px;
       }
     }
 
@@ -201,6 +203,21 @@ $color-border-sidebar: #ddd;
     justify-content: space-between;
     flex-direction: column;
     background-color: #fff;
+
+    &.step-initial{
+      .step{
+        &-box{
+          &-foot{
+            .btn{
+              &-prev{
+                display:none;
+              }
+            }
+          }
+        }
+      }
+    }
+
     @media (min-width: 576px){
       padding: 30px 30px;
     }

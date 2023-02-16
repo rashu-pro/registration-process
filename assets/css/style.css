@@ -677,7 +677,9 @@ html, body {
 }
 .step-list .step-summary {
   display: none;
-  padding-bottom: 15px;
+  padding-bottom: 5px;
+  border-top: 1px solid #c3c3c3;
+  padding-top: 6px;
 }
 .step-list:after {
   content: "";
@@ -799,6 +801,9 @@ html, body {
   justify-content: space-between;
   flex-direction: column;
   background-color: #fff;
+}
+.step-details.step-initial .step-box-foot .btn-prev {
+  display: none;
 }
 @media (min-width: 576px) {
   .step-details {

@@ -87,6 +87,13 @@ $(document).on('click', '.btn-navigation-js', function (e){
     return;
   }
 
+  if($('.step-box.active .form-control.data-sidebar').length>0){
+    $('.step-box.active .form-control.data-sidebar').each(function (i, element){
+      if(!$(element).val()) return;
+      $('.step-list[data-step='+stepCurrent+'] .step-summary').append("<p class='m-0'>"+$(element).val()+"</p>");
+    })
+  }
+
   loaderEnable(loaderDivClass);
   if(self.attr('data-action')==='increase' && stepCurrent === stepBoxCount){
     loaderDisable(loaderDivClass);
@@ -96,6 +103,7 @@ $(document).on('click', '.btn-navigation-js', function (e){
 
   setTimeout(()=>{
     stepMoveNext(stepCurrent);
+    if(parseInt($('.step-box.active').attr('data-step'))>1) $('.step-details').removeClass('step-initial');
     if(parseInt($('.step-box.active').attr('data-step'))===stepBoxCount) self.find('span').html(self.attr('data-submit-text'));
     loaderDisable(loaderDivClass);
   },600);

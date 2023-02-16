@@ -65,27 +65,35 @@
                   <div class="col-lg-4 step-form-sidebar">
                     <div class="step-list-sidebar">
 
-                      <div class="step-list completed" data-step="1">
+                      <div class="step-list active" data-step="1">
                       <span class="step-mark">
                         <img src="assets/images/tick.png" alt="complete">
                       </span>
                         <p class="step-title">Parent/Guardian</p>
                         <div class="step-summary">
-                          <p class="m-0">Lorem ipsum dolor sit amet, consectetur.</p>
+
+                        </div>
+
+                        <div class="edit mt-1 pb-4">
+                          <button type="button" class="btn btn-sm btn-secondary">
+                            <img src="assets/images/edit.png" alt="edit">
+                            <span class="">Edit</span>
+                          </button>
                         </div>
                       </div>
 
-                      <div class="step-list active" data-step="2">
+                      <div class="step-list" data-step="2">
                       <span class="step-mark">
                         <img src="assets/images/tick.png" alt="complete">
                       </span>
                         <p class="step-title">Spouse</p>
 
                         <div class="step-summary">
-                          <p>Lorem ipsum dolor sit amet, consectetur.</p>
+                          <p class="m-0">Mrs. Spouse</p>
+                          <p class="m-0">spouse@gmail.com</p>
                         </div>
 
-                        <div class="edit mt-2">
+                        <div class="edit mt-1 pb-4">
                           <button type="button" class="btn btn-sm btn-secondary">
                             <img src="assets/images/edit.png" alt="edit">
                             <span class="">Edit</span>
@@ -131,7 +139,7 @@
 
                   <!-- content -->
                   <div class="col-lg-8">
-                    <div class="step-details">
+                    <div class="step-details step-initial">
 
                       <!-- step 1 --guardian information  -->
                       <div class="step-box active" data-step="1">
@@ -149,8 +157,9 @@
                                   <label for="email-guardian" class="form-control-label">Email <span class="text-danger">*</span> </label>
                                   <input type="email"
                                          id="email-guardian"
-                                         class="form-control"
-                                         name="EmailGuardian">
+                                         class="form-control data-sidebar"
+                                         name="EmailGuardian"
+                                         data-sidebar="1">
                                 </div>
                               </div>
 
@@ -990,12 +999,18 @@
 
                       <div class="step-box-foot mt-2 mt-sm-4">
                         <div class="button-group">
-                          <button type="button" class="btn btn-dark btn-lg btn-long btn-prev me-3 btn-navigation-js"
-                                  data-step="1" data-action="decrease"><img src="assets/images/back.png" alt="prev"><span>Prev</span>
+                          <button type="button"
+                                  class="btn btn-dark btn-lg btn-long btn-prev btn-prev-js me-3 btn-navigation-js"
+                                  data-step="1"
+                                  data-action="decrease">
+                            <img src="assets/images/back.png" alt="prev"><span>Prev</span>
                           </button>
                           <button type="button" data-text="Next" data-submit-text="Submit"
-                                  class="btn btn-primary btn-lg btn-long btn-navigation-js" data-step="1"
-                                  data-action="increase"><span>Next</span> <img src="assets/images/next.png" alt="next">
+                                  class="btn btn-primary btn-lg btn-long btn-navigation-js"
+                                  data-step="1"
+                                  data-action="increase">
+                            <span>Next</span>
+                            <img src="assets/images/next.png" alt="next">
                           </button>
                         </div>
                       </div>
