@@ -17,12 +17,24 @@
     &-foot{
       margin-bottom:-30px;
       .btn{
-        background-color: #fff;
-        &:hover{
-          background-color: $color-primary2;
-          color:#fff;
-          border-color:$color-primary2;
+        &-outline{
+          &-primary2{
+            background-color: #fff;
+            &:hover{
+              background-color: $color-primary2;
+              color:#fff;
+              border-color:$color-primary2;
+            }
+          }
+
+          &-danger{
+            background-color: #fff;
+            &:hover{
+              background-color:#dc3545;
+            }
+          }
         }
+
       }
     }
 
@@ -32,9 +44,12 @@
   }
 
   &-summary{
-    max-height: 238px;
     overflow-y: auto;
     /* box-sizing: border-box; */
     overflow-x: hidden;
+
+    @media (min-width: 992px){
+      max-height: 238px;
+    }
   }
 }

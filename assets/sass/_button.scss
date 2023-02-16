@@ -51,11 +51,12 @@
 
   &-outline{
     &-primary2{
-      border-width:2px;
+      //border-width:2px;
       border-color:$color-primary2;
       color:$color-primary2;
       &:hover{
         background-color: $color-primary2;
+        border-color:$color-primary2;
       }
     }
   }

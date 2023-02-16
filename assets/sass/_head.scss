@@ -8,8 +8,10 @@
 
 .logo-image{
   max-height: 60px;
+  max-width:10rem;
   @media (min-width: 576px){
     max-height: 100px;
+    max-width:15rem;
   }
 }
 

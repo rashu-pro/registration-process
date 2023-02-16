@@ -1,195 +1,24 @@
 $width-mark: 25px;
 $height-mark: 25px;
 $mark-left: -11px;
-$bg-sidebar: #fff;
+$bg-sidebar: #f8f7fa;
 $color-border-sidebar: #ddd;
 
 .step{
   &-form{
     &-wrapper{
       border:1px solid #f8f8f8;
-      //border-radius: 10px;
-      //background-color: #fff;
       position: relative;
-
-      &.v2{
-        .step{
-          &-form{
-            &-main{
-
-            }
-          }
-
-          &-list{
-            text-align: right;
-            padding-left:0;
-            padding-right:30px;
-
-            &:after{
-              left:unset;
-              right:0;
-            }
-
-            &.active{
-
-              .step{
-                &-mark{
-                  right:-14px;
-                  left:unset;
-                }
-              }
-            }
-
-            &.completed{
-              .step{
-                &-mark{
-                  left:unset;
-                  right:-9px;
-                }
-              }
-
-              &.active{
-                .step{
-                  &-mark{
-                    right:-14px;
-                  }
-                }
-              }
-            }
-
-            &-sidebar{
-              margin-right:-12px;
-            }
-          }
-
-          &-mark{
-            left:unset;
-            right:-11px;
-          }
-        }
-      }
-
-      &.v3{
-        .step{
-          &-form{
-
-            &-main{
-              &-row{
-                background-color: #fff;
-                //border:2px solid #ddd;
-                border:1px solid #d6d8db;
-                border-radius: 8px;
-                overflow: hidden;
-              }
-            }
-
-            &-sidebar{
-              background-color: #e2e3e5;
-            }
-
-          }
-
-          &-title{
-            opacity: 0.7;
-          }
-
-          &-list-sidebar{
-            margin-right:-12px;
-          }
-        }
-      }
-
-      &.v4{
-        .step{
-          &-form{
-            &-main{
-              &-row{
-                background-color: #fff;
-                //border:2px solid #ddd;
-                border:1px solid #563d7c;
-                border-radius: 8px;
-                overflow: hidden;
-              }
-            }
-
-            &-sidebar{
-              background-color: #563d7c;
-              position: relative;
-              z-index: 9;
-            }
-
-          }
-
-          &-title{
-            opacity: 1;
-            color:#cbbde2;
-          }
-
-          &-list{
-            padding-right: 40px;
-            &.active{
-              .step{
-                &-title{
-                  color:#ceb3fc;
-                }
-              }
-            }
-
-            &.completed{
-              .step{
-                &-title{
-                  color:#fff;
-                }
-              }
-            }
-
-            &-sidebar{
-              margin-right:-34px;
-            }
-          }
-        }
-      }
-
-      &.v5{
-        .step{
-          &-form{
-            &-main{
-              border:1px solid #ddd;
-              position: relative;
-
-              &:after,&:before{
-                content: '';
-                position: absolute;
-                left:-2px;
-                width:2px;
-                height:100%;
-                background-color: transparent;
-                z-index: 9;
-
-                @media (min-width: 992px){
-                  background-color: #ddd;
-                }
-              }
-              &:after{
-                bottom:0;
-              }
-              &:before{
-                top:0;
-              }
-
-              @media (min-width: 992px) {
-                border-width:2px;
-              }
-            }
-
-          }
-        }
-      }
-
     }
 
     &-main{
       background-color: #fff;
+      &-row{
+        background-color: #fff;
+        @media (min-width:576px){
+          border:1px solid #ddd;
+        }
+      }
     }
 
     &-sidebar{
@@ -365,14 +194,17 @@ $color-border-sidebar: #ddd;
   }
 
   &-details{
-    padding: 30px 30px;
-
+    padding: 25px 10px;
     position: relative;
     height: 100%;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     background-color: #fff;
+    @media (min-width: 576px){
+      padding: 30px 30px;
+    }
+
     @media (min-width: 768px){
       padding: 30px 50px;
     }
@@ -402,7 +234,7 @@ $color-border-sidebar: #ddd;
     }
 
     &-foot{
-      padding: 30px 0 0;
+      padding: 20px 0 0;
       border-top: 1px solid #ddd;
       //display: none;
       &.active{
@@ -410,6 +242,10 @@ $color-border-sidebar: #ddd;
       }
       .btn-prev{
         //display: none;
+      }
+
+      @media (min-width: 768px){
+        padding: 30px 0 0;
       }
     }
 

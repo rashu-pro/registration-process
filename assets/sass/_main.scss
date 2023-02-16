@@ -183,3 +183,20 @@
   padding: 0.3rem 0.5rem;
 }
 
+.fs-small{
+  font-size:0.8rem;
+}
+
+.card-image{
+  img{
+    max-height:30px;
+    max-width:36px;
+  }
+}
+
+.bg-success{
+  &-light{
+    --bs-bg-opacity: 0.2;
+  }
+}
+

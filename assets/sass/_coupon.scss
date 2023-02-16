@@ -1,0 +1,21 @@
+.coupon{
+  &-wrapper{
+
+  }
+  &-code{
+    &-wrapper{
+      border:1px solid $color-dark;
+      &-head{
+        padding:0.6rem 1.3rem;
+        background-color: $color-dark;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color:#fff;
+      }
+
+      &-body{
+        padding:1rem 1.3rem 1.2rem;
+      }
+    }
+  }
+}
