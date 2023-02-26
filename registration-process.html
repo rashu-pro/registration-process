@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 
   <!-- style -->
-  <link rel="stylesheet" href="assets/css/style.css?v=1.0.1">
+  <link rel="stylesheet" href="assets/css/style.css?v=1.0.2">
 </head>
 <body>
 
@@ -31,7 +31,7 @@
   <header class="header header-js">
     <div class="container">
       <div class="d-flex flex-wrap justify-content-between align-items-center py-2">
-        <a href="step-1.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
+        <a href="registration-process.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto">
           <img src="https://masjidsolutions.net/wp-content/uploads/2019/04/logo-masjid-main.png"
                class="logo-image img-fluid" alt="company logo">
         </a>
@@ -89,8 +89,7 @@
                         <p class="step-title">Spouse</p>
 
                         <div class="step-summary">
-                          <p class="m-0">Mrs. Spouse</p>
-                          <p class="m-0">spouse@gmail.com</p>
+
                         </div>
 
                         <div class="edit mt-1 pb-4">
@@ -151,7 +150,7 @@
 
                           <div class="step-box-body">
 
-                            <div class="row">
+                            <div class="row row-field">
                               <div class="col-md-6">
                                 <div class="form-group mb-4">
                                   <label for="email-guardian" class="form-control-label">Email <span class="text-danger">*</span> </label>
@@ -178,7 +177,7 @@
                                   <label for="fname-guardian" class="form-control-label">First Name <span class="text-danger">*</span> </label>
                                   <input type="text"
                                          id="fname-guardian"
-                                         class="form-control"
+                                         class="form-control fname-js"
                                          name="FnameGuardian">
                                 </div>
                               </div>
@@ -188,9 +187,11 @@
                                   <label for="lname-guardian" class="form-control-label">Last Name <span class="text-danger">*</span> </label>
                                   <input type="text"
                                          id="lname-guardian"
-                                         class="form-control"
+                                         class="form-control lname-js"
                                          name="LnameGuardian">
                                 </div>
+                                <input type="hidden"
+                                       class="form-control name-string-js data-sidebar">
                               </div>
 
                               <div class="col-md-12">
@@ -296,13 +297,13 @@
                           </div>
 
                           <div class="step-box-body">
-                            <div class="row">
+                            <div class="row row-field">
                               <div class="col-md-6">
                                 <div class="form-group mb-4">
                                   <label for="fname-spouse" class="form-control-label">First Name <span class="text-danger">*</span> </label>
                                   <input type="text"
                                          id="fname-spouse"
-                                         class="form-control"
+                                         class="form-control fname-js"
                                          name="FnameSpouse">
                                 </div>
                               </div>
@@ -312,9 +313,10 @@
                                   <label for="lname-spouse" class="form-control-label">Last Name <span class="text-danger">*</span> </label>
                                   <input type="text"
                                          id="lname-spouse"
-                                         class="form-control"
+                                         class="form-control lname-js"
                                          name="LnameSpuse">
                                 </div>
+                                <input type="hidden" class="form-control name-string-js data-sidebar">
                               </div>
 
                               <div class="col-md-6">
@@ -322,7 +324,7 @@
                                   <label for="email-spouse" class="form-control-label">Email <span class="text-danger">*</span> </label>
                                   <input type="email"
                                          id="email-spouse"
-                                         class="form-control"
+                                         class="form-control data-sidebar"
                                          name="EmailSpouse">
                                 </div>
                               </div>
@@ -352,392 +354,235 @@
 
                           <div class="step-box-body">
 
-                            <div class="info-card added mt-5 mb-4">
-                              <h3 class="fs-4 mb-3 fw-semibold info-card-title text-uppercase"><span>Student 1</span></h3>
-                              <div class="info-summary">
-                                <div class="row">
-                                  <div class="col-6">
-                                    <p class="m-0 mb-2"><strong>Name: </strong>Jon Doe</p>
+                            <div class="info-card-list" data-total-row="1">
+                              <div class="info-card info-card-js mt-5 mb-4">
+                                <h3 class="fs-4 mb-3 fw-semibold info-card-title text-uppercase"><span>Student <span class="row-count-js">1</span> </span></h3>
+                                <input type="hidden"
+                                       class="form-control data-sidebar"
+                                       value="<strong>Student 1">
+
+                                <div class="info-summary">
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <p class="m-0 mb-2"><strong>Name: </strong><span class="data-summary-name"></span> </p>
+                                    </div>
+                                    <div class="col-6">
+                                      <p class="m-0 mb-2"><strong>Gender: </strong><span class="data-summary-gender"></span></p>
+                                    </div>
                                   </div>
-                                  <div class="col-6">
-                                    <p class="m-0 mb-2"><strong>Gender: </strong>Male</p>
-                                  </div>
-                                </div>
 
-                                <p class="m-0 mb-2"><strong>Date of Birth: </strong>05/12/2006</p>
+                                  <p class="m-0 mb-2"><strong>Date of Birth: </strong><span class="data-summary-dob"></span></p>
 
-                                <div class="table-responsive">
-                                  <table class="table table-striped mb-2">
-                                    <tbody>
-                                    <tr>
-                                      <td>Islamic Studies Grade</td>
-                                      <td>Grade 1</td>
-                                    </tr>
-                                    <tr>
-                                      <td colspan="2" class="text-center">
-                                        <strong>.&nbsp;.&nbsp;.</strong>
-                                      </td>
-                                    </tr>
-<!--                                    <tr>-->
-<!--                                      <td>Quranic Studies Grade</td>-->
-<!--                                      <td>Grade 4</td>-->
-<!--                                    </tr>-->
-<!--                                    <tr>-->
-<!--                                      <td>Islamic Studies Grade</td>-->
-<!--                                      <td>Grade 1</td>-->
-<!--                                    </tr>-->
-                                    </tbody>
-                                  </table>
-                                </div>
-
-<!--                                <p class="m-0 mb-2"><strong>Notes: </strong>Lorem ipsum dolor sit amet, consectetur.</p>-->
-
-                              </div>
-                              <div class="row d-none">
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <label for="fname-student" class="form-control-label">First Name</label>
-                                    <input type="text"
-                                           id="fname-student"
-                                           class="form-control"
-                                           name="FirstNameStudent">
+                                  <div class="table-responsive">
+                                    <table class="table table-striped mb-2">
+                                      <tbody>
+                                      <tr>
+                                        <td><span class="data-summary-sub"></span></td>
+                                        <td><span class="data-summary-grade"></span></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="2" class="text-center">
+                                          <strong>.&nbsp;.&nbsp;.</strong>
+                                        </td>
+                                      </tr>
+                                      </tbody>
+                                    </table>
                                   </div>
                                 </div>
 
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <label for="lname-student" class="form-control-label">Last Name</label>
-                                    <input type="text"
-                                           id="lname-student"
-                                           class="form-control"
-                                           name="LastNameStudent">
+                                <div class="info-input">
+                                  <div class="row row-field">
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="fname-student" class="form-control-label">First Name</label>
+                                        <input type="text"
+                                               id="fname-student"
+                                               class="form-control fname-js"
+                                               name="FirstNameStudent">
+                                      </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="lname-student" class="form-control-label">Last Name</label>
+                                        <input type="text"
+                                               id="lname-student"
+                                               class="form-control lname-js"
+                                               name="LastNameStudent">
+                                      </div>
+                                      <input type="hidden"
+                                             class="form-control name-string-js data-summary data-sidebar"
+                                             data-output=".data-summary-name">
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="dob-student" class="form-control-label">Date of Birth</label>
+                                        <input type="text"
+                                               id="dob-student"
+                                               class="form-control data-summary"
+                                               name="DobStudent"
+                                               data-output=".data-summary-dob">
+                                      </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="gender-student" class="form-control-label">Gender</label>
+                                        <select id="gender-student"
+                                                class="form-select form-control data-summary"
+                                                data-output=".data-summary-gender"
+                                                name="GenderStudent">
+                                          <option>Choose Gender</option>
+                                          <option value="male">Male</option>
+                                          <option value="female">Female</option>
+                                        </select>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="grade-sub1" class="form-control-label">Islamic Studies Grade</label>
+                                        <input type="hidden"
+                                               class="form-control data-summary"
+                                               data-output=".data-summary-sub">
+                                        <select id="grade-sub1"
+                                                class="form-select form-control data-summary"
+                                                data-output=".data-summary-grade"
+                                                name="GenderStudent">
+                                          <option>Choose Grade</option>
+                                          <option value="e9a23e20-c605-4666-901b-1527326d4807">
+                                            KG
+                                          </option>
+                                          <option value="cb209b02-f3c1-44df-9983-2f713e28fbe0">
+                                            1ST GRADE
+                                          </option>
+                                          <option value="b12b549a-f837-44a2-a1d1-2ce349e35b5d">
+                                            2ND GRADE
+                                          </option>
+                                          <option value="9f2c4078-f8db-4b81-9070-5e55f42c2d81">
+                                            3RD GRADE
+                                          </option>
+                                          <option value="531448a0-d49a-4d1f-aee6-ac6c2cbbdaeb">
+                                            4TH GRADE
+                                          </option>
+                                          <option value="02fe7ea7-cc2a-4665-8300-7f7e53518262">
+                                            5TH GRADE
+                                          </option>
+                                          <option value="25450b0e-cc68-4030-9221-6687d76fe318">
+                                            6TH GRADE
+                                          </option>
+                                          <option value="0e2ae62f-7fd5-485f-a5a4-49f25d8c8ef3">
+                                            7TH GRADE
+                                          </option>
+                                          <option value="28e961ba-f5a7-4266-be6e-12b0c2b32e21">
+                                            8TH GRADE
+                                          </option>
+                                          <option value="db02499b-26b6-4723-8905-62bfe2263371">
+                                            9TH GRADE
+                                          </option>
+                                          <option value="21b1f588-9f63-465f-b0db-801c933f6671">
+                                            10TH GRADE
+                                          </option>
+                                          <option value="29e8b9ad-5489-4619-8c0a-fd82d7d2d136">
+                                            11TH GRADE
+                                          </option>
+                                          <option value="77ce2c76-1210-47ac-88a2-5d3a7975bd33">
+                                            12TH GRADE
+                                          </option>
+                                          <option value="03ad2cf0-a4ff-4c6a-a010-4accd60a24a7">
+                                            SPECIAL CLASS
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label for="grade-sub2" class="form-control-label">Quranic Studies Grade</label>
+                                        <select id="grade-sub2"
+                                                class="form-control"
+                                                name="GenderStudent">
+                                          <option>Choose Grade</option>
+                                          <option value="e9a23e20-c605-4666-901b-1527326d4807">
+                                            KG
+                                          </option>
+                                          <option value="cb209b02-f3c1-44df-9983-2f713e28fbe0">
+                                            1ST GRADE
+                                          </option>
+                                          <option value="b12b549a-f837-44a2-a1d1-2ce349e35b5d">
+                                            2ND GRADE
+                                          </option>
+                                          <option value="9f2c4078-f8db-4b81-9070-5e55f42c2d81">
+                                            3RD GRADE
+                                          </option>
+                                          <option value="531448a0-d49a-4d1f-aee6-ac6c2cbbdaeb">
+                                            4TH GRADE
+                                          </option>
+                                          <option value="02fe7ea7-cc2a-4665-8300-7f7e53518262">
+                                            5TH GRADE
+                                          </option>
+                                          <option value="25450b0e-cc68-4030-9221-6687d76fe318">
+                                            6TH GRADE
+                                          </option>
+                                          <option value="0e2ae62f-7fd5-485f-a5a4-49f25d8c8ef3">
+                                            7TH GRADE
+                                          </option>
+                                          <option value="28e961ba-f5a7-4266-be6e-12b0c2b32e21">
+                                            8TH GRADE
+                                          </option>
+                                          <option value="db02499b-26b6-4723-8905-62bfe2263371">
+                                            9TH GRADE
+                                          </option>
+                                          <option value="21b1f588-9f63-465f-b0db-801c933f6671">
+                                            10TH GRADE
+                                          </option>
+                                          <option value="29e8b9ad-5489-4619-8c0a-fd82d7d2d136">
+                                            11TH GRADE
+                                          </option>
+                                          <option value="77ce2c76-1210-47ac-88a2-5d3a7975bd33">
+                                            12TH GRADE
+                                          </option>
+                                          <option value="03ad2cf0-a4ff-4c6a-a010-4accd60a24a7">
+                                            SPECIAL CLASS
+                                          </option>
+                                        </select>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-sm-12">
+                                      <div class="form-group">
+                                        <label for="notes-student" class="form-control-label">Notes</label>
+                                        <textarea type="text"
+                                                  id="notes-student"
+                                                  class="form-control"
+                                                  name="notesStudent"
+                                                  rows="2"></textarea>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
 
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <label for="dob-student" class="form-control-label">Date of Birth</label>
-                                    <input type="text"
-                                           id="dob-student"
-                                           class="form-control"
-                                           name="DobStudent">
-                                  </div>
-                                </div>
+                                <div class="info-card-foot text-end pe-2 pe-sm-4">
+                                  <button type="button"
+                                          class="btn btn-outline-danger text-uppercase fw-semibold btn-remove btn-remove-js me-2"
+                                          data-remove=".info-card-js">
+                                    <img src="assets/images/trash.png" alt="remove" class="btn-image">
+                                    <img src="assets/images/trash-white.png" alt="remove" class="btn-image-hover">
+                                    <span>Remove</span>
+                                  </button>
 
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <label for="gender-student" class="form-control-label">Gender</label>
-                                    <select id="gender-student"
-                                            class="form-control"
-                                            name="GenderStudent">
-                                      <option>Choose Gender</option>
-                                      <option value="male">Male</option>
-                                      <option value="female">Female</option>
-                                    </select>
-                                  </div>
+                                  <button type="button" class="btn btn-outline-primary btn-outline-primary2 text-uppercase fw-semibold btn-edit btn-edit-js">
+                                    <img src="assets/images/edit-blue.png" alt="edit" class="btn-image">
+                                    <img src="assets/images/edit-white.png" alt="edit" class="btn-image-hover">
+                                    <span>Edit</span>
+                                  </button>
                                 </div>
-
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <label for="grade-sub1" class="form-control-label">Islamic Studies Grade</label>
-                                    <select id="grade-sub1"
-                                            class="form-control"
-                                            name="GenderStudent">
-                                      <option>Choose Grade</option>
-                                      <option value="e9a23e20-c605-4666-901b-1527326d4807">
-                                        KG
-                                      </option>
-                                      <option value="cb209b02-f3c1-44df-9983-2f713e28fbe0">
-                                        1ST GRADE
-                                      </option>
-                                      <option value="b12b549a-f837-44a2-a1d1-2ce349e35b5d">
-                                        2ND GRADE
-                                      </option>
-                                      <option value="9f2c4078-f8db-4b81-9070-5e55f42c2d81">
-                                        3RD GRADE
-                                      </option>
-                                      <option value="531448a0-d49a-4d1f-aee6-ac6c2cbbdaeb">
-                                        4TH GRADE
-                                      </option>
-                                      <option value="02fe7ea7-cc2a-4665-8300-7f7e53518262">
-                                        5TH GRADE
-                                      </option>
-                                      <option value="25450b0e-cc68-4030-9221-6687d76fe318">
-                                        6TH GRADE
-                                      </option>
-                                      <option value="0e2ae62f-7fd5-485f-a5a4-49f25d8c8ef3">
-                                        7TH GRADE
-                                      </option>
-                                      <option value="28e961ba-f5a7-4266-be6e-12b0c2b32e21">
-                                        8TH GRADE
-                                      </option>
-                                      <option value="db02499b-26b6-4723-8905-62bfe2263371">
-                                        9TH GRADE
-                                      </option>
-                                      <option value="21b1f588-9f63-465f-b0db-801c933f6671">
-                                        10TH GRADE
-                                      </option>
-                                      <option value="29e8b9ad-5489-4619-8c0a-fd82d7d2d136">
-                                        11TH GRADE
-                                      </option>
-                                      <option value="77ce2c76-1210-47ac-88a2-5d3a7975bd33">
-                                        12TH GRADE
-                                      </option>
-                                      <option value="03ad2cf0-a4ff-4c6a-a010-4accd60a24a7">
-                                        SPECIAL CLASS
-                                      </option>
-                                    </select>
-                                  </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <label for="grade-sub2" class="form-control-label">Quranic Studies Grade</label>
-                                    <select id="grade-sub2"
-                                            class="form-control"
-                                            name="GenderStudent">
-                                      <option>Choose Grade</option>
-                                      <option value="e9a23e20-c605-4666-901b-1527326d4807">
-                                        KG
-                                      </option>
-                                      <option value="cb209b02-f3c1-44df-9983-2f713e28fbe0">
-                                        1ST GRADE
-                                      </option>
-                                      <option value="b12b549a-f837-44a2-a1d1-2ce349e35b5d">
-                                        2ND GRADE
-                                      </option>
-                                      <option value="9f2c4078-f8db-4b81-9070-5e55f42c2d81">
-                                        3RD GRADE
-                                      </option>
-                                      <option value="531448a0-d49a-4d1f-aee6-ac6c2cbbdaeb">
-                                        4TH GRADE
-                                      </option>
-                                      <option value="02fe7ea7-cc2a-4665-8300-7f7e53518262">
-                                        5TH GRADE
-                                      </option>
-                                      <option value="25450b0e-cc68-4030-9221-6687d76fe318">
-                                        6TH GRADE
-                                      </option>
-                                      <option value="0e2ae62f-7fd5-485f-a5a4-49f25d8c8ef3">
-                                        7TH GRADE
-                                      </option>
-                                      <option value="28e961ba-f5a7-4266-be6e-12b0c2b32e21">
-                                        8TH GRADE
-                                      </option>
-                                      <option value="db02499b-26b6-4723-8905-62bfe2263371">
-                                        9TH GRADE
-                                      </option>
-                                      <option value="21b1f588-9f63-465f-b0db-801c933f6671">
-                                        10TH GRADE
-                                      </option>
-                                      <option value="29e8b9ad-5489-4619-8c0a-fd82d7d2d136">
-                                        11TH GRADE
-                                      </option>
-                                      <option value="77ce2c76-1210-47ac-88a2-5d3a7975bd33">
-                                        12TH GRADE
-                                      </option>
-                                      <option value="03ad2cf0-a4ff-4c6a-a010-4accd60a24a7">
-                                        SPECIAL CLASS
-                                      </option>
-                                    </select>
-                                  </div>
-                                </div>
-
-                                <div class="col-sm-12">
-                                  <div class="form-group">
-                                    <label for="notes-student" class="form-control-label">Notes</label>
-                                    <textarea type="text"
-                                              id="notes-student"
-                                              class="form-control"
-                                              name="notesStudent"
-                                              rows="2"></textarea>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="info-card-foot text-end pe-2 pe-sm-4">
-                                <button type="button" class="btn btn-outline-primary btn-outline-primary2 text-uppercase fw-semibold">
-                                  <img src="assets/images/edit-blue.png" alt="edit" class="btn-image">
-                                  <img src="assets/images/edit-white.png" alt="edit" class="btn-image-hover">
-                                  <span>Edit</span>
-                                </button>
                               </div>
                             </div>
 
-                            <div class="info-card mt-5 mb-4">
-                              <h3 class="fs-4 mb-3 fw-semibold info-card-title text-uppercase"><span>Student 2</span></h3>
-                              <div class="row">
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <label for="fname-student2" class="form-control-label">First Name</label>
-                                    <input type="text"
-                                           id="fname-student2"
-                                           class="form-control"
-                                           name="FirstNameStudent2">
-                                  </div>
-                                </div>
 
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <label for="lname-student2" class="form-control-label">Last Name</label>
-                                    <input type="text"
-                                           id="lname-student2"
-                                           class="form-control"
-                                           name="LastNameStudent2">
-                                  </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <label for="dob-student2" class="form-control-label">Date of Birth</label>
-                                    <input type="text"
-                                           id="dob-student2"
-                                           class="form-control"
-                                           name="DobStudent2">
-                                  </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <label for="gender-student2" class="form-control-label">Gender</label>
-                                    <select id="gender-student2"
-                                            class="form-control"
-                                            name="GenderStudent2">
-                                      <option>Choose Gender</option>
-                                      <option value="male">Male</option>
-                                      <option value="female">Female</option>
-                                    </select>
-                                  </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <label for="grade-sub2-1" class="form-control-label">Islamic Studies Grade</label>
-                                    <select id="grade-sub2-1"
-                                            class="form-control"
-                                            name="GenderStudent21">
-                                      <option>Choose Grade</option>
-                                      <option value="e9a23e20-c605-4666-901b-1527326d4807">
-                                        KG
-                                      </option>
-                                      <option value="cb209b02-f3c1-44df-9983-2f713e28fbe0">
-                                        1ST GRADE
-                                      </option>
-                                      <option value="b12b549a-f837-44a2-a1d1-2ce349e35b5d">
-                                        2ND GRADE
-                                      </option>
-                                      <option value="9f2c4078-f8db-4b81-9070-5e55f42c2d81">
-                                        3RD GRADE
-                                      </option>
-                                      <option value="531448a0-d49a-4d1f-aee6-ac6c2cbbdaeb">
-                                        4TH GRADE
-                                      </option>
-                                      <option value="02fe7ea7-cc2a-4665-8300-7f7e53518262">
-                                        5TH GRADE
-                                      </option>
-                                      <option value="25450b0e-cc68-4030-9221-6687d76fe318">
-                                        6TH GRADE
-                                      </option>
-                                      <option value="0e2ae62f-7fd5-485f-a5a4-49f25d8c8ef3">
-                                        7TH GRADE
-                                      </option>
-                                      <option value="28e961ba-f5a7-4266-be6e-12b0c2b32e21">
-                                        8TH GRADE
-                                      </option>
-                                      <option value="db02499b-26b6-4723-8905-62bfe2263371">
-                                        9TH GRADE
-                                      </option>
-                                      <option value="21b1f588-9f63-465f-b0db-801c933f6671">
-                                        10TH GRADE
-                                      </option>
-                                      <option value="29e8b9ad-5489-4619-8c0a-fd82d7d2d136">
-                                        11TH GRADE
-                                      </option>
-                                      <option value="77ce2c76-1210-47ac-88a2-5d3a7975bd33">
-                                        12TH GRADE
-                                      </option>
-                                      <option value="03ad2cf0-a4ff-4c6a-a010-4accd60a24a7">
-                                        SPECIAL CLASS
-                                      </option>
-                                    </select>
-                                  </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                  <div class="form-group">
-                                    <label for="grade-sub2-2" class="form-control-label">Quranic Studies Grade</label>
-                                    <select id="grade-sub2-2"
-                                            class="form-control"
-                                            name="GenderStudent22">
-                                      <option>Choose Grade</option>
-                                      <option value="e9a23e20-c605-4666-901b-1527326d4807">
-                                        KG
-                                      </option>
-                                      <option value="cb209b02-f3c1-44df-9983-2f713e28fbe0">
-                                        1ST GRADE
-                                      </option>
-                                      <option value="b12b549a-f837-44a2-a1d1-2ce349e35b5d">
-                                        2ND GRADE
-                                      </option>
-                                      <option value="9f2c4078-f8db-4b81-9070-5e55f42c2d81">
-                                        3RD GRADE
-                                      </option>
-                                      <option value="531448a0-d49a-4d1f-aee6-ac6c2cbbdaeb">
-                                        4TH GRADE
-                                      </option>
-                                      <option value="02fe7ea7-cc2a-4665-8300-7f7e53518262">
-                                        5TH GRADE
-                                      </option>
-                                      <option value="25450b0e-cc68-4030-9221-6687d76fe318">
-                                        6TH GRADE
-                                      </option>
-                                      <option value="0e2ae62f-7fd5-485f-a5a4-49f25d8c8ef3">
-                                        7TH GRADE
-                                      </option>
-                                      <option value="28e961ba-f5a7-4266-be6e-12b0c2b32e21">
-                                        8TH GRADE
-                                      </option>
-                                      <option value="db02499b-26b6-4723-8905-62bfe2263371">
-                                        9TH GRADE
-                                      </option>
-                                      <option value="21b1f588-9f63-465f-b0db-801c933f6671">
-                                        10TH GRADE
-                                      </option>
-                                      <option value="29e8b9ad-5489-4619-8c0a-fd82d7d2d136">
-                                        11TH GRADE
-                                      </option>
-                                      <option value="77ce2c76-1210-47ac-88a2-5d3a7975bd33">
-                                        12TH GRADE
-                                      </option>
-                                      <option value="03ad2cf0-a4ff-4c6a-a010-4accd60a24a7">
-                                        SPECIAL CLASS
-                                      </option>
-                                    </select>
-                                  </div>
-                                </div>
-
-                                <div class="col-sm-12">
-                                  <div class="form-group">
-                                    <label for="notes-student2" class="form-control-label">Notes</label>
-                                    <textarea type="text"
-                                              id="notes-student2"
-                                              class="form-control"
-                                              name="notesStudent2"
-                                              rows="2"></textarea>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="info-card-foot text-end pe-2 pe-sm-4">
-                                <button type="button" class="btn btn-outline-danger text-uppercase fw-semibold btn-remove-js">
-                                  <img src="assets/images/trash.png" alt="remove" class="btn-image">
-                                  <img src="assets/images/trash-white.png" alt="remove" class="btn-image-hover">
-                                  <span>Remove</span>
-                                </button>
-                              </div>
-                            </div>
-
-                            <button type="button" class="btn btn-outline-primary btn-outline-primary2 text-uppercase fw-semibold">
+                            <button type="button" class="btn btn-outline-primary btn-outline-primary2 btn-add-another-js text-uppercase fw-semibold">
                               <img src="assets/images/plus-circle-violet.png" alt="add" class="btn-image">
                               <img src="assets/images/plus-circle-white.png" alt="add" class="btn-image-hover">
                               <span>Add Another</span>
@@ -1014,7 +859,6 @@
                           </button>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </div>
@@ -1110,7 +954,7 @@
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <!-- script -->
-<script src="assets/js/script.js?v=1.0.1"></script>
+<script src="assets/js/script.js?v=1.0.2"></script>
 
 <script>
   function submitTheForm(){

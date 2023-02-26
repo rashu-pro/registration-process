@@ -19,6 +19,7 @@ let headerSelector = '.header-js';
 let footerSelector = '.footer-js';
 let loaderDivClass = '.loader-div',
   errorMessage = "The field is required";
+let stepBoxActiveSelector = '.step-box.active';
 
 
 /**
@@ -27,6 +28,7 @@ let loaderDivClass = '.loader-div',
  * -------------------------------------
  */
 fixHeight();
+countRow();
 
 /**
  * -------------------------------------
@@ -44,7 +46,9 @@ $(document).on('click', '.btn-navigation-js', function (e){
     stepBoxCount = $('.step-details .step-box').length,
     requiredFieldGroup = rootParent.find('.form-group.required-group'),
     paymentInfoSelector = '.payment-info-js',
-    isPaymentConfirmSelector = '.is-payment-confirm';
+    isPaymentConfirmSelector = '.is-payment-confirm',
+    nameStringSelector = '.step-box.active .name-string-js',
+    dataSidebarSelector = '.step-box.active .form-control.data-sidebar';
 
   //=== payment form show/hide
   let amount = parseFloat($('.membership-amount-js').val()).toFixed(2);
@@ -64,12 +68,13 @@ $(document).on('click', '.btn-navigation-js', function (e){
     $(isPaymentConfirmSelector).addClass('d-none');
   }
 
+  $('.step-details .btn-prev').css('display','inline-block');
   //=== previous button click action
   if(self.attr('data-action')==='decrease'){
     loaderEnable(loaderDivClass);
     setTimeout(()=>{
       stepMovePrev(stepCurrent);
-      if(stepPrev<3){
+      if(stepPrev<2){
         $('.step-details .btn-prev').css('display','none');
       }
       if(parseInt($('.step-box.active').attr('data-step'))!==stepBoxCount) $('.btn-navigation-js[data-action=increase] span').html($('.btn-navigation-js[data-action=increase]').attr('data-text'));
@@ -87,11 +92,26 @@ $(document).on('click', '.btn-navigation-js', function (e){
     return;
   }
 
-  if($('.step-box.active .form-control.data-sidebar').length>0){
+  if($(dataSidebarSelector).length>0){
+    $(nameStringSelector).each(function (i, element){
+      $(element).val($(element).closest('.row-field')
+        .find('.fname-js').val()+' '+
+        $(element).closest('.row-field')
+        .find('.lname-js').val());
+    })
+    // $(nameStringSelector).val($('.step-box.active .fname-js').val()+' '+$('.step-box.active .lname-js').val());
+    let summaryString = '';
     $('.step-box.active .form-control.data-sidebar').each(function (i, element){
       if(!$(element).val()) return;
-      $('.step-list[data-step='+stepCurrent+'] .step-summary').append("<p class='m-0'>"+$(element).val()+"</p>");
+      let valueField = $(element).val();
+      if(valueField==='lineBreak'){
+        summaryString += "<hr class='m-0 my-1' />";
+      }else{
+        summaryString += "<p class='m-0'>"+$(element).val()+"</p>";
+      }
+      // $('.step-list[data-step='+stepCurrent+'] .step-summary').html("<p class='m-0'>"+$(element).val()+"</p>");
     })
+    $('.step-list[data-step='+stepCurrent+'] .step-summary').html(summaryString);
   }
 
   loaderEnable(loaderDivClass);
@@ -123,6 +143,35 @@ $(document).on('click', '.btn-confirm-js', function (){
   loaderEnable(loaderDivClass);
   submitTheForm();
 });
+
+//=== remove block
+$(document).on('click', '.btn-remove-js', function (e){
+  e.preventDefault();
+  $(this).closest($(this).attr('data-remove')).remove();
+  countRow();
+})
+
+//=== edit info block
+$(document).on('click', '.btn-edit-js', function (e){
+  e.preventDefault();
+  $(this).closest('.info-card-js').removeClass('added');
+})
+
+//=== add another block
+$(document).on('click', '.btn-add-another-js', function (e){
+  e.preventDefault();
+  let self = $(this);
+  $('.info-card-js').addClass('added');
+  let infoCard = $('.info-card-js').first().clone();
+  infoCard.removeClass('added');
+  infoCard.find('.form-control').val('');
+  $('.info-card-list').append(infoCard);
+  countRow();
+})
+
+function summaryAddition(blockSelector){
+  blockSelector.find('')
+}
 
 
 
@@ -305,5 +354,21 @@ function singleValidation(formControl, formGroup, invalidClassName, validClassNa
   if(formControl.hasClass('validation-cc-number')){
     paramObj.errorMessage = "Invalid card number!";
     cardValidation()?validationSuccess(paramObj):validationFailed(paramObj);
+  }
+}
+
+/**
+ * count row and give row number
+ */
+function countRow(){
+  let totalRow = 0;
+  $('.row-count-js').each(function (i, element){
+    $(element).html(i+1);
+    totalRow += (i+1);
+  })
+
+  $('.info-card-js').removeClass('only-one-row');
+  if(totalRow<2){
+    $('.info-card-js').addClass('only-one-row');
   }
 }

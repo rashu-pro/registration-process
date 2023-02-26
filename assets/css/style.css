@@ -864,6 +864,18 @@ html, body {
   border-radius: 0.4rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
 }
+.info-card-list .info-card.only-one-row.added .info-card-foot {
+  margin-bottom: -30px;
+}
+.info-card-list .info-card.only-one-row.added .info-card-foot .btn-remove {
+  display: inline-block;
+}
+.info-card-list .info-card.only-one-row .info-card-foot {
+  margin-bottom: 0;
+}
+.info-card-list .info-card.only-one-row .info-card-foot .btn-remove {
+  display: none;
+}
 .info-card-title {
   margin-top: -30px;
   color: #3f51b5;
@@ -889,12 +901,25 @@ html, body {
 .info-card-foot .btn-outline-danger:hover {
   background-color: #dc3545;
 }
+.info-card-foot .btn-edit {
+  display: none;
+}
 .info-card.added {
   background-color: #f1f1f7;
+}
+.info-card.added .info-summary {
+  display: block;
+}
+.info-card.added .info-input {
+  display: none;
+}
+.info-card.added .info-card-foot .btn-edit {
+  display: inline-block;
 }
 .info-summary {
   overflow-y: auto;
   /* box-sizing: border-box; */
+  display: none;
   overflow-x: hidden;
 }
 @media (min-width: 992px) {

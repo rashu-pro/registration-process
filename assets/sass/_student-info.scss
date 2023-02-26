@@ -5,6 +5,73 @@
     border-radius: 0.4rem;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
 
+    &-list{
+      .info{
+        &-card{
+          &:first-child{
+
+            //&.added{
+            //  .info{
+            //    &-card{
+            //      &-foot{
+            //        margin-bottom:-30px;
+            //        .btn{
+            //          &-remove{
+            //            display: inline-block;
+            //          }
+            //        }
+            //      }
+            //    }
+            //  }
+            //}
+            //
+            //.info{
+            //  &-card{
+            //    &-foot{
+            //      margin-bottom:0;
+            //      .btn{
+            //        &-remove{
+            //          display: none;
+            //        }
+            //      }
+            //    }
+            //  }
+            //}
+          }
+
+          &.only-one-row{
+            &.added{
+              .info{
+                &-card{
+                  &-foot{
+                    margin-bottom:-30px;
+                    .btn{
+                      &-remove{
+                        display: inline-block;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .info{
+              &-card{
+                &-foot{
+                  margin-bottom:0;
+                  .btn{
+                    &-remove{
+                      display: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     &-title{
       margin-top:-30px;
       color:$color-primary2;
@@ -35,17 +102,38 @@
           }
         }
 
+        &-edit{
+          display: none;
+        }
+
       }
     }
 
     &.added{
       background-color: #f1f1f7;
+      .info{
+        &-summary{
+          display: block;
+        }
+        &-input{
+          display: none;
+        }
+
+        &-card{
+          &-foot{
+            .btn-edit{
+              display: inline-block;
+            }
+          }
+        }
+      }
     }
   }
 
   &-summary{
     overflow-y: auto;
     /* box-sizing: border-box; */
+    display: none;
     overflow-x: hidden;
 
     @media (min-width: 992px){
