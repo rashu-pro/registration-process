@@ -313,6 +313,9 @@ html, body {
 .form-group.required-group .required-mark {
   display: inline-block;
 }
+.form-group:not(.required-group) .text-danger.error-message {
+  color: #3f51b5 !important;
+}
 .form-check-lg .form-check-input {
   width: 1.4em;
   height: 1.4em;
@@ -850,6 +853,19 @@ html, body {
     padding: 30px 0 0;
   }
 }
+.toggle-div {
+  display: none;
+}
+.toggle-selector .toggle-sign img {
+  max-height: 16px;
+  padding-left: 3px;
+  position: relative;
+  top: 1px;
+}
+.toggle-selector.toggle-active .toggle-sign img {
+  transform: rotate(180deg);
+}
+
 @media (max-width: 767px) {
   .step-list .edit {
     display: none !important;

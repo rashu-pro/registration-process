@@ -20,6 +20,9 @@
 
   <!-- bootstrap -->
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- intl-tel-input -->
+  <link rel="stylesheet"
+        href="node_modules/intl-tel-input/build/css/intlTelInput.min.css">
 
   <!-- style -->
   <link rel="stylesheet" href="assets/css/style.css?v=1.0.2">
@@ -138,10 +141,10 @@
 
                   <!-- content -->
                   <div class="col-lg-8">
-                    <div class="step-details step-initial">
+                    <div class="step-details">
 
                       <!-- step 1 --guardian information  -->
-                      <div class="step-box active" data-step="1">
+                      <div class="step-box" data-step="1">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Parent/Guardian Information</h3>
@@ -152,23 +155,23 @@
 
                             <div class="row row-field">
                               <div class="col-md-6">
-                                <div class="form-group mb-4">
+                                <div class="form-group required-group mb-4">
                                   <label for="email-guardian" class="form-control-label">Email <span class="text-danger">*</span> </label>
                                   <input type="email"
                                          id="email-guardian"
-                                         class="form-control data-sidebar"
+                                         class="form-control validation-email data-sidebar"
                                          name="EmailGuardian"
                                          data-sidebar="1">
                                 </div>
                               </div>
 
                               <div class="col-md-6">
-                                <div class="form-group mb-4">
+                                <div class="form-group phone-number-validator-wrapper">
                                   <label for="phone-guardian" class="form-control-label">Phone <span class="text-danger">*</span> </label>
                                   <input type="text"
                                          id="phone-guardian"
-                                         class="form-control"
-                                         name="PhoneGuardian">
+                                         class="form-control phone-number-validator input-phone-number">
+                                  <input id="Person_CellNumber" name="PhoneGuardian" type="hidden" value="">
                                 </div>
                               </div>
 
@@ -245,10 +248,10 @@
                               </div>
 
                               <div class="col-md-6">
-                                <div class="form-group mb-4">
+                                <div class="form-group required-group mb-4">
                                   <label for="income-per-year" class="form-control-label">Income Per Year <span class="text-danger">*</span> </label>
                                   <select id="income-per-year"
-                                          class="form-select"
+                                          class="form-select form-control"
                                           name="IncomePerYear">
                                     <option value="">Select an Option</option>
                                     <option value="1">$32,048 or less</option>
@@ -276,7 +279,7 @@
                                          data-value="terms"
                                          value="">
                                   <label class="form-check-label" for="interested-pto">
-                                    I have read and agree to the code fo conduct and terms & conditions.
+                                    I am interested in PTO.
                                   </label>
                                   <input type="hidden" class="form-control validation-radio">
                                 </div>
@@ -299,7 +302,7 @@
                           <div class="step-box-body">
                             <div class="row row-field">
                               <div class="col-md-6">
-                                <div class="form-group mb-4">
+                                <div class="form-group required-group mb-4">
                                   <label for="fname-spouse" class="form-control-label">First Name <span class="text-danger">*</span> </label>
                                   <input type="text"
                                          id="fname-spouse"
@@ -309,7 +312,7 @@
                               </div>
 
                               <div class="col-md-6">
-                                <div class="form-group mb-4">
+                                <div class="form-group required-group mb-4">
                                   <label for="lname-spouse" class="form-control-label">Last Name <span class="text-danger">*</span> </label>
                                   <input type="text"
                                          id="lname-spouse"
@@ -358,8 +361,8 @@
                               <div class="info-card info-card-js mt-5 mb-4">
                                 <h3 class="fs-4 mb-3 fw-semibold info-card-title text-uppercase"><span>Student <span class="row-count-js">1</span> </span></h3>
                                 <input type="hidden"
-                                       class="form-control data-sidebar"
-                                       value="<strong>Student 1">
+                                       class="form-control data-sidebar student-serial"
+                                       value="<strong>Student 1</strong>">
 
                                 <div class="info-summary">
                                   <div class="row">
@@ -393,8 +396,11 @@
                                 <div class="info-input">
                                   <div class="row row-field">
                                     <div class="col-sm-6">
-                                      <div class="form-group">
-                                        <label for="fname-student" class="form-control-label">First Name</label>
+                                      <div class="form-group required-group">
+                                        <label for="fname-student"
+                                               class="form-control-label">
+                                          First Name <span class="text-danger">*</span>
+                                        </label>
                                         <input type="text"
                                                id="fname-student"
                                                class="form-control fname-js"
@@ -403,8 +409,11 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                      <div class="form-group">
-                                        <label for="lname-student" class="form-control-label">Last Name</label>
+                                      <div class="form-group required-group">
+                                        <label for="lname-student"
+                                               class="form-control-label">
+                                          Last Name <span class="text-danger">*</span>
+                                        </label>
                                         <input type="text"
                                                id="lname-student"
                                                class="form-control lname-js"
@@ -416,8 +425,11 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                      <div class="form-group">
-                                        <label for="dob-student" class="form-control-label">Date of Birth</label>
+                                      <div class="form-group required-group">
+                                        <label for="dob-student"
+                                               class="form-control-label">
+                                          Date of Birth <span class="text-danger">*</span>
+                                        </label>
                                         <input type="text"
                                                id="dob-student"
                                                class="form-control data-summary"
@@ -427,13 +439,16 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                      <div class="form-group">
-                                        <label for="gender-student" class="form-control-label">Gender</label>
+                                      <div class="form-group required-group">
+                                        <label for="gender-student"
+                                               class="form-control-label">
+                                          Gender <span class="text-danger">*</span>
+                                        </label>
                                         <select id="gender-student"
                                                 class="form-select form-control data-summary"
                                                 data-output=".data-summary-gender"
                                                 name="GenderStudent">
-                                          <option>Choose Gender</option>
+                                          <option value="">Choose Gender</option>
                                           <option value="male">Male</option>
                                           <option value="female">Female</option>
                                         </select>
@@ -441,16 +456,19 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                      <div class="form-group">
-                                        <label for="grade-sub1" class="form-control-label">Islamic Studies Grade</label>
+                                      <div class="form-group required-group">
+                                        <label for="grade-sub1"
+                                               class="form-control-label">
+                                          Islamic Studies Grade <span class="text-danger">*</span>
+                                        </label>
                                         <input type="hidden"
-                                               class="form-control data-summary"
-                                               data-output=".data-summary-sub">
+                                               class="data-summary"
+                                               data-output=".data-summary-sub" value="Islamic Studies: ">
                                         <select id="grade-sub1"
                                                 class="form-select form-control data-summary"
                                                 data-output=".data-summary-grade"
                                                 name="GenderStudent">
-                                          <option>Choose Grade</option>
+                                          <option value="">Choose Grade</option>
                                           <option value="e9a23e20-c605-4666-901b-1527326d4807">
                                             KG
                                           </option>
@@ -498,18 +516,19 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                      <div class="form-group">
-                                        <label for="grade-sub2" class="form-control-label">Quranic Studies Grade</label>
+                                      <div class="form-group required-group">
+                                        <label for="grade-sub2"
+                                               class="form-control-label">
+                                          Quranic Studies Grade <span class="text-danger">*</span>
+                                        </label>
                                         <select id="grade-sub2"
-                                                class="form-control"
+                                                class="form-select form-control data-sidebar"
                                                 name="GenderStudent">
-                                          <option>Choose Grade</option>
-                                          <option value="e9a23e20-c605-4666-901b-1527326d4807">
+                                          <option value="">Choose Grade</option>
+                                          <option value="kg">
                                             KG
                                           </option>
-                                          <option value="cb209b02-f3c1-44df-9983-2f713e28fbe0">
-                                            1ST GRADE
-                                          </option>
+                                          <option value="cb209b02-f3c1-44df-9983-2f713e28fbe0">1ST GRADE</option>
                                           <option value="b12b549a-f837-44a2-a1d1-2ce349e35b5d">
                                             2ND GRADE
                                           </option>
@@ -592,7 +611,7 @@
                       </div>
 
                       <!-- step 4 --payment information  -->
-                      <div class="step-box" data-step="4">
+                      <div class="step-box active" data-step="4">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Payment Information</h3>
@@ -602,17 +621,21 @@
                           <div class="step-box-body">
 
                             <div class="">
-                              <div class="form-group">
-                                <label for="payment-plan" class="form-control-label">Payment Plan</label>
+                              <div class="form-group required-group">
+                                <label for="payment-plan"
+                                       class="form-control-label">
+                                  Payment Plan <span class="text-danger">*</span>
+                                </label>
                                 <select id="payment-plan" class="form-select">
-                                  <option>Choose Plan</option>
-                                  <option value="full payment">Plan A - Full Payment</option>
-                                  <option value="half payment">Plan B - Half Payment</option>
+                                  <option value="">Choose Plan</option>
+                                  <option value="full payment" data-price="250">Plan A - Full Payment</option>
+                                  <option value="half payment" data-price="130">Plan B - Half Payment</option>
+                                  <option value="Free" data-price="0">Full Waiver - Scholarship</option>
                                 </select>
                               </div>
 
                               <!-- checkout summary and coupon section -->
-                              <div class="py-3 px-4 bg-light">
+                              <div class="py-3 px-4 bg-light checkout-summary-js d-none">
                                 <div class="table-responsive">
                                   <table class="table table-striped">
                                     <thead>
@@ -652,10 +675,10 @@
                                     <div class="coupon-code-wrapper-head">
                                       <p class="m-0">
                                         Have a coupon?
-                                        <a href="javascript:void(0)">Click here to enter your code</a>
+                                        <a href="javascript:void(0)" class="toggle-selector" data-toggle=".coupon-code-wrapper-body">Click here to enter your code <span class="toggle-sign"><img src="assets/images/chevron-down-blue.png" alt="toggle"> </span></a>
                                       </p>
                                     </div>
-                                    <div class="coupon-code-wrapper-body">
+                                    <div class="coupon-code-wrapper-body toggle-div">
                                       <p class="m-0 mb-2">If you have a coupon code, please apply it below.</p>
 
                                       <div class="input-group">
@@ -671,7 +694,7 @@
                             </div>
 
 <!--                            <div class="payment-info pt-4 payment-info-js">-->
-                            <div class="payment-info pt-4">
+                            <div class="payment-info pt-4 d-none">
                               <h2 class="mb-1 fs-4 fw-semibold text-success">Payment Details</h2>
                               <hr class="m-0 text-success">
                               <div class="row">
@@ -949,10 +972,12 @@
 
 <!--jquery -->
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
-
 <!--bootstrap-->
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
+<!-- intl-tel-input -->
+<script src="node_modules/intl-tel-input/build/js/intlTelInput.min.js"></script>
+<!-- phone validator -->
+<script src="assets/js/phone_validator.js"></script>
 <!-- script -->
 <script src="assets/js/script.js?v=1.0.2"></script>
 

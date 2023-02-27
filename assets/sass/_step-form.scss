@@ -272,6 +272,29 @@ $color-border-sidebar: #ddd;
   }
 }
 
+.toggle{
+  &-div{
+    display: none;
+  }
+  &-selector{
+    .toggle-sign{
+      img{
+        max-height: 16px;
+        padding-left: 3px;
+        position: relative;
+        top: 1px;
+      }
+    }
+    &.toggle-active{
+      .toggle-sign{
+        img{
+          transform:rotate(180deg);
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 767px) {
   .step{
     &-list{
