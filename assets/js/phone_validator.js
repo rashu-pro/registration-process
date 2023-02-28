@@ -113,21 +113,21 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
         showErrorMessage = 1;
         statusMessage = "Number is too short!";
         alertClass = 'text-danger';
-        isvalidClass = 'invalid';
+        if(phoneNumber.closest('.form-group.required-group')) isvalidClass = 'invalid';
     }
 
     if(!isValid && error === intlTelInputUtils.validationError.TOO_LONG){
         showErrorMessage = 1;
         statusMessage = "Number is too long!";
         alertClass = 'text-danger';
-        isvalidClass = 'invalid';
+        if(phoneNumber.closest('.form-group.required-group')) isvalidClass = 'invalid';
     }
 
     if(!isValid && error === intlTelInputUtils.validationError.IS_POSSIBLE){
         showErrorMessage = 1;
         statusMessage = "Invalid number!";
         alertClass = 'text-danger';
-        isvalidClass = 'invalid';
+        if(phoneNumber.closest('.form-group.required-group')) isvalidClass = 'invalid';
     }
 
     if(isValid && error === intlTelInputUtils.validationError.IS_POSSIBLE){
@@ -135,7 +135,7 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
         // statusMessage = "Number is valid!";
         alertClass = 'text-success';
         isvalidClass = 'valid';
-        isFormGroupValid = 'field-validated';
+        if(phoneNumber.closest('.form-group.required-group')) isFormGroupValid = 'field-validated';
     }
 
     if(phoneNumber.closest(phoneNumberWrapperSelectorName).querySelector(alertMessageSelectorName)){
@@ -149,7 +149,10 @@ function errorHandling(iti, phoneNumber, phoneNumberWrapperSelectorName, alertMe
         alertTag.classList.add(...classToadd);
         phoneNumber.classList.remove(...classToRemove);
         alertTag.append(statusMessage);
-        phoneNumber.classList.add(isvalidClass);
+        if(isFormGroupValid!==''){
+          phoneNumber.classList.add(isvalidClass);
+        }
+
         if(isFormGroupValid!=='') phoneNumber.parentElement.parentElement.classList.add(isFormGroupValid);
         phoneNumber.closest(phoneNumberWrapperSelectorName).append(alertTag);
     }

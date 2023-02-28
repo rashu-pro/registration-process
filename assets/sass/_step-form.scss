@@ -67,6 +67,10 @@ $color-border-sidebar: #ddd;
       display: none;
     }
 
+    .step-summary{
+      display: none;
+    }
+
     .btn-sm{
       //padding-left: 15px;
       //padding-right: 15px;
@@ -103,6 +107,9 @@ $color-border-sidebar: #ddd;
 
     &.completed{
       .edit{
+        display: block;
+      }
+      .step-summary{
         display: block;
       }
 
@@ -145,6 +152,10 @@ $color-border-sidebar: #ddd;
             img{
               display: none;
             }
+          }
+
+          &-summary{
+            display:none;
           }
         }
 

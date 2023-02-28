@@ -21,6 +21,12 @@ let loaderDivClass = '.loader-div',
   errorMessage = "The field is required";
 let stepBoxActiveSelector = '.step-box.active';
 let nameStringSelector = '.name-string-js';
+let datePickerSelector = '.date-picker-js';
+
+let J = Payment.J,
+  creditCardField = $('.cc-number'),
+  creditCardHolder = $('.cc-number-holder'),
+  creditCardImageHolder = $('.cc-card-identity');
 
 
 /**
@@ -30,6 +36,74 @@ let nameStringSelector = '.name-string-js';
  */
 fixHeight();
 countRow();
+
+//=== datepicker initialization
+if ($(datePickerSelector).length > 0) {
+  $(datePickerSelector).datepicker({
+    autoclose: true,
+    startDate: new Date()
+  });
+  $(datePickerSelector).datepicker().on('changeDate', function (e) {
+    $(this).trigger('blur');
+  });
+
+  $(datePickerSelector).datepicker().on('show', function (e) {
+    $(this).closest('.form-group').find('.error-message').hide();
+  });
+}
+
+/**
+ * country/state/city api
+ * https://countrystatecity.in/
+ */
+let headers = new Headers();
+headers.append("X-CSCAPI-KEY", "dERvN2VIc3c3QTNXNDZRaXlHRUpOcVEyWHVyYzNOZk1KSG9TN2xmcw==");
+
+let requestOptions = {
+  method: 'GET',
+  headers: headers,
+  redirect: 'follow'
+};
+
+let countryHolderSelector = '.country-selector-holder-js';
+let stateHolderSelector = '.state-selector-holder-js';
+let cityHolderSelector = '.city-selector-holder-js';
+
+let countrySelector = '.selector-country-js';
+let countryInput = '.input-country-js';
+let stateSelector = '.selector-state-js';
+let stateInput = '.input-state-js';
+let citySelector = '.selector-city-js';
+let cityInput = '.input-city-js';
+let checkToShowDivSelector = '.check-to-show-div-js';
+
+//=== fetch countries
+fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
+  .then(response => response.text())
+  .then(result => {
+    let objCountries = JSON.parse(result);
+    if (objCountries.length < 1) return;
+
+    $(countryHolderSelector).each(function (i, element) {
+      generateSelectDropdown($(element), $(element).find(countryInput), 'selector-country-js', 'Select country');
+
+      Object.keys(objCountries).forEach(function (key, index) {
+        let countryNameShort = objCountries[key]['iso2'];
+        let countryName = objCountries[key]['name'];
+        if(countryNameShort==='CA' || countryNameShort==='US'){
+          $(element).find(countrySelector).prepend('<option data-shortname="' + countryNameShort + '" value="' + countryName + '">' + countryName + '</option>');
+        }else{
+          $(element).find(countrySelector).append('<option data-shortname="' + countryNameShort + '" value="' + countryName + '">' + countryName + '</option>');
+        }
+      });
+
+      $(element).closest('.select-box').find('.ajax-loader').hide();
+      loaderDisable(loaderDivClass);
+    })
+  })
+  .catch(error => {
+    console.log('error', error);
+  });
 
 /**
  * -------------------------------------
@@ -228,6 +302,14 @@ $(document).on('keyup change', '.form-group.required-group .form-control', funct
   }
 });
 
+$(document).on('keyup', '.cc-number', function (e) {
+  let self = $(this);
+  let errorMessage = "The field is required";
+
+  //=== FIELD VALIDATION
+  singleValidation(self, self.closest('.form-group'), 'field-invalid', 'field-validated', 'error-message', errorMessage);
+});
+
 /**
  * -------------------------------------
  * 6. EVENT LISTENER: CHANGE
@@ -236,16 +318,115 @@ $(document).on('keyup change', '.form-group.required-group .form-control', funct
 let paymentPlanSelector = '#payment-plan';
 let checkoutSummarySelector = '.checkout-summary-js';
 let paymentInfoSelector = '.payment-info';
+$(paymentInfoSelector).find('.form-group').addClass('d-none');
 $(document).on('change', '#payment-plan', function (){
   let self = $(this);
   let price = parseInt(self.find('option:selected').attr('data-price'));
   $(checkoutSummarySelector).addClass('d-none');
   $(paymentInfoSelector).addClass('d-none');
+  $(paymentInfoSelector).find('.form-group').addClass('d-none');
   if(price>0){
     $(checkoutSummarySelector).removeClass('d-none');
     $(paymentInfoSelector).removeClass('d-none');
+    $(paymentInfoSelector).find('.form-group').removeClass('d-none');
   }
 })
+
+// === on country selection
+$(document).on('change', countrySelector, function () {
+  let self = $(this);
+  // let selectedCountry = self.val();
+  let selectedCountry = self.children('option:selected').attr('data-shortname');
+  self.closest('.address-block-js').find(stateHolderSelector).closest('.select-box').find('.ajax-loader').show();
+  self.closest('.address-block-js').find(stateSelector).empty();
+  self.closest('.address-block-js').find(citySelector).empty();
+  let url = `https://api.countrystatecity.in/v1/countries/${selectedCountry}/states`;
+  //=== fetch states
+  fetch(url, requestOptions)
+    .then(response => response.text())
+    .then(result => {
+      let objStates = JSON.parse(result);
+      if (objStates.length < 1) {
+        replaceSelectWithInput(self.closest('.address-block-js').find(stateSelector), 'input-state-js');
+        self.closest('.address-block-js').find(stateHolderSelector).closest('.select-box').find('.ajax-loader').hide();
+        return;
+      }
+
+      //=== sorting states alphabatically
+      objStates.sort(dynamicSort("name"));
+      generateSelectDropdown(self, self.closest('.address-block-js').find(stateInput), 'selector-state-js', 'Select State')
+      Object.keys(objStates).forEach(function (key, index) {
+        let stateNameShort = objStates[key]['iso2'];
+        let stateName = objStates[key]['name'];
+        self.closest('.address-block-js').find(stateSelector).append('<option data-shortname="' + stateNameShort + '" value="' + stateName + '">' + stateName + '</option>');
+      });
+      self.closest('.address-block-js').find(stateHolderSelector).closest('.select-box').find('.ajax-loader').hide();
+    })
+    .catch(error => {
+      console.log('error', error);
+    });
+})
+
+//=== on state selection
+$(document).on('change', stateSelector, function () {
+  let self = $(this);
+  let currentBody = self.closest('.address-block-js');
+  // let selectedState = self.val();
+  let selectedState = self.children('option:selected').attr('data-shortname');
+  let selectedCountry = self.closest('.address-block-js').find('.selector-country-js').children('option:selected').attr('data-shortname');
+  currentBody.find(citySelector).empty();
+  currentBody.find(cityHolderSelector).closest('.select-box').find('.ajax-loader').show();
+  let url = `https://api.countrystatecity.in/v1/countries/${selectedCountry}/states/${selectedState}/cities`;
+  //=== fetch cities
+  fetch(url, requestOptions)
+    .then(response => response.text())
+    .then(result => {
+      let objCities = JSON.parse(result);
+      if (objCities.length < 1) {
+        replaceSelectWithInput(currentBody.find(citySelector), 'input-city-js');
+        currentBody.find(cityHolderSelector).closest('.select-box').find('.ajax-loader').hide();
+        return;
+      }
+
+      generateSelectDropdown(self, currentBody.find(cityInput), 'selector-city-js', 'Select city');
+      Object.keys(objCities).forEach(function (key, index) {
+        let cityName = objCities[key]['name'];
+        currentBody.find(citySelector).append('<option value="' + cityName + '">' + cityName + '</option>');
+      });
+      currentBody.find(cityHolderSelector).closest('.select-box').find('.ajax-loader').hide();
+    })
+    .catch(error => {
+      console.log('error', error);
+    });
+
+})
+
+$(document).on('select2:open', () => {
+  document.querySelector('.select2-search__field').focus();
+})
+
+
+//=== radio field validation
+$(document).on('change', '.radio-group input[type=radio]', function () {
+  let self = $(this);
+  radioInputCustom(self);
+})
+
+if ($('.radio-group input[type=radio]').length > 0) {
+  $('.radio-group input[type=radio]').each(function (i, selector) {
+    if (!$(selector).attr('checked') || $(selector).attr('checked') === "undefined") return;
+    radioInputCustom($(selector));
+  })
+}
+
+$(document).on('change', '.check-group input[type=checkbox]', function (e) {
+  let self = $(this);
+  checkboxFunction(self);
+
+  if (self.closest('.form-group').hasClass('required-group')) {
+    singleValidation(self.closest('.form-group').find('.form-control'), self.closest('.form-group'), 'field-invalid', 'field-validated', 'error-message', errorMessage)
+  }
+});
 
 
 
@@ -526,4 +707,100 @@ function nameStringBuilder(fullNameSelector){
   $(fullNameSelector).val($(fullNameSelector).closest('.row-field')
     .find('.fname-js').val()+' ' + $(fullNameSelector).closest('.row-field')
     .find('.lname-js').val());
+}
+
+
+/**
+ * Generates select dropdown
+ * @param selfSelector
+ * @param inputSelector
+ * @param selectorClass
+ * @param selectPlaceholder
+ */
+function generateSelectDropdown(selfSelector, inputSelector, selectorClass, selectPlaceholder) {
+  if (inputSelector.length < 1) {
+    selfSelector.closest('.address-block-js').find(selectorClass).empty();
+    selfSelector.closest('.address-block-js').find(selectorClass).append('<option></option>');
+    return;
+  }
+  let id = inputSelector.attr('id');
+  let inputName = inputSelector.attr('name');
+  let selector = `<select id="${id}" class="form-control form-select field-normal selector-country ${selectorClass}" name="${inputName}">
+                                        <option></option>
+                                     </select>`;
+  inputSelector.parent().html(selector);
+  $(document).on('DOMNodeInserted', '.' + selectorClass, function () {
+    $(this).select2({
+      placeholder: selectPlaceholder,
+    });
+  });
+}
+
+/**
+ * Function to sort alphabetically an array of objects by some specific key.
+ *
+ * @param {String} property Key of the object to sort.
+ */
+function dynamicSort(property) {
+  var sortOrder = 1;
+
+  if (property[0] === "-") {
+    sortOrder = -1;
+    property = property.substr(1);
+  }
+
+  return function (a, b) {
+    if (sortOrder == -1) {
+      return b[property].localeCompare(a[property]);
+    } else {
+      return a[property].localeCompare(b[property]);
+    }
+  }
+}
+
+/**
+ * replaces select dropdown with input when ther is no item to add in the dropdown
+ * @param selectSelector
+ * @param inputClass
+ */
+function replaceSelectWithInput(selectSelector, inputClass) {
+  let id = $(selectSelector).attr('id');
+  let name = $(selectSelector).attr('name');
+  let inputField = `<input type="text" id="${id}" name="${name}" class="form-control field-normal ${inputClass}">`;
+  $(selectSelector).parent().html(inputField);
+
+}
+
+
+/**
+ * checks whether the given card number
+ * - is valid or not
+ *
+ * @return {boolean}
+ */
+//The block is updated for server use
+function cardValidation() {
+  let ccNumberSelector = document.querySelector('.cc-number'),
+    cardType = Payment.fns.cardType(J.val(ccNumberSelector));
+  //=== INVALID CARD TYPE
+  if (!cardType) {
+    creditCardImageHolder.html("<img src='assets/images/unknown.png'>");
+    return;
+  }
+  creditCardField.addClass(cardType);
+  creditCardImageHolder.html("<img src='assets/images/" + cardType + ".png'>");
+  return Payment.fns.validateCardNumber(J.val(ccNumberSelector));
+}
+
+
+/**
+ * populates value in the hidden field for the checkbox
+ * @param self
+ */
+function checkboxFunction(self) {
+  if (self.prop('checked')) {
+    self.closest('.form-group').find('.form-control').val(self.attr('data-value'));
+  } else {
+    self.closest('.form-group').find('.form-control').val('');
+  }
 }

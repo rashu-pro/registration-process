@@ -2,6 +2,12 @@
   &-group{
     margin-bottom: 15px;
 
+    label{
+      .text-danger{
+        display: none;
+      }
+    }
+
     .error{
       &-message{
         margin-bottom: 0;
@@ -18,6 +24,11 @@
     &.required-group{
       .required-mark{
         display: inline-block;
+      }
+      label{
+        .text-danger{
+          display: inline-block;
+        }
       }
     }
 

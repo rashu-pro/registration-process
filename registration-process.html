@@ -23,9 +23,14 @@
   <!-- intl-tel-input -->
   <link rel="stylesheet"
         href="node_modules/intl-tel-input/build/css/intlTelInput.min.css">
+  <!-- select 2 -->
+  <link rel="stylesheet"
+        href="node_modules/select2/dist/css/select2.min.css">
+  <link rel="stylesheet"
+        href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 
   <!-- style -->
-  <link rel="stylesheet" href="assets/css/style.css?v=1.0.2">
+  <link rel="stylesheet" href="assets/css/style.css?v=1.0.3">
 </head>
 <body>
 
@@ -59,7 +64,7 @@
         <div class="row justify-content-center">
           <div class="col-md-12 col-lg-10 col-xl-9 col-xxl-9">
             <div class="page-title-wrapper">
-              <h2 class="fs-3 lh-base fw-bold text-uppercase text-dark text-center w-75 ms-auto me-auto mb-4">MS Weekend School 2022-2023 Full Academic Year Registration</h2>
+              <h2 class="fs-3 lh-base fw-bold text-uppercase text-primary text-center w-75 ms-auto me-auto mb-4">MS Weekend School 2022-2023 Full Academic Year Registration</h2>
             </div>
             <div class="step-form-main">
               <form action="#" method="post">
@@ -78,7 +83,9 @@
                         </div>
 
                         <div class="edit mt-1 pb-4">
-                          <button type="button" class="btn btn-sm btn-secondary">
+                          <button type="button"
+                                  data-step="1"
+                                  class="btn btn-sm btn-secondary btn-edit-step-js">
                             <img src="assets/images/edit.png" alt="edit">
                             <span class="">Edit</span>
                           </button>
@@ -96,7 +103,9 @@
                         </div>
 
                         <div class="edit mt-1 pb-4">
-                          <button type="button" class="btn btn-sm btn-secondary">
+                          <button type="button"
+                                  data-step="2"
+                                  class="btn btn-sm btn-secondary btn-edit-step-js">
                             <img src="assets/images/edit.png" alt="edit">
                             <span class="">Edit</span>
                           </button>
@@ -114,13 +123,15 @@
                         </div>
 
                         <div class="edit mt-2">
-                          <button type="button" class="btn btn-secondary btn-sm"><img src="assets/images/edit.png"
+                          <button type="button"
+                                  data-step="3"
+                                  class="btn btn-secondary btn-sm btn-edit-step-js"><img src="assets/images/edit.png"
                                                                                       alt="edit"> Edit
                           </button>
                         </div>
                       </div>
 
-                      <div class="step-list last" data-step="5">
+                      <div class="step-list last" data-step="4">
                         <span class="step-mark">
                           <img src="assets/images/tick.png" alt="complete">
                         </span>
@@ -131,8 +142,9 @@
                         </div>
 
                         <div class="edit mt-2">
-                          <button type="button" class="btn btn-secondary btn-sm"><img src="assets/images/edit.png"
-                                                                                      alt="edit"> Edit
+                          <button type="button"
+                                  data-step="1"
+                                  class="btn btn-secondary btn-sm btn-edit-step-js"><img src="assets/images/edit.png" alt="edit"> Edit
                           </button>
                         </div>
                       </div>
@@ -144,7 +156,7 @@
                     <div class="step-details">
 
                       <!-- step 1 --guardian information  -->
-                      <div class="step-box" data-step="1">
+                      <div class="step-box active" data-step="1">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Parent/Guardian Information</h3>
@@ -153,7 +165,7 @@
 
                           <div class="step-box-body">
 
-                            <div class="row row-field">
+                            <div class="row row-field address-block-js">
                               <div class="col-md-6">
                                 <div class="form-group required-group mb-4">
                                   <label for="email-guardian" class="form-control-label">Email <span class="text-danger">*</span> </label>
@@ -166,7 +178,7 @@
                               </div>
 
                               <div class="col-md-6">
-                                <div class="form-group phone-number-validator-wrapper">
+                                <div class="form-group required-group phone-number-validator-wrapper">
                                   <label for="phone-guardian" class="form-control-label">Phone <span class="text-danger">*</span> </label>
                                   <input type="text"
                                          id="phone-guardian"
@@ -209,31 +221,44 @@
 
                               <div class="col-md-6">
                                 <div class="form-group mb-4">
-                                  <label for="country" class="form-control-label">Country <span class="text-danger">*</span> </label>
-                                  <input type="text"
-                                         id="country"
-                                         class="form-control"
-                                         name="Country">
+                                  <label for="selector-country-work">Country <span
+                                    class="required-mark text-danger">*</span></label>
+                                  <div class="select-box">
+                                    <div class="country-selector-holder-js">
+                                      <input type="text" id="selector-country-work" name="Person.Country"
+                                             class="form-control field-normal input-country-js">
+                                    </div>
+                                    <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader" alt="loading">
+                                  </div>
                                 </div>
                               </div>
 
                               <div class="col-md-6">
                                 <div class="form-group mb-4">
-                                  <label for="state" class="form-control-label">State <span class="text-danger">*</span> </label>
-                                  <input type="text"
-                                         id="state"
-                                         class="form-control"
-                                         name="State">
+                                  <label for="selector-state-work">State <span class="required-mark text-danger">*</span></label>
+                                  <div class="select-box">
+                                    <div class="state-selector-holder-js">
+                                      <input type="text" id="selector-state-work" name="Person.State"
+                                             class="form-control field-normal input-state-js">
+                                    </div>
+                                    <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader"
+                                         style="display: none" alt="loading">
+                                  </div>
                                 </div>
                               </div>
 
                               <div class="col-md-6">
                                 <div class="form-group mb-4">
-                                  <label for="city" class="form-control-label">City <span class="text-danger">*</span> </label>
-                                  <input type="text"
-                                         id="city"
-                                         class="form-control"
-                                         name="City">
+                                  <label for="selector-city-work">City <span
+                                    class="required-mark text-danger">*</span></label>
+                                  <div class="select-box">
+                                    <div class="city-selector-holder-js">
+                                      <input type="text" id="selector-city-work" name="Person.City"
+                                             class="form-control field-normal input-city-js">
+                                    </div>
+                                    <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader"
+                                         style="display: none" alt="loading">
+                                  </div>
                                 </div>
                               </div>
 
@@ -425,16 +450,20 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                      <div class="form-group required-group">
-                                        <label for="dob-student"
+                                      <div class="form-group">
+                                        <label for="date-picker"
                                                class="form-control-label">
                                           Date of Birth <span class="text-danger">*</span>
                                         </label>
-                                        <input type="text"
-                                               id="dob-student"
-                                               class="form-control data-summary"
-                                               name="DobStudent"
-                                               data-output=".data-summary-dob">
+                                        <div class="input-group">
+                                          <input type="text"
+                                                 class="form-control form-control-date date-picker-js data-summary"
+                                                 id="date-picker"
+                                                 data-output=".data-summary-dob"
+                                                 placeholder="">
+                                          <label for="date-picker" class="input-group-text"><img src="assets/images/date.png"
+                                                                                                 alt="datepicker"></label>
+                                        </div>
                                       </div>
                                     </div>
 
@@ -611,7 +640,7 @@
                       </div>
 
                       <!-- step 4 --payment information  -->
-                      <div class="step-box active" data-step="4">
+                      <div class="step-box" data-step="4">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Payment Information</h3>
@@ -626,12 +655,10 @@
                                        class="form-control-label">
                                   Payment Plan <span class="text-danger">*</span>
                                 </label>
-                                <select id="payment-plan" class="form-select">
+                                <select id="payment-plan" class="form-select form-control">
                                   <option value="">Choose Plan</option>
                                   <option value="full payment" data-price="250">Plan A - Full Payment</option>
-                                  <option value="half payment" data-price="130">Plan B - Half Payment</option>
-                                  <option value="Free" data-price="0">Full Waiver - Scholarship</option>
-                                </select>
+                                  <option value="half payment" data-price="130">Plan B - Half Payment</option></select>
                               </div>
 
                               <!-- checkout summary and coupon section -->
@@ -694,7 +721,7 @@
                             </div>
 
 <!--                            <div class="payment-info pt-4 payment-info-js">-->
-                            <div class="payment-info pt-4 d-none">
+                            <div class="payment-info d-none pt-4">
                               <h2 class="mb-1 fs-4 fw-semibold text-success">Payment Details</h2>
                               <hr class="m-0 text-success">
                               <div class="row">
@@ -713,21 +740,24 @@
                                   </div>
                                 </div>
                                 <div class="col-md-12">
-                                  <div class="form-group">
+                                  <div class="form-group required-group">
                                     <label for="card-number">Card Number <span
                                       class="text-danger required-mark">*</span></label>
                                     <div class="cc-number-holder">
-                                      <input type="text" maxlength="16" class="form-control validation-cc-number cc-number"
+                                      <input type="text" maxlength="16"
+                                             class="form-control validation-cc-number cc-number"
                                              id="card-number" name="CardNumber">
                                       <div class="cc-card-identity">
-                                        <img src="https://secure-api.net/Content/event-management-assets/individual-multiple-assets/images/card_mockup.png" alt="card icon">
+                                        <img
+                                          src="https://secure-api.net/Content/event-management-assets/individual-multiple-assets/images/card_mockup.png"
+                                          alt="card icon">
                                       </div>
                                     </div>
                                   </div>
                                 </div>
 
                                 <div class="col-sm-6 col-md-4">
-                                  <div class="form-group">
+                                  <div class="form-group required-group">
                                     <label for="exp-month">Exp. Month <span
                                       class="text-danger required-mark">*</span></label>
                                     <select class="form-select form-control" id="exp-month" name="ExpMonth">
@@ -740,7 +770,7 @@
                                 </div>
 
                                 <div class="col-sm-6 col-md-4">
-                                  <div class="form-group">
+                                  <div class="form-group required-group">
                                     <label for="exp-year">Exp. Year <span
                                       class="text-danger required-mark">*</span></label>
                                     <select class="form-select form-control" id="exp-year" name="ExpYear">
@@ -753,10 +783,11 @@
                                 </div>
 
                                 <div class="col-sm-6 col-md-4">
-                                  <div class="form-group is-require">
+                                  <div class="form-group">
                                     <label for="cvc">CVC <span
                                       class="text-danger required-mark">*</span></label>
-                                    <input type="text" class="form-control validation-number" id="cvc" name="Cvc" data-max-length="3" data-min-length="3">
+                                    <input type="text" class="form-control validation-number" id="cvc" name="Cvc"
+                                           data-max-length="3" data-min-length="3">
                                   </div>
                                 </div>
 
@@ -764,15 +795,17 @@
                                   <div class="form-group">
                                     <label for="cc-zipcode">Zipcode <span
                                       class="text-danger required-mark">*</span></label>
-                                    <input type="text" class="form-control validation-number" id="cc-zipcode" name="CcZipcode" data-min-length="5" data-max-length="5">
+                                    <input type="text" class="form-control validation-number" id="cc-zipcode"
+                                           name="CcZipcode" data-min-length="5" data-max-length="5">
                                   </div>
                                 </div>
 
                                 <div class="col-md-8">
-                                  <div class="form-group">
+                                  <div class="form-group required-group">
                                     <label for="cardholder-name">Cardholder Name <span
                                       class="text-danger required-mark">*</span></label>
-                                    <input type="text" class="form-control validation-text" id="cardholder-name" name="CardholderName" data-min-length="6">
+                                    <input type="text" class="form-control validation-text" id="cardholder-name"
+                                           name="CardholderName" data-min-length="6">
                                   </div>
                                 </div>
 
@@ -844,7 +877,7 @@
                                 </div>
 
                                 <div class="pt-2">
-                                  <div class="form-group">
+                                  <div class="form-group required-group">
                                     <div class="form-check check-group">
                                       <input class="form-check-input check-md" type="checkbox"
                                              value=""
@@ -898,7 +931,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-lg-6">
-          <p class="text-center text-md-start m-0">© ICGC. All Rights Reserved, 2023 </p>
+          <p class="text-center text-md-start m-0">© Masjid Solutions. All Rights Reserved, 2023 </p>
         </div>
         <div class="col-md-12 col-lg-6">
           <p class="m-0 text-center text-md-end text-lg-end pb-md-2 pb-lg-0"><a href="htttps://masjidsolutions.net"
@@ -924,6 +957,53 @@
       <div></div>
       <div></div>
       <div></div>
+    </div>
+  </div>
+
+  <!-- terms & conditions modal -->
+  <div class="modal" tabindex="-1" id="modal-terms" data-bs-backdrop="static" data-bs-keybord="false">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-bold">Terms & Conditions</h5>
+
+          <div>
+            <button type="button"
+                    class="btn btn-close btn-expand-js me-3"
+                    id="btn-expand"
+                    title="Maximize Window"
+                    data-bs-toggle="tooltip"
+                    data-bs-original-title="Maximize Window">
+              <img src="assets/images/expand-window.png" alt="maximize" class="icon-maximize">
+              <img src="assets/images/minimize.png" alt="minimize" class="icon-minimize d-none">
+            </button>
+
+            <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <svg aria-hidden="true" class="icon-svg-close" fill="currentColor" viewBox="0 0 20 20"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clip-rule="evenodd"></path>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+        <div class="modal-body">
+          <div class="py-2 px-sm-3 px-md-4">
+            <embed
+              src="https://res.cloudinary.com/secure-api/image/upload/v1670245873/sunday-school/al-ilm/misc-documents/st4irj014djieqohupkb.pdf"
+              width="100%"
+              height="1200"
+              frameborder="0"
+              allowfullscreen>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-lg" data-bs-dismiss="modal">I Agree</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -974,12 +1054,18 @@
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <!--bootstrap-->
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- select 2 -->
+<script src="node_modules/select2/dist/js/select2.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- intl-tel-input -->
 <script src="node_modules/intl-tel-input/build/js/intlTelInput.min.js"></script>
 <!-- phone validator -->
 <script src="assets/js/phone_validator.js"></script>
+<!-- card validation -->
+<script src="assets/js/card_validation.js"></script>
 <!-- script -->
-<script src="assets/js/script.js?v=1.0.2"></script>
+<script src="assets/js/script.js?v=1.0.3"></script>
 
 <script>
   function submitTheForm(){
