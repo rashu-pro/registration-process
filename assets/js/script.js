@@ -22,11 +22,20 @@ let loaderDivClass = '.loader-div',
 let stepBoxActiveSelector = '.step-box.active';
 let nameStringSelector = '.name-string-js';
 let datePickerSelector = '.date-picker-js';
+let radioGroupSelector = '.radio-group';
 
 let J = Payment.J,
   creditCardField = $('.cc-number'),
   creditCardHolder = $('.cc-number-holder'),
   creditCardImageHolder = $('.cc-card-identity');
+
+//=== coupon codes
+const couponCodes = [
+  { name: 'coupon', discount: '20', calculateMethod: 'percentage' },
+  { name: 'discount', discount: '30', calculateMethod: 'percentage' },
+  { name: 'voucher', discount: '40', calculateMethod: 'solid' },
+  { name: 'invalid', discount: '300', calculateMethod: 'solid' }
+];
 
 
 /**
@@ -41,7 +50,6 @@ countRow();
 if ($(datePickerSelector).length > 0) {
   $(datePickerSelector).datepicker({
     autoclose: true,
-    startDate: new Date()
   });
   $(datePickerSelector).datepicker().on('changeDate', function (e) {
     $(this).trigger('blur');
@@ -265,11 +273,63 @@ $(document).on('click', '.btn-add-another-js', function (e){
   })
 
   $('.info-card-js').addClass('added');
+
+
   let infoCard = $('.info-card-js').first().clone();
+
+  infoCard.find('.form-control').each(function (i, element){
+    if(!$(element).attr('id')) return;
+    $(element).attr('id', $(element).attr('id')+($('.info-card-js').length+1));
+  })
+
+  infoCard.find('label').each(function (i, element){
+    if(!$(element).attr('for')) return;
+    $(element).attr('for', $(element).attr('for')+($('.info-card-js').length+1));
+  })
+
   infoCard.removeClass('added');
   infoCard.find('.form-control').val('');
   $('.info-card-list').append(infoCard);
+  $('.date-picker-js').datepicker({
+    autoclose: true,
+  });
   countRow();
+
+
+})
+
+//=== save info
+$(document).on('click', '.btn-save-js', function (e){
+  e.preventDefault();
+  let self = $(this);
+  let dataSummarySelector = '.data-summary';
+
+  isFieldValidated(self.closest('.info-card-js'));
+
+  if(self.closest('.info-card-js')
+    .find('.form-group .form-control.invalid').length>0){
+    self.closest('.info-card-js')
+      .find('.form-group .form-control.invalid').first().focus();
+    return;
+  }
+
+  //=== build name string
+  self.closest('.info-card-js').find(nameStringSelector).each(function (i, element){
+    nameStringBuilder($(element));
+  })
+  //=== add summary
+  $(dataSummarySelector).each(function (i, element){
+    let textValue = $(element).val();
+    if($(element).prop('tagName') === 'SELECT'){
+      textValue = $(element).find('option:selected').text();
+    }
+    $(element).closest('.info-card')
+      .find($(element).attr('data-output'))
+      .html(textValue);
+  })
+
+  self.closest('.info-card-js').addClass('added');
+
 })
 
 $(document).on('click', '.toggle-selector', function (e){
@@ -277,6 +337,52 @@ $(document).on('click', '.toggle-selector', function (e){
   $($(this).attr('data-toggle')).toggle();
   $(this).toggleClass('toggle-active');
   $($(this).attr('data-toggle')).toggleClass('toggle-active');
+})
+
+//=== apply voucher
+$(document).on('click', '.btn-apply-voucher-js', function (e){
+  e.preventDefault();
+  let self = $(this),
+    voucherField = self.closest('.voucher-block').find('.voucher-field-js'),
+    subtotal = parseFloat($('.subtotal-js .amount-js').text()),
+    discountAmount = 0,
+    discountSign = '';
+
+  self.closest('.voucher-block').find('.warning-message').remove();
+  $('.coupon-row-js').remove();
+  if(!voucherField || voucherField==='' || voucherField.val()<=0){
+    errorLoad(self, 'Invalid Coupon Code!');
+    voucherField.focus();
+    return;
+  }
+
+  let object = couponCodes.find(obj=>obj.name===voucherField.val());
+  if(!object){
+    errorLoad(self, 'Wrong coupon code!');
+    return;
+  }
+
+  discountAmount = object.discount;
+  if(object.calculateMethod==='percentage'){
+    discountSign = '%';
+    discountAmount = (parseFloat(object.discount)*subtotal)/100;
+  }
+
+  if(discountAmount<=0 || discountAmount>subtotal) {
+    errorLoad(self, 'Not Applicable!');
+    return;
+  }
+
+  let couponString = `<tr class="foot-row coupon-row-js" data-calculation="subtract">
+                                      <td>
+                                        <p class="m-0 mt-1 lh-1">Coupon Applied</p>
+                                        <p class="m-0 mt-2 lh-1 text-danger fs-small">${voucherField.val()}</p>
+                                      </td>
+                                      <td class="text-end">$<span class="amount-js">${discountAmount}</span> </td>
+                                    </tr>`;
+  $('.grand-total-js').before(couponString);
+  calculateTotal('.checkout-summary-table-js', '.grand-total-js');
+
 })
 
 function isFieldValidated(inputFieldsHolder){
@@ -322,15 +428,54 @@ $(paymentInfoSelector).find('.form-group').addClass('d-none');
 $(document).on('change', '#payment-plan', function (){
   let self = $(this);
   let price = parseInt(self.find('option:selected').attr('data-price'));
+  checkoutSummary(self);
+  calculateSubTotal('.checkout-summary-table-js', '.subtotal-js');
   $(checkoutSummarySelector).addClass('d-none');
   $(paymentInfoSelector).addClass('d-none');
   $(paymentInfoSelector).find('.form-group').addClass('d-none');
+  $(paymentInfoSelector).find('.form-control').removeClass('invalid');
+  $(paymentInfoSelector).find('.error-message').remove();
   if(price>0){
     $(checkoutSummarySelector).removeClass('d-none');
     $(paymentInfoSelector).removeClass('d-none');
     $(paymentInfoSelector).find('.form-group').removeClass('d-none');
   }
 })
+
+function checkoutSummary(planSelector){
+  let checkoutSummaryTableSelector = '.checkout-summary-table-js';
+  let planName = planSelector.find('option:selected').text();
+  let planPrice = parseInt(planSelector.find('option:selected').attr('data-price'));
+  let checkoutSummaryString = `<tr class="body-row">
+                                      <td>${planName}</td>
+                                      <td class="text-end">$<span class="amount-js">${planPrice}</span></td>
+                                    </tr>`;
+  $(checkoutSummaryTableSelector).find('tbody').html(checkoutSummaryString);
+}
+
+function calculateSubTotal(checkoutSummaryTableSelector, subtotalSelector){
+  let subtotal = 0;
+  $(checkoutSummaryTableSelector).find('.body-row').each(function (i, element){
+    subtotal += parseInt($(element).find('.amount-js').text());
+  })
+  $(subtotalSelector).find('.amount-js').text(subtotal);
+  calculateTotal('.checkout-summary-table-js', '.grand-total-js');
+}
+
+function calculateTotal(checkoutSummaryTableSelector, totalSelector){
+  let total = 0;
+  $(checkoutSummaryTableSelector).find('.foot-row').each(function (i, element){
+    if($(element).attr('data-calculation')==='add'){
+      total += parseInt($(element).find('.amount-js').text());
+    }
+
+    if($(element).attr('data-calculation')==='subtract'){
+      total -= parseInt($(element).find('.amount-js').text());
+    }
+  })
+  $(totalSelector).find('.amount-js').text(total);
+}
+
 
 // === on country selection
 $(document).on('change', countrySelector, function () {
@@ -803,4 +948,27 @@ function checkboxFunction(self) {
   } else {
     self.closest('.form-group').find('.form-control').val('');
   }
+}
+
+
+/**
+ * inputs value in the hidden field when radio field is checked
+ * @param self
+ */
+function radioInputCustom(self) {
+  self.closest(radioGroupSelector).find('.form-control').val(self.attr('data-value'));
+  if (self.closest('.form-group').hasClass('required-group')) {
+    singleValidation(self.closest('.form-group').find('.form-control'), self.closest('.form-group'), 'field-invalid', 'field-validated', 'error-message', errorMessage)
+  }
+}
+
+
+/**
+ * Load error to the field
+ * @param self
+ * @param message
+ */
+function errorLoad(self, message) {
+  self.closest('.voucher-block').find('.warning-message').remove();
+  self.closest('.voucher-block').find('.voucher-field-wrapper').after('<p class="text-danger warning-message m-0">' + message + '</p>');
 }

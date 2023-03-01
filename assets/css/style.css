@@ -927,10 +927,7 @@ html, body {
   margin-bottom: -30px;
 }
 .info-card-list .info-card.only-one-row.added .info-card-foot .btn-remove {
-  display: inline-block;
-}
-.info-card-list .info-card.only-one-row .info-card-foot {
-  margin-bottom: 0;
+  display: none;
 }
 .info-card-list .info-card.only-one-row .info-card-foot .btn-remove {
   display: none;
@@ -974,6 +971,9 @@ html, body {
 }
 .info-card.added .info-card-foot .btn-edit {
   display: inline-block;
+}
+.info-card.added .info-card-foot .btn-save {
+  display: none;
 }
 .info-summary {
   overflow-y: auto;

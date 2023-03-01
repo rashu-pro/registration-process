@@ -47,7 +47,7 @@
                     margin-bottom:-30px;
                     .btn{
                       &-remove{
-                        display: inline-block;
+                        display: none;
                       }
                     }
                   }
@@ -58,7 +58,7 @@
             .info{
               &-card{
                 &-foot{
-                  margin-bottom:0;
+                  //margin-bottom:0;
                   .btn{
                     &-remove{
                       display: none;
@@ -123,6 +123,9 @@
           &-foot{
             .btn-edit{
               display: inline-block;
+            }
+            .btn-save{
+              display: none;
             }
           }
         }

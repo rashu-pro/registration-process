@@ -30,7 +30,7 @@
         href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 
   <!-- style -->
-  <link rel="stylesheet" href="assets/css/style.css?v=1.0.3">
+  <link rel="stylesheet" href="assets/css/style.css?v=1.0.4">
 </head>
 <body>
 
@@ -434,7 +434,7 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                      <div class="form-group required-group">
+                                      <div class="form-group">
                                         <label for="lname-student"
                                                class="form-control-label">
                                           Last Name <span class="text-danger">*</span>
@@ -468,7 +468,7 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                      <div class="form-group required-group">
+                                      <div class="form-group">
                                         <label for="gender-student"
                                                class="form-control-label">
                                           Gender <span class="text-danger">*</span>
@@ -485,7 +485,7 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                      <div class="form-group required-group">
+                                      <div class="form-group">
                                         <label for="grade-sub1"
                                                class="form-control-label">
                                           Islamic Studies Grade <span class="text-danger">*</span>
@@ -545,7 +545,7 @@
                                     </div>
 
                                     <div class="col-sm-6">
-                                      <div class="form-group required-group">
+                                      <div class="form-group">
                                         <label for="grade-sub2"
                                                class="form-control-label">
                                           Quranic Studies Grade <span class="text-danger">*</span>
@@ -620,6 +620,13 @@
                                     <span>Remove</span>
                                   </button>
 
+                                  <button type="button"
+                                          class="btn btn-outline-primary2 text-uppercase fw-semibold btn-save btn-save-js me-2">
+                                    <img src="assets/images/ticke-blue.png" alt="remove" class="btn-image">
+                                    <img src="assets/images/tick-white.png" alt="remove" class="btn-image-hover">
+                                    <span>Save</span>
+                                  </button>
+
                                   <button type="button" class="btn btn-outline-primary btn-outline-primary2 text-uppercase fw-semibold btn-edit btn-edit-js">
                                     <img src="assets/images/edit-blue.png" alt="edit" class="btn-image">
                                     <img src="assets/images/edit-white.png" alt="edit" class="btn-image-hover">
@@ -630,7 +637,7 @@
                             </div>
 
 
-                            <button type="button" class="btn btn-outline-primary btn-outline-primary2 btn-add-another-js text-uppercase fw-semibold">
+                            <button type="button" class="btn btn-outline-primary btn-outline-primary2 btn-add-another-js text-uppercase fw-semibold mt-4">
                               <img src="assets/images/plus-circle-violet.png" alt="add" class="btn-image">
                               <img src="assets/images/plus-circle-white.png" alt="add" class="btn-image-hover">
                               <span>Add Another</span>
@@ -658,13 +665,15 @@
                                 <select id="payment-plan" class="form-select form-control">
                                   <option value="">Choose Plan</option>
                                   <option value="full payment" data-price="250">Plan A - Full Payment</option>
-                                  <option value="half payment" data-price="130">Plan B - Half Payment</option></select>
+                                  <option value="half payment" data-price="130">Plan B - Half Payment</option>
+                                  <option value="half payment" data-price="0">Scholarship</option>
+                                </select>
                               </div>
 
                               <!-- checkout summary and coupon section -->
                               <div class="py-3 px-4 bg-light checkout-summary-js d-none">
                                 <div class="table-responsive">
-                                  <table class="table table-striped">
+                                  <table class="table table-striped checkout-summary-table-js">
                                     <thead>
                                     <tr>
                                       <th>Plan</th>
@@ -672,32 +681,25 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                    <tr class="body-row">
                                       <td>Plan A - Full Payment</td>
-                                      <td class="text-end">$250</td>
+                                      <td class="text-end">$<span class="amount-js">250</span> </td>
                                     </tr>
                                     </tbody>
                                     <tfoot>
-                                    <tr>
+                                    <tr class="foot-row subtotal-js" data-calculation="add">
                                       <td>Subtotal</td>
-                                      <td class="text-end">$250</td>
+                                      <td class="text-end">$<span class="amount-js">250</span> </td>
                                     </tr>
-                                    <tr>
-                                      <td>
-                                        <p class="m-0 mt-1 lh-1">Coupon Applied</p>
-                                        <p class="m-0 mt-2 lh-1 text-danger fs-small">COUPON52</p>
-                                      </td>
-                                      <td class="text-end">$50</td>
-                                    </tr>
-                                    <tr>
+                                    <tr class="grand-total-js">
                                       <th class="fs-5">Total</th>
-                                      <th class="fs-5 text-end">$200</th>
+                                    <th class="fs-5 text-end">$<span class="amount-js"></span></th>
                                     </tr>
                                     </tfoot>
                                   </table>
                                 </div>
 
-                                <div class="coupon-wrapper">
+                                <div class="coupon-wrapper voucher-block">
                                   <div class="coupon-code-wrapper">
                                     <div class="coupon-code-wrapper-head">
                                       <p class="m-0">
@@ -708,19 +710,23 @@
                                     <div class="coupon-code-wrapper-body toggle-div">
                                       <p class="m-0 mb-2">If you have a coupon code, please apply it below.</p>
 
-                                      <div class="input-group">
-                                        <label for="coupon-code" class="visually-hidden">Coupon code</label>
-                                        <input type="text" id="coupon-code" class="form-control" placeholder="Coupon Code">
-                                        <button type="button" class="input-group-text btn btn-dark">Apply Coupon</button>
+                                      <div class="voucher-field-wrapper">
+                                        <div class="input-group">
+                                          <label for="coupon-code" class="visually-hidden">Coupon code</label>
+                                          <input type="text"
+                                                 id="coupon-code"
+                                                 class="form-control voucher-field-js"
+                                                 placeholder="Coupon Code">
+                                          <button type="button" class="input-group-text btn btn-dark btn-apply-voucher-js">Apply Coupon</button>
+                                        </div>
                                       </div>
+
                                     </div>
                                   </div>
                                 </div>
-
                               </div>
                             </div>
 
-<!--                            <div class="payment-info pt-4 payment-info-js">-->
                             <div class="payment-info d-none pt-4">
                               <h2 class="mb-1 fs-4 fw-semibold text-success">Payment Details</h2>
                               <hr class="m-0 text-success">
@@ -765,6 +771,15 @@
                                       <option value="1">01</option>
                                       <option value="2">02</option>
                                       <option value="3">03</option>
+                                      <option value="4">04</option>
+                                      <option value="5">05</option>
+                                      <option value="6">06</option>
+                                      <option value="7">07</option>
+                                      <option value="8">08</option>
+                                      <option value="9">09</option>
+                                      <option value="10">10</option>
+                                      <option value="11">11</option>
+                                      <option value="12">12</option>
                                     </select>
                                   </div>
                                 </div>
@@ -775,15 +790,20 @@
                                       class="text-danger required-mark">*</span></label>
                                     <select class="form-select form-control" id="exp-year" name="ExpYear">
                                       <option value>Expiry Year</option>
-                                      <option value="1">01</option>
-                                      <option value="2">02</option>
-                                      <option value="3">03</option>
+                                      <option value="2023">2023</option>
+                                      <option value="2024">2024</option>
+                                      <option value="2025">2025</option>
+                                      <option value="2026">2026</option>
+                                      <option value="2027">2027</option>
+                                      <option value="2028">2028</option>
+                                      <option value="2029">2029</option>
+                                      <option value="2030">2030</option>
                                     </select>
                                   </div>
                                 </div>
 
                                 <div class="col-sm-6 col-md-4">
-                                  <div class="form-group">
+                                  <div class="form-group required-group">
                                     <label for="cvc">CVC <span
                                       class="text-danger required-mark">*</span></label>
                                     <input type="text" class="form-control validation-number" id="cvc" name="Cvc"
@@ -1065,7 +1085,7 @@
 <!-- card validation -->
 <script src="assets/js/card_validation.js"></script>
 <!-- script -->
-<script src="assets/js/script.js?v=1.0.3"></script>
+<script src="assets/js/script.js?v=1.0.4"></script>
 
 <script>
   function submitTheForm(){
