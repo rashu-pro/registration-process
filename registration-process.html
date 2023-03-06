@@ -30,7 +30,7 @@
         href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 
   <!-- style -->
-  <link rel="stylesheet" href="assets/css/style.css?v=1.0.4">
+  <link rel="stylesheet" href="assets/css/style.css?v=1.0.5">
 </head>
 <body>
 
@@ -156,7 +156,7 @@
                     <div class="step-details">
 
                       <!-- step 1 --guardian information  -->
-                      <div class="step-box active" data-step="1">
+                      <div class="step-box" data-step="1">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Parent/Guardian Information</h3>
@@ -178,7 +178,7 @@
                               </div>
 
                               <div class="col-md-6">
-                                <div class="form-group required-group phone-number-validator-wrapper">
+                                <div class="form-group phone-number-validator-wrapper">
                                   <label for="phone-guardian" class="form-control-label">Phone <span class="text-danger">*</span> </label>
                                   <input type="text"
                                          id="phone-guardian"
@@ -317,7 +317,7 @@
                       </div>
 
                       <!-- step 2 --spouse information  -->
-                      <div class="step-box" data-step="2">
+                      <div class="step-box active" data-step="2">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Spouse Information</h3>
@@ -325,6 +325,7 @@
                           </div>
 
                           <div class="step-box-body">
+
                             <div class="row row-field">
                               <div class="col-md-6">
                                 <div class="form-group required-group mb-4">
@@ -367,6 +368,28 @@
                                 </div>
                               </div>
 
+                            </div>
+
+                            <div class="pt-3">
+                              <div class="form-check check-group">
+                                <input type="checkbox"
+                                       id="create-user"
+                                       class="form-check-input check-md"
+                                       data-value="terms"
+                                       value="">
+                                <label class="form-check-label" for="create-user">
+                                  Create an User
+                                </label>
+                                <input type="hidden" class="form-control validation-radio">
+                              </div>
+                            </div>
+
+                            <!-- skip step -->
+                            <div class="">
+                              <a href="javascript:void(0)" class="skip-step skip-step-js">
+                                <span>Skip <span class="d-none d-md-inline">this step</span> </span>
+                                <img src="assets/images/right-arrow-double-blue.png" alt="skip">
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -963,7 +986,7 @@
   </footer>
 
   <!-- LOADER -->
-  <div class="loader-div">
+  <div class="loader-div active">
     <div class="lds-spinner">
       <div></div>
       <div></div>
@@ -1085,7 +1108,8 @@
 <!-- card validation -->
 <script src="assets/js/card_validation.js"></script>
 <!-- script -->
-<script src="assets/js/script.js?v=1.0.4"></script>
+<!--<script src="assets/js/script.js?v=1.0.4"></script>-->
+<script src="assets/js/live/script.js?v=1.0.5"></script>
 
 <script>
   function submitTheForm(){

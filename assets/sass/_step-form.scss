@@ -320,4 +320,16 @@ $color-border-sidebar: #ddd;
   }
 }
 
+.skip{
+  &-step{
+    position: absolute;
+    bottom: 40px;
+    right: 0;
+    @media (min-width:992px){
+      bottom: 40px;
+      right: 50px;
+    }
+  }
+}
+
 

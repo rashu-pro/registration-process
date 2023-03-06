@@ -917,6 +917,18 @@ html, body {
     display: none;
   }
 }
+.skip-step {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+}
+@media (min-width: 992px) {
+  .skip-step {
+    bottom: 40px;
+    right: 50px;
+  }
+}
+
 .info-card {
   padding: 15px;
   border: 1px solid #3f51b5;
