@@ -332,4 +332,34 @@ $color-border-sidebar: #ddd;
   }
 }
 
+.checkout{
+  &-summary{
+    //border:1px solid #ddd;
+    .table{
+      tr{
+        th,td{
+          padding: 0.3rem 1rem
+        }
+      }
+      thead{
+        th{
+          background-color: #cccccc;
+        }
+      }
+    }
+  }
+}
+
+
+.billing{
+  &-info{
+    &-inner{
+      &.d-none{
+        .form-group{
+          display: none;
+        }
+      }
+    }
+  }
+}
 

@@ -23,6 +23,8 @@ let stepBoxActiveSelector = '.step-box.active';
 let nameStringSelector = '.name-string-js';
 let datePickerSelector = '.date-picker-js';
 let radioGroupSelector = '.radio-group';
+let paymentPlanSelector = '#payment-plan';
+let totalStudentSelector = '#total-student';
 
 let J = Payment.J,
   creditCardField = $('.cc-number'),
@@ -207,6 +209,7 @@ $(document).on('click', '.btn-navigation-js', function (e){
   }
 
   loaderEnable(loaderDivClass);
+
   if(self.attr('data-action')==='increase' && stepCurrent === stepBoxCount){
     loaderDisable(loaderDivClass);
     $('#modal-confirm').modal('show');
@@ -221,6 +224,18 @@ $(document).on('click', '.btn-navigation-js', function (e){
     }
     if(parseInt($('.step-box.active').attr('data-step'))===stepBoxCount)
       self.find('span').html(self.attr('data-submit-text'));
+
+    if($(rootParent).attr('data-function') === 'get_plan_list'){
+      let objPlanList = get_plan_list(parseInt($(totalStudentSelector).val()));
+      if(objPlanList.length>0){
+        let optionString = `<option value="">Choose Plan</option>`;
+        objPlanList.forEach((item)=>{
+          optionString += `<option value="${item.value}" data-initial-amount="${item.initialAmount}" data-total-amount="${item.totalAmount}" data-number-of-payment="${item.numberOfPayment}" data-installment-amount="${item.installmentAmount}" data-first-installment-date="${item.firstInstallmentDate}">${item.name}</option>`;
+        });
+        $(paymentPlanSelector).empty();
+        $(paymentPlanSelector).append(optionString);
+      }
+    }
 
     loaderDisable(loaderDivClass);
   },600);
@@ -441,13 +456,12 @@ $(document).on('keyup', '.cc-number', function (e) {
  * 6. EVENT LISTENER: CHANGE
  * -------------------------------------
  */
-let paymentPlanSelector = '#payment-plan';
 let checkoutSummarySelector = '.checkout-summary-js';
 let paymentInfoSelector = '.payment-info';
 $(paymentInfoSelector).find('.form-group').addClass('d-none');
 $(document).on('change', '#payment-plan', function (){
   let self = $(this);
-  let price = parseInt(self.find('option:selected').attr('data-price'));
+  let price = parseInt(self.find('option:selected').attr('data-initial-amount'));
   checkoutSummary(self);
   calculateSubTotal('.checkout-summary-table-js', '.subtotal-js');
   $(checkoutSummarySelector).addClass('d-none');
@@ -463,13 +477,42 @@ $(document).on('change', '#payment-plan', function (){
 })
 
 function checkoutSummary(planSelector){
+  let selectedOption = planSelector.find('option:selected');
   let checkoutSummaryTableSelector = '.checkout-summary-table-js';
   let planName = planSelector.find('option:selected').text();
-  let planPrice = parseInt(planSelector.find('option:selected').attr('data-price'));
+  let planPrice = parseInt(planSelector.find('option:selected').attr('data-initial-amount'));
+  let installmentString = '';
+  if(parseInt(selectedOption.attr('data-number-of-payment'))>1){
+    installmentString += `<p class="text-danger m-0">${selectedOption.attr('data-number-of-payment')} installment<span class="ps-2 me-2">/</span> Total amount: ${selectedOption.attr('data-total-amount')}</p>`;
+  }
+
+  let installmentInfoString = '';
+  if(parseInt(selectedOption.attr('data-installment-amount'))>0){
+    installmentInfoString += `
+    <p class="mb-2">Initial Payment: $200</p>
+    <p class="fw-semibold m-0">${selectedOption.attr('data-number-of-payment')} installments to pay, each of $${selectedOption.attr('data-installment-amount')}, for a total of $${parseInt(selectedOption.attr('data-installment-amount')*parseInt(selectedOption.attr('data-number-of-payment')))}.</p>
+    <p class="text-danger fw-semibold m-0">First installment date: ${selectedOption.attr('data-first-installment-date')}</p>
+    `;
+  }
+
+  let infoString = `
+  <div class="alert alert-primary">
+                                  <h5 class="alert-heading fw-bold d-flex align-items-center">
+                                    <img src="assets/images/info.png" alt="info">
+                                    Plan Information
+                                  </h5>
+                                  <hr class="mt-2 mb-2" />
+                                  <p class="m-0">${planName}</p>
+                                  <p class="m-0">Total Amount: $${selectedOption.attr('data-total-amount')}</p>
+                                  ${installmentInfoString}
+
+                                </div>
+  `
   let checkoutSummaryString = `<tr class="body-row">
                                       <td>${planName}</td>
                                       <td class="text-end">$<span class="amount-js">${planPrice}</span></td>
                                     </tr>`;
+  $('#plan-info').html(infoString);
   $(checkoutSummaryTableSelector).find('tbody').html(checkoutSummaryString);
 }
 
@@ -494,6 +537,22 @@ function calculateTotal(checkoutSummaryTableSelector, totalSelector){
     }
   })
   $(totalSelector).find('.amount-js').text(total);
+}
+
+//=== billing details same/differnt
+$(document).on('change', '#billing-details-same', function (){
+  let self = $(this);
+  billingInfoShowHide(self);
+})
+
+billingInfoShowHide($('#billing-details-same'));
+
+
+function billingInfoShowHide(checkSelector){
+  $('.billing-info-inner').addClass('d-none');
+  if(!checkSelector.is(':checked')){
+    $('.billing-info-inner').removeClass('d-none');
+  }
 }
 
 
@@ -862,6 +921,7 @@ function countRow(){
   if(totalRow<2){
     $('.info-card-js').addClass('only-one-row');
   }
+  $(totalStudentSelector).val($('.row-count-js').last().text());
 }
 
 /**

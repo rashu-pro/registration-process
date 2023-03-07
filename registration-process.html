@@ -317,7 +317,7 @@
                       </div>
 
                       <!-- step 2 --spouse information  -->
-                      <div class="step-box active" data-step="2">
+                      <div class="step-box" data-step="2">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Spouse Information</h3>
@@ -396,7 +396,7 @@
                       </div>
 
                       <!-- step 3 --student information -->
-                      <div class="step-box" data-step="3">
+                      <div class="step-box" data-step="3" data-function="get_plan_list">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Students Information</h3>
@@ -659,7 +659,10 @@
                               </div>
                             </div>
 
-
+                            <input id="total-student"
+                                   type="hidden"
+                                   class="total-student"
+                                   value="1">
                             <button type="button" class="btn btn-outline-primary btn-outline-primary2 btn-add-another-js text-uppercase fw-semibold mt-4">
                               <img src="assets/images/plus-circle-violet.png" alt="add" class="btn-image">
                               <img src="assets/images/plus-circle-white.png" alt="add" class="btn-image-hover">
@@ -670,7 +673,7 @@
                       </div>
 
                       <!-- step 4 --payment information  -->
-                      <div class="step-box" data-step="4">
+                      <div class="step-box active" data-step="4">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Payment Information</h3>
@@ -687,16 +690,40 @@
                                 </label>
                                 <select id="payment-plan" class="form-select form-control">
                                   <option value="">Choose Plan</option>
-                                  <option value="full payment" data-price="250">Plan A - Full Payment</option>
-                                  <option value="half payment" data-price="130">Plan B - Half Payment</option>
-                                  <option value="half payment" data-price="0">Scholarship</option>
+                                  <option value="full payment"
+                                          data-initial-amount="500"
+                                          data-installment-amount="0"
+                                          data-number-of-payment="1"
+                                          data-total-amount="500"
+                                          data-first-installment-date="15/03/2023">
+                                    Plan A - Full Payment
+                                  </option>
+                                  <option value="full payment"
+                                          data-initial-amount="200"
+                                          data-installment-amount="250"
+                                          data-number-of-payment="2"
+                                          data-total-amount="700"
+                                          data-first-installment-date="15/03/2023">
+                                    Plan B - Half Payment
+                                  </option>
+                                  <option value="scholarship"
+                                          data-initial-amount="0"
+                                          data-installment-amount="0"
+                                          data-number-of-payment="0"
+                                          data-total-amount="0"
+                                          data-first-installment-date="15/03/2023">
+                                    Scholarship
+                                  </option>
                                 </select>
                               </div>
 
                               <!-- checkout summary and coupon section -->
-                              <div class="py-3 px-4 bg-light checkout-summary-js d-none">
-                                <div class="table-responsive">
-                                  <table class="table table-striped checkout-summary-table-js">
+                              <div class="mt-4 bg-light checkout-summary checkout-summary-js d-none">
+                                <div class="plan-info" id="plan-info">
+
+                                </div>
+                                <div class="table-responsive" style="border:1px solid #ddd;">
+                                  <table class="table checkout-summary-table-js m-0">
                                     <thead>
                                     <tr>
                                       <th>Plan</th>
@@ -858,56 +885,73 @@
                             <div class="pt-4">
                               <h2 class="mb-1 fs-4 fw-semibold text-success">Billing Details</h2>
                               <hr class="m-0 mb-2 text-success">
-                              <div class="row">
-                                <div class="col-sm-6 col-md-6">
-                                  <div class="form-group">
-                                    <label for="billing-email">Email <span
-                                      class="text-danger required-mark">*</span></label>
-                                    <input type="email" class="form-control" id="billing-email" name="BillingEmail">
-                                  </div>
+                              <div class="mb-4">
+                                <div class="form-check check-group">
+                                  <input class="form-check-input check-md" type="checkbox"
+                                         value=""
+                                         id="billing-details-same"
+                                         data-value="terms">
+                                  <label class="form-check-label" for="billing-details-same">
+                                    Same as parent Information
+                                  </label>
+                                  <input type="hidden" class="form-control validation-radio">
                                 </div>
-
-                                <div class="col-sm-6 col-md-6">
-                                  <div class="form-group">
-                                    <label for="billing-phone">Pnone Number <span
-                                      class="text-danger required-mark">*</span></label>
-                                    <input type="text" class="form-control" id="billing-phone" name="BillingPhone">
-                                  </div>
-                                </div>
-
-                                <div class="col-12">
-                                  <div class="form-group">
-                                    <label for="billing-address">Address <span
-                                      class="text-danger required-mark">*</span></label>
-                                    <textarea class="form-control" id="billing-address" name="BillingAddress" rows="2"></textarea>
-                                  </div>
-                                </div>
-
-                                <div class="col-sm-6 col-md-4">
-                                  <div class="form-group">
-                                    <label for="billing-state">State <span
-                                      class="text-danger required-mark">*</span></label>
-                                    <input type="text" class="form-control validation-number" id="billing-state" name="BillingState">
-                                  </div>
-                                </div>
-
-                                <div class="col-sm-6 col-md-4">
-                                  <div class="form-group">
-                                    <label for="billing-city">City <span
-                                      class="text-danger required-mark">*</span></label>
-                                    <input type="text" class="form-control validation-number" id="billing-city" name="BillingCity">
-                                  </div>
-                                </div>
-
-                                <div class="col-sm-6 col-md-4">
-                                  <div class="form-group">
-                                    <label for="billing-zipcode">Zipcode <span
-                                      class="text-danger required-mark">*</span></label>
-                                    <input type="text" class="form-control validation-number" id="billing-zipcode" name="BillingZipcode" data-min-length="5" data-max-length="5">
-                                  </div>
-                                </div>
-
+                                <p class="m-0 text-danger">(Check the box if the billing details are same as parent information)</p>
                               </div>
+
+                              <div class="billing-info-inner d-none">
+                                <div class="row">
+                                  <div class="col-sm-6 col-md-6">
+                                    <div class="form-group required-group">
+                                      <label for="billing-email">Email <span
+                                        class="text-danger required-mark">*</span></label>
+                                      <input type="email" class="form-control" id="billing-email" name="BillingEmail">
+                                    </div>
+                                  </div>
+
+                                  <div class="col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                      <label for="billing-phone">Pnone Number <span
+                                        class="text-danger required-mark">*</span></label>
+                                      <input type="text" class="form-control" id="billing-phone" name="BillingPhone">
+                                    </div>
+                                  </div>
+
+                                  <div class="col-12">
+                                    <div class="form-group">
+                                      <label for="billing-address">Address <span
+                                        class="text-danger required-mark">*</span></label>
+                                      <textarea class="form-control" id="billing-address" name="BillingAddress" rows="2"></textarea>
+                                    </div>
+                                  </div>
+
+                                  <div class="col-sm-6 col-md-4">
+                                    <div class="form-group">
+                                      <label for="billing-state">State <span
+                                        class="text-danger required-mark">*</span></label>
+                                      <input type="text" class="form-control validation-number" id="billing-state" name="BillingState">
+                                    </div>
+                                  </div>
+
+                                  <div class="col-sm-6 col-md-4">
+                                    <div class="form-group">
+                                      <label for="billing-city">City <span
+                                        class="text-danger required-mark">*</span></label>
+                                      <input type="text" class="form-control validation-number" id="billing-city" name="BillingCity">
+                                    </div>
+                                  </div>
+
+                                  <div class="col-sm-6 col-md-4">
+                                    <div class="form-group">
+                                      <label for="billing-zipcode">Zipcode <span
+                                        class="text-danger required-mark">*</span></label>
+                                      <input type="text" class="form-control validation-number" id="billing-zipcode" name="BillingZipcode" data-min-length="5" data-max-length="5">
+                                    </div>
+                                  </div>
+
+                                </div>
+                              </div>
+
                             </div>
 
                             <div class="waiver-wrapper pt-4">
@@ -1115,6 +1159,39 @@
   function submitTheForm(){
     console.log('Form submitted!');
     window.location.href = "success.html";
+  }
+
+  function get_plan_list(totalStudent){
+    let planList = [
+      {
+        'name' : 'Plan A (Full Payment)',
+        'value' : 'Plan A',
+        'initialAmount' : 700,
+        'installmentAmount' : 0,
+        'numberOfPayment' : 1,
+        'totalAmount' : 700,
+        'firstInstallmentDate' : '15/03/2023'
+      },
+      {
+        'name' : 'Plan B (Half Payment)',
+        'value' : 'Plan B',
+        'initialAmount' : 200,
+        'installmentAmount' : 250,
+        'numberOfPayment' : 2,
+        'totalAmount' : 700,
+        'firstInstallmentDate' : '15/03/2023'
+      },
+      {
+        'name' : 'Plan C (Free)',
+        'value' : 'Plan C',
+        'initialAmount' : 0,
+        'installmentAmount' : 0,
+        'numberOfPayment' : 0,
+        'totalAmount' : 0,
+        'firstInstallmentDate' : '15/03/2023'
+      }
+    ];
+    return planList;
   }
 </script>
 
