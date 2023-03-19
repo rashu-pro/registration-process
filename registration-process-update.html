@@ -14,7 +14,7 @@
   <meta property="og:url" content="#">
   <meta name="twitter:card" content="summary_large_image">
 
-  <title>Registration</title>
+  <title>Registration (Update)</title>
   <link rel="shortcut icon" href="https://secure-api.net/Content/login-assets/images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="https://secure-api.net/Content/login-assets/images/favicon.ico" type="image/x-icon">
 
@@ -69,7 +69,7 @@
               <div class="text-center">
                 <span class="divider-title" style="width: 7rem;height:.4rem;background-color: #0d6efd;display: block;margin:0 auto;">&nbsp;</span>
               </div>
-              <p class="text-center pt-2 mb-4 fw-semibold fs-5s">Returning Parent? <a href="#">Login here</a></p>
+              <p class="text-center pt-2 mb-4 fw-semibold fs-5s"></p>
             </div>
             <div class="step-form-main">
               <form action="#" method="post">
@@ -78,7 +78,7 @@
                   <div class="col-lg-4 step-form-sidebar">
                     <div class="step-list-sidebar">
 
-                      <div class="step-list active" data-step="1">
+                      <div class="step-list completed active" data-step="1">
                       <span class="step-mark">
                         <img src="assets/images/tick.png" alt="complete">
                       </span>
@@ -97,7 +97,7 @@
                         </div>
                       </div>
 
-                      <div class="step-list" data-step="2">
+                      <div class="step-list completed" data-step="2">
                       <span class="step-mark">
                         <img src="assets/images/tick.png" alt="complete">
                       </span>
@@ -117,7 +117,7 @@
                         </div>
                       </div>
 
-                      <div class="step-list" data-step="3">
+                      <div class="step-list completed" data-step="3">
                         <span class="step-mark">
                           <img src="assets/images/tick.png" alt="complete">
                         </span>
@@ -136,7 +136,7 @@
                         </div>
                       </div>
 
-                      <div class="step-list last" data-step="4">
+                      <div class="step-list completed last" data-step="4">
                         <span class="step-mark">
                           <img src="assets/images/tick.png" alt="complete">
                         </span>
@@ -178,6 +178,8 @@
                                          id="email-guardian"
                                          class="form-control validation-email data-sidebar"
                                          name="EmailGuardian"
+                                         value="example@mail.com"
+                                         readonly
                                          data-sidebar="1">
                                 </div>
                               </div>
@@ -198,6 +200,8 @@
                                   <input type="text"
                                          id="fname-guardian"
                                          class="form-control fname-js"
+                                         value="Zeenat"
+                                         readonly
                                          name="FnameGuardian">
                                 </div>
                               </div>
@@ -208,6 +212,8 @@
                                   <input type="text"
                                          id="lname-guardian"
                                          class="form-control lname-js"
+                                         value="Ali"
+                                         readonly
                                          name="LnameGuardian">
                                 </div>
                                 <input type="hidden"
@@ -230,7 +236,10 @@
                                     class="required-mark text-danger">*</span></label>
                                   <div class="select-box">
                                     <div class="country-selector-holder-js">
-                                      <input type="text" id="selector-country-work" name="Person.Country"
+                                      <input type="text" id="selector-country-work"
+                                             name="Person.Country"
+                                             value="USA"
+                                             readonly
                                              class="form-control field-normal input-country-js">
                                     </div>
                                     <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader" alt="loading">
@@ -243,7 +252,10 @@
                                   <label for="selector-state-work">State <span class="required-mark text-danger">*</span></label>
                                   <div class="select-box">
                                     <div class="state-selector-holder-js">
-                                      <input type="text" id="selector-state-work" name="Person.State"
+                                      <input type="text" id="selector-state-work"
+                                             name="Person.State"
+                                             value="Indiana"
+                                             readonly
                                              class="form-control field-normal input-state-js">
                                     </div>
                                     <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader"
@@ -284,7 +296,7 @@
                                           class="form-select select-2 form-control"
                                           name="IncomePerYear">
                                     <option value="">Select an Option</option>
-                                    <option value="1">$32,048 or less</option>
+                                    <option value="1" selected>$32,048 or less</option>
                                     <option value="2">$32,048 - $53,413</option>
                                     <option value="3">$53,413 - $106,827</option>
                                   </select>
@@ -338,6 +350,8 @@
                                   <input type="text"
                                          id="fname-spouse"
                                          class="form-control fname-js"
+                                         value="Ahmed"
+                                         readonly
                                          name="FnameSpouse">
                                 </div>
                               </div>
@@ -348,6 +362,8 @@
                                   <input type="text"
                                          id="lname-spouse"
                                          class="form-control lname-js"
+                                         value="Fatima"
+                                         readonly
                                          name="LnameSpuse">
                                 </div>
                                 <input type="hidden" class="form-control name-string-js data-sidebar">
@@ -359,6 +375,7 @@
                                   <input type="email"
                                          id="email-spouse"
                                          class="form-control validation-email data-sidebar"
+                                         value="fatima@mail.com"
                                          name="EmailSpouse">
                                 </div>
                               </div>
@@ -411,7 +428,7 @@
                           <div class="step-box-body">
 
                             <div class="info-card-list" data-total-row="1">
-                              <div class="info-card info-card-js mt-5 mb-4">
+                              <div class="info-card info-card-js added mt-5 mb-4">
                                 <h3 class="fs-4 mb-3 fw-semibold info-card-title text-uppercase"><span>Student <span class="row-count-js">1</span> </span></h3>
                                 <input type="hidden"
                                        class="form-control data-sidebar student-serial"
@@ -420,21 +437,21 @@
                                 <div class="info-summary">
                                   <div class="row">
                                     <div class="col-6">
-                                      <p class="m-0 mb-2"><strong>Name: </strong><span class="data-summary-name"></span> </p>
+                                      <p class="m-0 mb-2"><strong>Name: </strong><span class="data-summary-name">Ahmed Khan</span> </p>
                                     </div>
                                     <div class="col-6">
-                                      <p class="m-0 mb-2"><strong>Gender: </strong><span class="data-summary-gender"></span></p>
+                                      <p class="m-0 mb-2"><strong>Gender: </strong><span class="data-summary-gender">Male</span></p>
                                     </div>
                                   </div>
 
-                                  <p class="m-0 mb-2"><strong>Date of Birth: </strong><span class="data-summary-dob"></span></p>
+                                  <p class="m-0 mb-2"><strong>Date of Birth: </strong><span class="data-summary-dob">18/06/2004</span></p>
 
                                   <div class="table-responsive">
                                     <table class="table table-striped mb-2">
                                       <tbody>
                                       <tr>
-                                        <td><span class="data-summary-sub"></span></td>
-                                        <td><span class="data-summary-grade"></span></td>
+                                        <td><span class="data-summary-sub">Islamic Studies</span></td>
+                                        <td><span class="data-summary-grade">4th Grade</span></td>
                                       </tr>
                                       <tr>
                                         <td colspan="2" class="text-center">
@@ -457,6 +474,8 @@
                                         <input type="text"
                                                id="fname-student"
                                                class="form-control fname-js"
+                                               value="Ahmed"
+                                               readonly
                                                name="FirstNameStudent">
                                       </div>
                                     </div>
@@ -470,10 +489,13 @@
                                         <input type="text"
                                                id="lname-student"
                                                class="form-control lname-js"
+                                               value="Khan"
+                                               readonly
                                                name="LastNameStudent">
                                       </div>
                                       <input type="hidden"
                                              class="form-control name-string-js data-summary data-sidebar"
+                                             value="Ahmed Khan"
                                              data-output=".data-summary-name">
                                     </div>
 
@@ -488,6 +510,7 @@
                                                  class="form-control form-control-date date-picker-js data-summary"
                                                  id="date-picker"
                                                  data-output=".data-summary-dob"
+                                                 value="18/06/2004"
                                                  placeholder="">
                                           <label for="date-picker" class="input-group-text"><img src="assets/images/date.png"
                                                                                                  alt="datepicker"></label>
@@ -506,7 +529,7 @@
                                                 data-output=".data-summary-gender"
                                                 name="GenderStudent">
                                           <option value="">Choose Gender</option>
-                                          <option value="male">Male</option>
+                                          <option value="male" selected>Male</option>
                                           <option value="female">Female</option>
                                         </select>
                                       </div>
@@ -538,7 +561,7 @@
                                           <option value="9f2c4078-f8db-4b81-9070-5e55f42c2d81">
                                             3RD GRADE
                                           </option>
-                                          <option value="531448a0-d49a-4d1f-aee6-ac6c2cbbdaeb">
+                                          <option value="531448a0-d49a-4d1f-aee6-ac6c2cbbdaeb" selected>
                                             4TH GRADE
                                           </option>
                                           <option value="02fe7ea7-cc2a-4665-8300-7f7e53518262">

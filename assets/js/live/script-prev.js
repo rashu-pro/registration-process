@@ -26,7 +26,6 @@ let radioGroupSelector = '.radio-group';
 let paymentPlanSelector = '#payment-plan';
 let totalStudentSelector = '#total-student';
 let companyKey = '#company-key';
-let isAdmin = '#is-admin';
 
 let J = Payment.J,
     creditCardField = $('.cc-number'),
@@ -49,7 +48,6 @@ const couponCodes = [
  */
 fixHeight();
 countRow();
-sidebarSummary();
 
 //=== hide prev button on first step
 if (parseInt($(stepBoxActiveSelector).attr('data-step')) === 1) {
@@ -71,9 +69,10 @@ if ($(datePickerSelector).length > 0) {
 }
 
 //=== select 2 initialization
-if ($('.select-2').length > 0) {
-    $('.select-2').select2();
+if($('.select-2').length>0){
+  $('.select-2').select2();
 }
+
 /**
  * country/state/city api
  * https://countrystatecity.in/
@@ -167,6 +166,7 @@ $(document).on('click', '.btn-navigation-js', function (e) {
     if (parseInt($(stepBoxActiveSelector).attr('data-step')) !== 1) {
         $('.step-details .btn-prev').css('display', 'inline-block');
     }
+
     //=== previous button click action
     if (self.attr('data-action') === 'decrease') {
         loaderEnable(loaderDivClass);
@@ -189,6 +189,10 @@ $(document).on('click', '.btn-navigation-js', function (e) {
         rootParent.find('.form-group .form-control.invalid').first().focus();
         return;
     }
+
+  if (parseInt($(stepBoxActiveSelector).attr('data-step')) === 2) {
+    checkEmail($('#email-spouse'), $('#email-guardian').val());
+  }
 
     if ($(dataSidebarSelector).length > 0) {
         if (rootParent.find(nameStringSelector).length > 0) {
@@ -233,7 +237,7 @@ $(document).on('click', '.btn-navigation-js', function (e) {
             self.find('span').html(self.attr('data-submit-text'));
 
         if ($(rootParent).attr('data-function') === 'get_plan_list') {
-            get_plan_list($(companyKey).val(), parseInt($(totalStudentSelector).val()), $(isAdmin).val());
+            get_plan_list($(companyKey).val(), parseInt($(totalStudentSelector).val()));
         }
 
         loaderDisable(loaderDivClass);
@@ -324,7 +328,6 @@ $(document).on('click', '.btn-add-another-js', function (e) {
 
     infoCard.removeClass('added');
     infoCard.find('.form-control').val('');
-    infoCard.find('.existing-grade').remove();
     $('.info-card-list').append(infoCard);
     $('.date-picker-js').datepicker({
         autoclose: true,
@@ -424,9 +427,8 @@ $(document).on('click', '.btn-apply-voucher-js', function (e) {
  * pull the plan list
  * @param companyKey
  * @param unitCount
- * @param isAdmin
- * */
-function get_plan_list(companyKey, unitCount, isAdmin) {
+ */
+function get_plan_list(companyKey, unitCount) {
     let headers_ = new Headers();
     let requestOptions = {
         method: 'GET',
@@ -435,7 +437,7 @@ function get_plan_list(companyKey, unitCount, isAdmin) {
     };
 
     let plan_list;
-    let url = '/api/v1/pricing-tier/' + companyKey + '/' + unitCount + '/' + isAdmin;
+    let url = '/beta/api/v1/pricing-tier/' + companyKey + '/' + unitCount;
 
     fetch(url, requestOptions)
         .then(response => response.json())
@@ -486,6 +488,19 @@ $(document).on('keyup', '.cc-number', function (e) {
     //=== FIELD VALIDATION
     singleValidation(self, self.closest('.form-group'), 'field-invalid', 'field-validated', 'error-message', errorMessage);
 });
+
+/**
+ * Check whether spouse email and guardian email is same or not
+ * @param spouseEmailSelector
+ * @param guardianEmail
+ */
+function checkEmail(spouseEmailSelector, guardianEmail){
+  spouseEmailSelector.removeClass('invalid');
+  spouseEmailSelector.closest('.form-group').find('.error-message').remove();
+  if(spouseEmailSelector.val()!== guardianEmail) return;
+  spouseEmailSelector.addClass('invalid');
+  spouseEmailSelector.closest('.form-group').append('<p class="error-message text-danger">Don\'t use same email address!</p>');
+}
 
 /**
  * -------------------------------------
@@ -1092,35 +1107,6 @@ function radioInputCustom(self) {
 function errorLoad(self, message) {
     self.closest('.voucher-block').find('.warning-message').remove();
     self.closest('.voucher-block').find('.voucher-field-wrapper').after('<p class="text-danger warning-message m-0">' + message + '</p>');
-}
-
-/**
- * Adds summary in the sidebar
- * if the input fields has data on document ready
- */
-function sidebarSummary(){
-  $('.step-box').each(function (i, element){
-    if ($(element).find(nameStringSelector).length > 0) {
-      $(element).find(nameStringSelector).each(function (i, element) {
-        nameStringBuilder($(element));
-      })
-    }
-
-    let summaryString = '';
-    $(element).find('.form-control.data-sidebar').each(function (i, element) {
-      if (!$(element).val()) return;
-      let valueField = $(element).val();
-      if ($(element).prop('tagName') === 'SELECT') {
-        valueField = $(element).find('option:selected').text();
-      }
-      if (valueField === 'lineBreak') {
-        summaryString += "<hr class='m-0 my-1' />";
-      } else {
-        summaryString += "<p class='m-0'>" + valueField + "</p>";
-      }
-    })
-    $('.step-list[data-step=' + $(element).attr('data-step') + '] .step-summary').html(summaryString);
-  })
 }
 
 
