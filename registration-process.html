@@ -121,6 +121,25 @@
                         <span class="step-mark">
                           <img src="assets/images/tick.png" alt="complete">
                         </span>
+                        <p class="step-title">Waivers</p>
+
+                        <div class="step-summary">
+                          <!-- <p>Lorem ipsum dolor sit amet, consectetur.</p> -->
+                        </div>
+
+                        <div class="edit mt-2">
+                          <button type="button"
+                                  data-step="3"
+                                  class="btn btn-secondary btn-sm btn-edit-step-js"><img src="assets/images/edit.png"
+                                                                                         alt="edit"> Edit
+                          </button>
+                        </div>
+                      </div>
+
+                      <div class="step-list" data-step="4">
+                        <span class="step-mark">
+                          <img src="assets/images/tick.png" alt="complete">
+                        </span>
                         <p class="step-title">Students</p>
 
                         <div class="step-summary">
@@ -136,7 +155,7 @@
                         </div>
                       </div>
 
-                      <div class="step-list last" data-step="4">
+                      <div class="step-list last" data-step="5">
                         <span class="step-mark">
                           <img src="assets/images/tick.png" alt="complete">
                         </span>
@@ -400,8 +419,73 @@
                         </div>
                       </div>
 
-                      <!-- step 3 --student information -->
-                      <div class="step-box" data-step="3" data-function="get_plan_list">
+                      <!-- waiver -->
+                      <div class="step-box" data-step="3">
+                        <div class="step-box-wrapper">
+                          <div class="step-box-head">
+                            <h3 class="font-600">Terms & Conditions</h3>
+                            <p class="m-0 text-danger">(Fields marked with * are required to fill up)</p>
+                          </div>
+
+                          <div class="step-box-body">
+
+                            <div class="">
+                              <object data="https://res.cloudinary.com/secure-api/image/upload/v1678889539/sunday-school/iws-icgc/misc-documents/l4v7xdmrvj0icdxqxmwj.pdf"
+                                      type="application/pdf"
+                                      width="100%"
+                                      height="400">
+                                alt : <a href="https://res.cloudinary.com/secure-api/image/upload/v1678889539/sunday-school/iws-icgc/misc-documents/l4v7xdmrvj0icdxqxmwj.pdf">IWS Financial Statement of the Agreement</a>
+                              </object>
+                            </div>
+
+                            <div class="waiver-wrapper pt-2 mb-4 mb-md-5">
+                              <div class="alert alert-secondary bg-white" style="border-left:4px solid #2196F3;">
+                                <div class="form-group required-group m-0">
+                                  <div class="form-check check-group">
+                                    <input class="form-check-input check-md" type="checkbox"
+                                           value=""
+                                           id="financial-statement"
+                                           data-value="terms">
+                                    <label class="form-check-label" for="financial-statement">
+                                      I have read and agree to IWS Financial Statement of the Agreement.
+                                    </label>
+                                    <input type="hidden" class="form-control validation-radio">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <object data="https://res.cloudinary.com/secure-api/image/upload/v1678889539/sunday-school/iws-icgc/misc-documents/l4v7xdmrvj0icdxqxmwj.pdf"
+                                      type="application/pdf"
+                                      width="100%"
+                                      height="400">
+                                alt : <a href="https://res.cloudinary.com/secure-api/image/upload/v1678889539/sunday-school/iws-icgc/misc-documents/l4v7xdmrvj0icdxqxmwj.pdf">IWS Financial Statement of the Agreement</a>
+                              </object>
+                            </div>
+
+                            <div class="waiver-wrapper pt-2 mb-3 mb-md-3">
+                              <div class="alert alert-secondary bg-white" style="border-left:4px solid #2196F3;">
+                                <div class="form-group required-group m-0">
+                                  <div class="form-check check-group">
+                                    <input class="form-check-input check-md" type="checkbox"
+                                           value=""
+                                           id="terms-conditions"
+                                           data-value="terms">
+                                    <label class="form-check-label" for="terms-conditions">
+                                      I have read and agree to the terms & conditions.
+                                    </label>
+                                    <input type="hidden" class="form-control validation-radio">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- step 4 --student information -->
+                      <div class="step-box" data-step="4" data-function="get_plan_list">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Students Information</h3>
@@ -677,8 +761,8 @@
                         </div>
                       </div>
 
-                      <!-- step 4 --payment information  -->
-                      <div class="step-box" data-step="4">
+                      <!-- step 5 --payment information  -->
+                      <div class="step-box" data-step="5">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Payment Information</h3>
@@ -956,33 +1040,6 @@
                                     </div>
                                   </div>
 
-                                </div>
-                              </div>
-
-                            </div>
-
-                            <div class="waiver-wrapper pt-4">
-
-                              <div class="alert alert-secondary bg-white">
-                                <div class="callout callout-info mb-2">
-                                  <p class="text-medium font-600 m-0">Read <a href="#" data-bs-toggle="modal"
-                                                                              data-bs-target="#modal-terms">Terms &
-                                    Conditions</a></p>
-                                </div>
-
-                                <div class="pt-2">
-                                  <div class="form-group required-group">
-                                    <div class="form-check check-group">
-                                      <input class="form-check-input check-md" type="checkbox"
-                                             value=""
-                                             id="flexCheckDefault_"
-                                             data-value="terms">
-                                      <label class="form-check-label" for="flexCheckDefault_">
-                                        I have read and agree to the code fo conduct and terms & conditions.
-                                      </label>
-                                      <input type="hidden" class="form-control validation-radio">
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
 
