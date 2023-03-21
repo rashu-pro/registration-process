@@ -1371,6 +1371,24 @@ html, body {
   --bs-bg-opacity: 0.2;
 }
 
+.waiver-content h1, .waiver-content h2, .waiver-content h3, .waiver-content h4, .waiver-content h5, .waiver-content h6 {
+  font-weight: 600;
+}
+.waiver-content h1, .waiver-content h2, .waiver-content h3 {
+  font-size: 1.4rem;
+}
+.waiver-content h4, .waiver-content h5, .waiver-content h6 {
+  font-size: 1.3rem;
+}
+@media (min-width: 992px) {
+  .waiver-content {
+    max-height: 400px;
+    overflow: auto;
+    padding: 15px;
+    border: 2px solid;
+  }
+}
+
 .footer {
   background-color: #050b0e;
   color: #fff;

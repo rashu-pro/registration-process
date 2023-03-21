@@ -200,3 +200,20 @@
   }
 }
 
+.waiver-content{
+  h1,h2,h3,h4,h5,h6{
+    font-weight:600;
+  }
+  h1,h2,h3{
+    font-size:1.4rem;
+  }
+  h4,h5,h6{
+    font-size: 1.3rem;
+  }
+  @media (min-width:992px){
+    max-height: 400px;
+    overflow: auto;
+    padding: 15px;
+    border: 2px solid;
+  }
+}
