@@ -8,3 +8,9 @@
   padding: 15px 20px;
   background: #f8f8f8;
 }
+
+@media (min-width: 1200px){
+  .modal-lg, .modal-xl {
+    --bs-modal-width: 1140px;
+  }
+}

@@ -375,7 +375,12 @@ html, body {
   background-color: #e5e5e5;
   cursor: default;
 }
+.form-control:read-only {
+  background-color: #e5e5e5;
+  cursor: default;
+}
 .form-select {
+  background-color: transparent !important;
   border-color: #959799;
   line-height: 2rem;
 }
@@ -655,6 +660,11 @@ html, body {
   background: #f8f8f8;
 }
 
+@media (min-width: 1200px) {
+  .modal-lg, .modal-xl {
+    --bs-modal-width: 1140px;
+  }
+}
 .select2-container--default .select2-selection--single {
   background: transparent;
   border-color: #838383;

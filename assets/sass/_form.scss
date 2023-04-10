@@ -111,9 +111,15 @@
         cursor: default;
       }
     }
+
+    &:read-only{
+      background-color: #e5e5e5;
+      cursor: default;
+    }
   }
 
   &-select{
+    background-color: transparent!important;
     border-color:#959799;
     line-height: 2rem;
   }

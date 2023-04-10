@@ -30,7 +30,7 @@
         href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 
   <!-- style -->
-  <link rel="stylesheet" href="assets/css/style.css?v=1.0.6">
+  <link rel="stylesheet" href="assets/css/style.css?v=1.0.7">
 </head>
 <body>
 
@@ -180,7 +180,7 @@
                     <div class="step-details">
 
                       <!-- step 1 --guardian information  -->
-                      <div class="step-box" data-step="1">
+                      <div class="step-box active" data-step="1">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Parent/Guardian Information</h3>
@@ -195,7 +195,7 @@
                                   <label for="email-guardian" class="form-control-label">Email <span class="text-danger">*</span> </label>
                                   <input type="email"
                                          id="email-guardian"
-                                         class="form-control validation-email data-sidebar"
+                                         class="form-control validation-email data-sidebar parent-email-js"
                                          name="EmailGuardian"
                                          data-sidebar="1">
                                 </div>
@@ -206,7 +206,7 @@
                                   <label for="phone-guardian" class="form-control-label">Phone <span class="text-danger">*</span> </label>
                                   <input type="text"
                                          id="phone-guardian"
-                                         class="form-control phone-number-validator input-phone-number">
+                                         class="form-control phone-number-validator input-phone-number parent-phone-js">
                                   <input id="Person_CellNumber" name="PhoneGuardian" type="hidden" value="">
                                 </div>
                               </div>
@@ -237,7 +237,7 @@
                                 <div class="form-group mb-4">
                                   <label for="address-guardian" class="form-control-label">Address <span class="text-danger">*</span> </label>
                                   <textarea id="address-guardian"
-                                            class="form-control"
+                                            class="form-control parent-address-js"
                                             name="AddressGuardian"
                                             rows="2"> </textarea>
                                 </div>
@@ -250,7 +250,7 @@
                                   <div class="select-box">
                                     <div class="country-selector-holder-js">
                                       <input type="text" id="selector-country-work" name="Person.Country"
-                                             class="form-control field-normal input-country-js">
+                                             class="form-control field-normal input-country-js parent-country-js">
                                     </div>
                                     <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader" alt="loading">
                                   </div>
@@ -259,11 +259,11 @@
 
                               <div class="col-md-6">
                                 <div class="form-group mb-4">
-                                  <label for="selector-state-work">State <span class="required-mark text-danger">*</span></label>
+                                  <label for="parent-state-js">State <span class="required-mark text-danger">*</span></label>
                                   <div class="select-box">
                                     <div class="state-selector-holder-js">
-                                      <input type="text" id="selector-state-work" name="Person.State"
-                                             class="form-control field-normal input-state-js">
+                                      <input type="text" id="parent-state-js" name="Person.State"
+                                             class="form-control field-normal input-state-js parent-state-js">
                                     </div>
                                     <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader"
                                          style="display: none" alt="loading">
@@ -273,12 +273,12 @@
 
                               <div class="col-md-6">
                                 <div class="form-group mb-4">
-                                  <label for="selector-city-work">City <span
+                                  <label for="parent-city-js">City <span
                                     class="required-mark text-danger">*</span></label>
                                   <div class="select-box">
                                     <div class="city-selector-holder-js">
-                                      <input type="text" id="selector-city-work" name="Person.City"
-                                             class="form-control field-normal input-city-js">
+                                      <input type="text" id="parent-city-js" name="Person.City"
+                                             class="form-control field-normal input-city-js parent-city-js">
                                     </div>
                                     <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader"
                                          style="display: none" alt="loading">
@@ -291,7 +291,7 @@
                                   <label for="zipcode" class="form-control-label">Zipcode <span class="text-danger">*</span> </label>
                                   <input type="text"
                                          id="zipcode"
-                                         class="form-control"
+                                         class="form-control parent-zipcode-js"
                                          name="Zipcode">
                                 </div>
                               </div>
@@ -342,7 +342,7 @@
 
                       <!-- step 2 --spouse information  -->
                       <div class="step-box" data-step="2">
-                        <div class="step-box-wrapper">
+                        <div class="step-box-wrapper spouse-information-js">
                           <div class="step-box-head">
                             <h3 class="font-600">Spouse Information</h3>
                             <p class="m-0 text-danger">(Fields marked with * are required to fill up)</p>
@@ -420,7 +420,7 @@
                       </div>
 
                       <!-- waiver -->
-                      <div class="step-box active" data-step="3">
+                      <div class="step-box" data-step="3">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Waivers</h3>
@@ -428,6 +428,38 @@
                           </div>
 
                           <div class="step-box-body">
+
+                            <div>
+                              <div class="row mb-3">
+                                <div class="col-md-7">
+                                  <h2 class="fs-5 fw-semibold">IWS Financial Statement of the Agreement</h2>
+                                </div>
+                                <div class="col-md-5">
+                                  <div class="text-end">
+                                    <button
+                                      type="button"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#modal-waiver-fullscreen"
+                                      class="btn btn-primary">View in Fullscreen</button>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div style="height: 400px;overflow: auto">
+                                <iframe src="assets/files/financial-statement-of-the-agreement.pdf"
+                                        id="financial-statement-file"
+                                        style="width:100%;height:1200px;"></iframe>
+                              </div>
+
+
+                              <object data="assets/files/financial-statement-of-the-agreement.pdf"
+                                      type="application/pdf"
+                                      width="100%"
+                                      height="400">
+                                <iframe src="assets/files/financial-statement-of-the-agreement.pdf"
+                                        style="width:100%;height:400px;"></iframe>
+                              </object>
+                            </div>
 
                             <div class="">
 
@@ -478,7 +510,7 @@
                                       type="application/pdf"
                                       width="100%"
                                       height="400">
-                                <iframe src="https://drive.google.com/file/d/1dmmfcf8MDEtvg1QTEPLQZQssLHJxWPE3/preview"
+                                <iframe src="assets/files/code-of-conduct.pdf"
                                         style="width:100%;height:400px;"></iframe>
                               </object>
                             </div>
@@ -859,7 +891,7 @@
                                   </table>
                                 </div>
 
-                                <div class="coupon-wrapper voucher-block">
+                                <div class="coupon-wrapper voucher-block d-none">
                                   <div class="coupon-code-wrapper">
                                     <div class="coupon-code-wrapper-head">
                                       <p class="m-0">
@@ -887,8 +919,26 @@
                               </div>
                             </div>
 
+                            <!-- no payment checkbox -->
+                            <div class="alert alert-secondary bg-white fw-semibold mt-3 mb-0 no-payment-check no-payment-check-js" style="display:none;border-left:4px solid #2196F3;padding:5px 10px;">
+                              <div class="form-group m-0">
+                                <div class="form-check check-group">
+                                  <input class="form-check-input check-md"
+                                         type="checkbox" value=""
+                                         id="no-payment-js"
+                                         data-value="no-payment" checked="checked">
+                                  <label class="form-check-label"
+                                         for="no-payment-js">
+                                    Complete registration without payment.
+                                  </label>
+                                  <input type="hidden" class="form-control validation-radio valid" value="terms">
+                                </div>
+                              </div>
+                            </div>
+
                             <div class="payment-info d-none pt-4">
                               <h2 class="mb-1 fs-4 fw-semibold text-success">Payment Details</h2>
+
                               <hr class="m-0 text-success">
                               <div class="row">
                                 <div class="col-12">
@@ -1009,7 +1059,7 @@
                                 <p class="m-0 text-danger">(Check the box if the billing details are same as parent information)</p>
                               </div>
 
-                              <div class="billing-info-inner d-none">
+                              <div class="billing-info-inner">
                                 <div class="row">
                                   <div class="col-sm-6 col-md-6">
                                     <div class="form-group required-group">
@@ -1131,23 +1181,13 @@
   </div>
 
   <!-- terms & conditions modal -->
-  <div class="modal" tabindex="-1" id="modal-terms" data-bs-backdrop="static" data-bs-keybord="false">
+  <div class="modal" tabindex="-1" id="modal-waiver-fullscreen" data-bs-backdrop="static" data-bs-keybord="false">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title font-bold">Terms & Conditions</h5>
+          <h5 class="modal-title font-bold">IWS Financial Statement of the Agreement</h5>
 
           <div>
-            <button type="button"
-                    class="btn btn-close btn-expand-js me-3"
-                    id="btn-expand"
-                    title="Maximize Window"
-                    data-bs-toggle="tooltip"
-                    data-bs-original-title="Maximize Window">
-              <img src="assets/images/expand-window.png" alt="maximize" class="icon-maximize">
-              <img src="assets/images/minimize.png" alt="minimize" class="icon-minimize d-none">
-            </button>
-
             <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">
               <svg aria-hidden="true" class="icon-svg-close" fill="currentColor" viewBox="0 0 20 20"
                    xmlns="http://www.w3.org/2000/svg">
@@ -1162,7 +1202,7 @@
         <div class="modal-body">
           <div class="py-2 px-sm-3 px-md-4">
             <embed
-              src="https://res.cloudinary.com/secure-api/image/upload/v1670245873/sunday-school/al-ilm/misc-documents/st4irj014djieqohupkb.pdf"
+              src="assets/files/financial-statement-of-the-agreement.pdf"
               width="100%"
               height="1200"
               frameborder="0"
@@ -1223,7 +1263,7 @@
 <!--jquery -->
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <!--bootstrap-->
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <!-- select 2 -->
 <script src="node_modules/select2/dist/js/select2.min.js"></script>
 <!-- bootstrap datepicker -->
@@ -1236,7 +1276,8 @@
 <script src="assets/js/card_validation.js"></script>
 <!-- script -->
 <!--<script src="assets/js/script.js?v=1.0.4"></script>-->
-<script src="assets/js/live/script.js?v=1.0.6"></script>
+<script src="assets/js/live/script.js?v=1.0.7"></script>
+<!--<script src="assets/js/live/local-server/script.js?v=1.0.0"></script>-->
 
 <script>
   function submitTheForm(){

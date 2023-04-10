@@ -158,12 +158,28 @@ $(document).on('click', '.btn-navigation-js', function (e) {
         isPaymentConfirmSelector = '.is-payment-confirm',
         dataSidebarSelector = '.step-box.active .form-control.data-sidebar';
 
-    //=== SHOW THE PREVIOUS BUTTON AFTER STEP 1
+    //=== payment form show/hide
+    let amount = parseFloat($('.membership-amount-js').val()).toFixed(2);
+    $(paymentInfoSelector).removeClass('d-none');
+    $(paymentInfoSelector).find('.is-require').addClass('required-group');
+    $(isPaymentConfirmSelector).removeClass('d-none');
+    if (amount === 'NaN' || amount < 1) {
+        $(paymentInfoSelector).addClass('d-none');
+        $(paymentInfoSelector).find('.is-require').removeClass('required-group');
+        $(paymentInfoSelector).find('.is-require').removeClass('field-validated');
+        $(paymentInfoSelector).find('.is-require .error-message').removeClass('required-group');
+        $(paymentInfoSelector).find('.is-require input').removeClass('field-invalid invalid');
+        $(paymentInfoSelector).find('.is-require select').removeClass('field-invalid invalid');
+        $(paymentInfoSelector).find('.is-require input').removeClass('valid');
+        $(paymentInfoSelector).find('.is-require select').removeClass('valid');
+
+        $(isPaymentConfirmSelector).addClass('d-none');
+    }
+
     if (parseInt($(stepBoxActiveSelector).attr('data-step')) !== 1) {
         $('.step-details .btn-prev').css('display', 'inline-block');
     }
-
-    //=== PREVIOUS BUTTON CLICK ACTION
+    //=== previous button click action
     if (self.attr('data-action') === 'decrease') {
         loaderEnable(loaderDivClass);
         setTimeout(() => {
@@ -177,48 +193,10 @@ $(document).on('click', '.btn-navigation-js', function (e) {
         return;
     }
 
-    //=== FIELD VALIDATION
     requiredFieldGroup.each(function (i, element) {
         singleValidation($(element).find('.form-control'), $(element), 'field-invalid', 'field-validated', 'error-message', errorMessage);
     });
 
-    //=== CHECK WHETHER PARENT/SPOUSE INFORMATION ARE SAME
-    if(rootParent.find('.spouse-information-js').length>0){
-      let parentName = $('.step-box[data-step=1] .name-string-js').val().trim();
-      let spouseName = rootParent.find('.fname-js').val().trim() +' '+rootParent.find('.lname-js').val().trim();
-      if(rootParent.find('.fname-js').val()!==''){
-        rootParent.find('.fname-js').removeClass('field-invalid invalid');
-        rootParent.find('.fname-js').closest('.form-group').find('.error-message').remove();
-      }
-      if(spouseName === parentName){
-        console.log('in name condition!');
-        errorMessage = 'Spouse name shouldn\'nt be same as parent\'s name';
-        let paramObj = {
-          "formControl": rootParent.find('.fname-js'),
-          "formGroup": rootParent.find('.fname-js').closest('.form-group'),
-          "invalidClassName": 'field-invalid',
-          "validClassName": 'field-validated',
-          "errorMessageClassName": 'error-message',
-          "errorMessage": errorMessage
-        };
-        validationFailed(paramObj);
-      }
-
-      if($('#email-spouse').val().trim() === $('.parent-email-js').val().trim()){
-        errorMessage = 'Spouse email shouldn\'nt be same as parent email';
-        let paramObj = {
-          "formControl": $('#email-spouse'),
-          "formGroup": $('#email-spouse').closest('.form-group'),
-          "invalidClassName": 'field-invalid',
-          "validClassName": 'field-validated',
-          "errorMessageClassName": 'error-message',
-          "errorMessage": errorMessage
-        };
-        validationFailed(paramObj);
-      }
-    }
-
-    //=== GIVE FOCUS TO THE FIRST INVALID INPUT FIELD
     if (rootParent.find('.form-group .form-control.invalid').length > 0) {
         rootParent.find('.form-group .form-control.invalid').first().focus();
         if(rootParent.find('.form-group .form-control.invalid').first().closest('.form-check')){
@@ -227,7 +205,6 @@ $(document).on('click', '.btn-navigation-js', function (e) {
         return;
     }
 
-    //=== SHOW THE STEP FORM SUMMARY IN THE SIDEBAR
     if ($(dataSidebarSelector).length > 0) {
         if (rootParent.find(nameStringSelector).length > 0) {
             rootParent.find(nameStringSelector).each(function (i, element) {
@@ -255,14 +232,12 @@ $(document).on('click', '.btn-navigation-js', function (e) {
 
     loaderEnable(loaderDivClass);
 
-    //=== SHOW THE CONFIRM MODAL IF EVERY STEPS HAVE BEEN COMPLETED SUCCESSFULLY
     if (self.attr('data-action') === 'increase' && stepCurrent === stepBoxCount) {
         loaderDisable(loaderDivClass);
         $('#modal-confirm').modal('show');
         return;
     }
 
-    //=== MOVE TO THE NEXT STEP
     setTimeout(() => {
         stepMoveNext(stepCurrent);
         if (parseInt($('.step-box.active').attr('data-step')) > 1) {
@@ -298,6 +273,11 @@ $(document).on('click', '.btn-edit-step-js', function () {
     }, 600);
 });
 
+$(document).on('click', '.btn-confirm-js', function () {
+    $('#modal-confirm').modal('hide');
+    loaderEnable(loaderDivClass);
+    submitTheForm();
+});
 
 //=== remove block
 $(document).on('click', '.btn-remove-js', function (e) {
@@ -634,30 +614,11 @@ function calculateTotal(checkoutSummaryTableSelector, totalSelector) {
 //=== billing details same/differnt
 $(document).on('change', '#billing-details-same', function () {
     let self = $(this);
-    // billingInfoShowHide(self);
-  let parentEmail = '',
-    parentPhone = '',
-    parentAddress = '',
-    parentState = '',
-    parentCity = '',
-    parentZipcode = '';
-  if (self.is(':checked')) {
-    parentEmail = $('.parent-email-js').val();
-    parentPhone = $('.parent-phone-js').val();
-    parentAddress = $('.parent-address-js').val();
-    parentState = $('#parent-state-js').val();
-    parentCity = $('#parent-city-js').val();
-    parentZipcode = $('.parent-zipcode-js').val();
-  }
-  populateBillingInfo(parentEmail, parentPhone, parentAddress, parentState, parentCity, parentZipcode);
-
-  $('.billing-info-inner .form-group.required-group').each(function (i, element) {
-    $(element).find('.form-control').removeClass('field-invalid invalid');
-    $(element).find('.error-message').remove();
-  });
+    billingInfoShowHide(self);
 })
 
-// billingInfoShowHide($('#billing-details-same'));
+billingInfoShowHide($('#billing-details-same'));
+
 
 function billingInfoShowHide(checkSelector) {
     $('.billing-info-inner').addClass('d-none');
@@ -668,15 +629,6 @@ function billingInfoShowHide(checkSelector) {
         $('.billing-info-inner').removeClass('d-none');
         $('.billing-info-inner .form-group').removeClass('d-none');
     }
-}
-
-function populateBillingInfo(parentEmail, parentPhone, parentAddress, parentState, parentCity, parentZipcode){
-  $('#billing-email').focus().val(parentEmail);
-  $('#billing-phone').focus().val(parentPhone);
-  $('#billing-address').focus().val(parentAddress);
-  $('#billing-state').focus().val(parentState);
-  $('#billing-city').focus().val(parentCity);
-  $('#billing-zipcode').focus().val(parentZipcode).blur();
 }
 
 
@@ -708,7 +660,6 @@ $(document).on('change', countrySelector, function () {
                 let stateName = objStates[key]['name'];
                 self.closest('.address-block-js').find(stateSelector).append('<option data-shortname="' + stateNameShort + '" value="' + stateName + '">' + stateName + '</option>');
             });
-
             self.closest('.address-block-js').find(stateHolderSelector).closest('.select-box').find('.ajax-loader').hide();
         })
         .catch(error => {
@@ -742,10 +693,6 @@ $(document).on('change', stateSelector, function () {
                 let cityName = objCities[key]['name'];
                 currentBody.find(citySelector).append('<option value="' + cityName + '">' + cityName + '</option>');
             });
-            //changed by Emdad at 03-04-2023
-            if (selectedState == 'OH') {
-                currentBody.find(citySelector).append('<option value="West Chester">West Chester</option>');
-            }
             currentBody.find(cityHolderSelector).closest('.select-box').find('.ajax-loader').hide();
         })
         .catch(error => {
@@ -1071,7 +1018,7 @@ function nameStringBuilder(fullNameSelector) {
  * @param selectorClass
  * @param selectPlaceholder
  */
-function generateSelectDropdown(selfSelector, inputSelector, selectorClass, selectPlaceholder,) {
+function generateSelectDropdown(selfSelector, inputSelector, selectorClass, selectPlaceholder) {
     if (inputSelector.length < 1) {
         selfSelector.closest('.address-block-js').find(selectorClass).empty();
         selfSelector.closest('.address-block-js').find(selectorClass).append('<option></option>');
