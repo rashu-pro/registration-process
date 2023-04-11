@@ -73,6 +73,14 @@ if ($(datePickerSelector).length > 0) {
     });
 }
 
+if($(".date-picker-dob-js")){
+  $(".date-picker-dob-js").datepicker({
+    endDate: '04/30/2007',
+    autoclose: true
+  });
+}
+
+
 //=== select 2 initialization
 if ($('.select-2').length > 0) {
     $('.select-2').select2();
@@ -361,9 +369,19 @@ $(document).on('click', '.btn-add-another-js', function (e) {
     infoCard.find('.form-control').val('');
     infoCard.find('.existing-grade').remove();
     $('.info-card-list').append(infoCard);
-    $('.date-picker-js').datepicker({
+    if(self.closest('.step-box').find('.date-picker-js')){
+      $('.date-picker-js').datepicker({
         autoclose: true,
+      });
+    }
+
+
+  if(self.closest('.step-box').find(".date-picker-dob-js")){
+    $(".date-picker-dob-js").datepicker({
+      endDate: '04/30/2007',
+      autoclose: true
     });
+  }
     countRow();
 
 

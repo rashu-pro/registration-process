@@ -30,7 +30,7 @@
         href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 
   <!-- style -->
-  <link rel="stylesheet" href="assets/css/style.css?v=1.0.7">
+  <link rel="stylesheet" href="assets/css/style.css?v=1.0.8">
 </head>
 <body>
 
@@ -180,7 +180,7 @@
                     <div class="step-details">
 
                       <!-- step 1 --guardian information  -->
-                      <div class="step-box active" data-step="1">
+                      <div class="step-box" data-step="1">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Parent/Guardian Information</h3>
@@ -536,7 +536,7 @@
                       </div>
 
                       <!-- step 4 --student information -->
-                      <div class="step-box" data-step="4" data-function="get_plan_list">
+                      <div class="step-box active" data-step="4" data-function="get_plan_list">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Students Information</h3>
@@ -620,8 +620,9 @@
                                         </label>
                                         <div class="input-group">
                                           <input type="text"
-                                                 class="form-control form-control-date date-picker-js data-summary"
+                                                 class="form-control form-control-date date-picker-dob-js data-summary"
                                                  id="date-picker"
+                                                 autocomplete="off"
                                                  data-output=".data-summary-dob"
                                                  placeholder="">
                                           <label for="date-picker" class="input-group-text"><img src="assets/images/date.png"
@@ -1276,7 +1277,7 @@
 <script src="assets/js/card_validation.js"></script>
 <!-- script -->
 <!--<script src="assets/js/script.js?v=1.0.4"></script>-->
-<script src="assets/js/live/script.js?v=1.0.7"></script>
+<script src="assets/js/live/script.js?v=1.0.8"></script>
 <!--<script src="assets/js/live/local-server/script.js?v=1.0.0"></script>-->
 
 <script>
