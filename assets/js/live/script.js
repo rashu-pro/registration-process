@@ -75,7 +75,7 @@ if ($(datePickerSelector).length > 0) {
 
 if($(".date-picker-dob-js")){
   $(".date-picker-dob-js").datepicker({
-    endDate: '04/30/2007',
+    startDate: '01/01/2007',
     autoclose: true
   });
 }
@@ -142,6 +142,7 @@ fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
             $(element).closest('.select-box').find('.ajax-loader').hide();
             loaderDisable(loaderDivClass);
         })
+        $('.selector-country-js').val('United States').trigger('change');
     })
     .catch(error => {
         console.log('error', error);
@@ -378,7 +379,7 @@ $(document).on('click', '.btn-add-another-js', function (e) {
 
   if(self.closest('.step-box').find(".date-picker-dob-js")){
     $(".date-picker-dob-js").datepicker({
-      endDate: '04/30/2007',
+      startDate: '01/01/2007',
       autoclose: true
     });
   }
