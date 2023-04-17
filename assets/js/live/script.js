@@ -93,6 +93,12 @@ if($('#no-payment-js').is(':checked')){
   enablePaymentForm();
 }
 
+if($('.country-selector-holder-js').length<1){
+  loaderDisable(loaderDivClass);
+}
+
+
+
 
 /**
  * country/state/city api
@@ -120,33 +126,37 @@ let cityInput = '.input-city-js';
 let checkToShowDivSelector = '.check-to-show-div-js';
 
 //=== fetch countries
-fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
+if($('.country-selector-holder-js').length>0){
+  fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
     .then(response => response.text())
     .then(result => {
-        let objCountries = JSON.parse(result);
-        if (objCountries.length < 1) return;
+      let objCountries = JSON.parse(result);
+      if (objCountries.length < 1) return;
 
-        $(countryHolderSelector).each(function (i, element) {
-            generateSelectDropdown($(element), $(element).find(countryInput), 'selector-country-js', 'Select country');
+      $(countryHolderSelector).each(function (i, element) {
+        generateSelectDropdown($(element), $(element).find(countryInput), 'selector-country-js', 'Select country');
 
-            Object.keys(objCountries).forEach(function (key, index) {
-                let countryNameShort = objCountries[key]['iso2'];
-                let countryName = objCountries[key]['name'];
-                if (countryNameShort === 'CA' || countryNameShort === 'US') {
-                    $(element).find(countrySelector).prepend('<option data-shortname="' + countryNameShort + '" value="' + countryName + '">' + countryName + '</option>');
-                } else {
-                    $(element).find(countrySelector).append('<option data-shortname="' + countryNameShort + '" value="' + countryName + '">' + countryName + '</option>');
-                }
-            });
+        Object.keys(objCountries).forEach(function (key, index) {
+          let countryNameShort = objCountries[key]['iso2'];
+          let countryName = objCountries[key]['name'];
+          if (countryNameShort === 'CA' || countryNameShort === 'US') {
+            $(element).find(countrySelector).prepend('<option data-shortname="' + countryNameShort + '" value="' + countryName + '">' + countryName + '</option>');
+          } else {
+            $(element).find(countrySelector).append('<option data-shortname="' + countryNameShort + '" value="' + countryName + '">' + countryName + '</option>');
+          }
+        });
 
-            $(element).closest('.select-box').find('.ajax-loader').hide();
-            loaderDisable(loaderDivClass);
-        })
-        $('.selector-country-js').val('United States').trigger('change');
+        $(element).closest('.select-box').find('.ajax-loader').hide();
+        loaderDisable(loaderDivClass);
+      })
+      $('.selector-country-js').val('United States').trigger('change');
     })
     .catch(error => {
-        console.log('error', error);
+      console.log('error', error);
     });
+}
+
+
 
 /**
  * -------------------------------------
@@ -201,7 +211,7 @@ $(document).on('click', '.btn-navigation-js', function (e) {
       }
       if(spouseName === parentName){
         console.log('in name condition!');
-        errorMessage = 'Spouse name shouldn\'nt be same as parent\'s name';
+        errorMessage = 'Spouse name shouldn\'t be same as parent\'s name';
         let paramObj = {
           "formControl": rootParent.find('.fname-js'),
           "formGroup": rootParent.find('.fname-js').closest('.form-group'),
@@ -214,7 +224,7 @@ $(document).on('click', '.btn-navigation-js', function (e) {
       }
 
       if($('#email-spouse').val().trim() === $('.parent-email-js').val().trim()){
-        errorMessage = 'Spouse email shouldn\'nt be same as parent email';
+        errorMessage = 'Spouse email shouldn\'t be same as parent email';
         let paramObj = {
           "formControl": $('#email-spouse'),
           "formGroup": $('#email-spouse').closest('.form-group'),
