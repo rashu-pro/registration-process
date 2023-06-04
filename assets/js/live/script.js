@@ -104,6 +104,8 @@ if($('.country-selector-holder-js').length<1){
  * country/state/city api
  * https://countrystatecity.in/
  */
+
+/**
 let headers = new Headers();
 headers.append("X-CSCAPI-KEY", "dERvN2VIc3c3QTNXNDZRaXlHRUpOcVEyWHVyYzNOZk1KSG9TN2xmcw==");
 
@@ -156,6 +158,7 @@ if($('.country-selector-holder-js').length>0){
     });
 }
 
+ */
 
 
 /**
@@ -551,6 +554,43 @@ $(document).on('keyup', '.cc-number', function (e) {
     singleValidation(self, self.closest('.form-group'), 'field-invalid', 'field-validated', 'error-message', errorMessage);
 });
 
+//=== match email
+$(document).on('blur', '.field-confirmation-wrapper-js .field-match-js', function () {
+  let self = $(this);
+  matchFields(self, $(self.attr('data-matchwith')));
+})
+
+function matchFields(self, fieldToMatch){
+  if(fieldToMatch.val()===''){
+    return;
+  }
+
+  if (self.val() === fieldToMatch.val()) {
+    self.removeClass('invalid');
+    self.removeClass('field-invalid');
+    self.closest('.form-group').find('.error-message').remove();
+
+    fieldToMatch.removeClass('invalid');
+    fieldToMatch.removeClass('field-invalid');
+    fieldToMatch.closest('.form-group').find('.error-message').remove();
+    return;
+  }
+
+  if (self.val() !== fieldToMatch.val()) {
+    errorMessage = "Email doesn't match!";
+    let paramObj = {
+      "formControl": self.closest('.field-confirmation-wrapper-js').find('.form-group').last().find('.form-control'),
+      "formGroup": self.closest('.field-confirmation-wrapper-js').find('.form-group').last(),
+      "invalidClassName": 'field-invalid',
+      "validClassName": 'field-validated',
+      "errorMessageClassName": 'error-message',
+      "errorMessage": errorMessage
+    };
+    validationFailed(paramObj);
+    return;
+  }
+}
+
 /**
  * -------------------------------------
  * 6. EVENT LISTENER: CHANGE
@@ -710,6 +750,7 @@ function populateBillingInfo(parentEmail, parentPhone, parentAddress, parentStat
 
 
 // === on country selection
+/**
 $(document).on('change', countrySelector, function () {
     let self = $(this);
     // let selectedCountry = self.val();
@@ -786,7 +827,7 @@ $(document).on('change', stateSelector, function () {
 $(document).on('select2:open', () => {
     document.querySelector('.select2-search__field').focus();
 })
-
+*/
 
 //=== radio field validation
 $(document).on('change', '.radio-group input[type=radio]', function () {
@@ -979,7 +1020,32 @@ function singleValidation(formControl, formGroup, invalidClassName, validClassNa
     //=== INPUT FIELD VALIDATION: EMAIL FIELD
     if (formControl.hasClass('validation-email')) {
         paramObj.errorMessage = "Invalid Email Address!";
-        isEmailValid(formControl.val()) ? validationSuccess(paramObj) : validationFailed(paramObj);
+        if(isEmailValid(formControl.val())){
+          validationSuccess(paramObj)
+        }else{
+          validationFailed(paramObj)
+          return;
+        }
+    }
+
+  if(formControl.hasClass('is-exist')){
+    let result = checkPersonExist();
+    if(result){
+      $('.email-address-exist').html(formControl.val());
+      $('#modal-isperson').modal('show');
+      return;
+    }
+    // checkPersonExist().done(function (result) {
+    //   if(result){
+    //
+    //   }else{
+    //
+    //   }
+    // }
+  }
+
+    if(formControl.hasClass('field-match-js')){
+      matchFields(formControl, $(formControl.attr('data-matchwith')));
     }
 
     //=== INPUT FIELD VALIDATION: RADIO BOX
@@ -993,6 +1059,20 @@ function singleValidation(formControl, formGroup, invalidClassName, validClassNa
         cardValidation() ? validationSuccess(paramObj) : validationFailed(paramObj);
     }
 }
+/**
+ * After member existence close button click
+ */
+$(document).on('hidden.bs.modal', '#modal-isperson', function (event) {
+  $('.is-exist').val('');
+  $('.is-exist').focus();
+  if($('.is-exist').attr('data-matchwith')){
+    $($('.is-exist').attr('data-matchwith')).removeClass('field-invalid');
+    $($('.is-exist').attr('data-matchwith')).removeClass('invalid');
+    $($('.is-exist').attr('data-matchwith')).val('');
+    $($('.is-exist').attr('data-matchwith')).closest('.form-group').find('.error-message').remove();
+
+  }
+});
 
 /**
  *

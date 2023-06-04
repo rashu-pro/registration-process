@@ -30,7 +30,7 @@
         href="node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 
   <!-- style -->
-  <link rel="stylesheet" href="assets/css/style.css?v=1.0.8">
+  <link rel="stylesheet" href="assets/css/style.css?v=1.0.9">
 </head>
 <body>
 
@@ -189,15 +189,35 @@
 
                           <div class="step-box-body">
 
-                            <div class="row row-field address-block-js">
-                              <div class="col-md-6">
-                                <div class="form-group required-group mb-4">
-                                  <label for="email-guardian" class="form-control-label">Email <span class="text-danger">*</span> </label>
-                                  <input type="email"
-                                         id="email-guardian"
-                                         class="form-control validation-email data-sidebar parent-email-js"
-                                         name="EmailGuardian"
-                                         data-sidebar="1">
+                            <div class="row row-field">
+                              <div class="col-md-12">
+                                <div class="field-confirmation-wrapper-js">
+                                  <div class="row pb-4">
+                                    <div class="col-md-6">
+                                      <div class="form-group required-group">
+                                        <label for="email-guardian" class="form-control-label">Email <span class="text-danger">*</span> </label>
+                                        <input class="form-control field-match-js validation-email text-box single-line is-exist"
+                                               type="email"
+                                               data-val="true"
+                                               data-val-email="The Email field is not a valid e-mail address."
+                                               data-matchwith="#email-confirm"
+                                               id="email-guardian"
+                                               name="Person.EmailAddress"
+                                               value="">
+                                      </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                      <div class="form-group required-group">
+                                        <label for="email-confirm" class="form-control-label">Confirm Email <span class="text-danger">*</span> </label>
+                                        <input type="email"
+                                               class="form-control field-match-js validation-email"
+                                               data-matchwith="#email-guardian"
+                                               id="email-confirm"
+                                               name="Email">
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
 
@@ -234,67 +254,75 @@
                               </div>
 
                               <div class="col-md-12">
-                                <div class="form-group mb-4">
-                                  <label for="address-guardian" class="form-control-label">Address <span class="text-danger">*</span> </label>
-                                  <textarea id="address-guardian"
-                                            class="form-control parent-address-js"
-                                            name="AddressGuardian"
-                                            rows="2"> </textarea>
-                                </div>
-                              </div>
-
-                              <div class="col-md-6">
-                                <div class="form-group required-group mb-4">
-                                  <label for="selector-country-work">Country <span
-                                    class="required-mark text-danger">*</span></label>
-                                  <div class="select-box">
-                                    <div class="country-selector-holder-js">
-                                      <input type="text" id="selector-country-work" name="Person.Country"
-                                             class="form-control field-normal input-country-js parent-country-js">
+                                <div class="address-autocomplete-block-js">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="form-group mb-4">
+                                        <label for="address-guardian" class="form-control-label">Address <span class="text-danger">*</span> </label>
+                                        <input type="text"
+                                               id="address-guardian"
+                                               class="form-control parent-address-js street-address-pin street-address-js"
+                                               name="AddressGuardian">
+                                      </div>
                                     </div>
-                                    <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader" alt="loading">
+
+                                    <div class="col-md-6">
+                                      <div class="form-group mb-4">
+                                        <label for="parent-city-js">City <span
+                                          class="required-mark text-danger">*</span></label>
+                                        <div class="select-box">
+                                          <div class="city-selector-holder-js">
+                                            <input type="text"
+                                                   id="parent-city-js"
+                                                   name="Person.City"
+                                                   class="form-control field-normal input-city-js parent-city-js">
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                      <div class="form-group required-group mb-4">
+                                        <label for="parent-state-js">State <span class="required-mark text-danger">*</span></label>
+                                        <div class="select-box">
+                                          <div class="state-selector-holder-js">
+                                            <input type="text"
+                                                   id="parent-state-js"
+                                                   name="Person.State"
+                                                   class="form-control field-normal input-state-js parent-state-js">
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                      <div class="form-group mb-4">
+                                        <label for="zipcode" class="form-control-label">Zipcode <span class="text-danger">*</span> </label>
+                                        <input type="text"
+                                               id="zipcode"
+                                               class="form-control parent-zipcode-js input-postal-code-js"
+                                               name="Zipcode">
+                                      </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                      <div class="form-group required-group mb-4">
+                                        <label for="selector-country-work">Country <span
+                                          class="required-mark text-danger">*</span></label>
+                                        <div class="select-box">
+                                          <div class="country-selector-holder-js">
+                                            <input type="text"
+                                                   id="selector-country-work"
+                                                   name="Person.Country"
+                                                   class="form-control field-normal input-country-js parent-country-js">
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
 
-                              <div class="col-md-6">
-                                <div class="form-group required-group mb-4">
-                                  <label for="parent-state-js">State <span class="required-mark text-danger">*</span></label>
-                                  <div class="select-box">
-                                    <div class="state-selector-holder-js">
-                                      <input type="text" id="parent-state-js" name="Person.State"
-                                             class="form-control field-normal input-state-js parent-state-js">
-                                    </div>
-                                    <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader"
-                                         style="display: none" alt="loading">
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="col-md-6">
-                                <div class="form-group mb-4">
-                                  <label for="parent-city-js">City <span
-                                    class="required-mark text-danger">*</span></label>
-                                  <div class="select-box">
-                                    <div class="city-selector-holder-js">
-                                      <input type="text" id="parent-city-js" name="Person.City"
-                                             class="form-control field-normal input-city-js parent-city-js">
-                                    </div>
-                                    <img src="assets/images/Iphone-spinner-2.gif" class="ajax-loader"
-                                         style="display: none" alt="loading">
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div class="col-md-6">
-                                <div class="form-group mb-4">
-                                  <label for="zipcode" class="form-control-label">Zipcode <span class="text-danger">*</span> </label>
-                                  <input type="text"
-                                         id="zipcode"
-                                         class="form-control parent-zipcode-js"
-                                         name="Zipcode">
-                                </div>
-                              </div>
 
                               <div class="col-md-6">
                                 <div class="form-group required-group mb-4">
@@ -351,6 +379,38 @@
                           <div class="step-box-body">
 
                             <div class="row row-field">
+
+                              <div class="col-md-12">
+                                <div class="field-confirmation-wrapper-js">
+                                  <div class="row pb-4">
+                                    <div class="col-md-6">
+                                      <div class="form-group required-group">
+                                        <label for="email-spouse" class="form-control-label">Email <span class="text-danger">*</span> </label>
+                                        <input class="form-control field-match-js validation-email text-box single-line"
+                                               type="email"
+                                               data-val="true"
+                                               data-val-email="The Email field is not a valid e-mail address."
+                                               data-matchwith="#email-spouse-confirm"
+                                               id="email-spouse"
+                                               name="Person.EmailAddress"
+                                               value="">
+                                      </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                      <div class="form-group required-group">
+                                        <label for="email-spouse-confirm" class="form-control-label">Confirm Email <span class="text-danger">*</span> </label>
+                                        <input type="email"
+                                               class="form-control field-match-js validation-email"
+                                               data-matchwith="#email-spouse"
+                                               id="email-spouse-confirm"
+                                               name="Email">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
                               <div class="col-md-6">
                                 <div class="form-group required-group mb-4">
                                   <label for="fname-spouse" class="form-control-label">First Name <span class="text-danger">*</span> </label>
@@ -370,16 +430,6 @@
                                          name="LnameSpuse">
                                 </div>
                                 <input type="hidden" class="form-control name-string-js data-sidebar">
-                              </div>
-
-                              <div class="col-md-6">
-                                <div class="form-group required-group mb-4">
-                                  <label for="email-spouse" class="form-control-label">Email <span class="text-danger">*</span> </label>
-                                  <input type="email"
-                                         id="email-spouse"
-                                         class="form-control validation-email data-sidebar"
-                                         name="EmailSpouse">
-                                </div>
                               </div>
 
                               <div class="col-md-6">
@@ -1164,7 +1214,7 @@
   </footer>
 
   <!-- LOADER -->
-  <div class="loader-div active">
+  <div class="loader-div">
     <div class="lds-spinner">
       <div></div>
       <div></div>
@@ -1258,6 +1308,44 @@
     </div>
   </div>
 
+  <!-- modal ismember -->
+  <div class="modal" tabindex="-1" id="modal-isperson" data-bs-backdrop="static" data-bs-keybord="false">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-bold">Account Exist!</h5>
+          <div class="d-flex justify-content-end pe-3">
+            <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <svg aria-hidden="true" class="icon-svg-close" fill="currentColor" viewBox="0 0 20 20"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clip-rule="evenodd"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="pt-2 pb-4">
+            <div class="alert alert-warning">
+              <p class="m-0 fw-semibold text-medium">An account associated with the email <span class="email-address-exist"></span> already exists in our system.</p>
+            </div>
+
+            <p class="text-medium" style="border-left: 4px solid #2196F3;background: #cfe2ff;padding: 10px 15px;">You can <a href="javascript:void(0)">Login Here</a> </p>
+
+            <p class="text-medium" style="border-left: 4px solid #2196F3;background: #cfe2ff;padding: 10px 15px;">If you have forgotten your password you can send a <a href="javascript:void(0)">password reset request</a> </p>
+
+          </div>
+
+        </div>
+        <div class="modal-footer justify-content-end" style="margin-top:-35px">
+          <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">CLOSE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 
@@ -1277,8 +1365,12 @@
 <script src="assets/js/card_validation.js"></script>
 <!-- script -->
 <!--<script src="assets/js/script.js?v=1.0.4"></script>-->
-<script src="assets/js/live/script.js?v=1.0.8"></script>
+<script src="assets/js/live/script.js?v=1.0.9"></script>
 <!--<script src="assets/js/live/local-server/script.js?v=1.0.0"></script>-->
+
+<!-- google map api -->
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRIIew-eQp2QjI5mRLFOE-qoUnl-qKC38&libraries=places&callback=initMap"></script>
+<script src="assets/js/initmap.js"></script>
 
 <script>
   function submitTheForm(){
@@ -1317,6 +1409,10 @@
       }
     ];
     return planList;
+  }
+
+  function checkPersonExist(){
+    return false;
   }
 </script>
 
