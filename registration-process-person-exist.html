@@ -180,7 +180,7 @@
                     <div class="step-details">
 
                       <!-- step 1 --guardian information  -->
-                      <div class="step-box active" data-step="1">
+                      <div class="step-box check-person-exist active" data-step="1">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Parent/Guardian Information</h3>
@@ -196,7 +196,7 @@
                                     <div class="col-md-6">
                                       <div class="form-group required-group">
                                         <label for="email-guardian" class="form-control-label">Email <span class="text-danger">*</span> </label>
-                                        <input class="form-control field-match-js validation-email text-box single-line is-exist"
+                                        <input class="form-control parent-email-js field-match-js validation-email text-box single-line is-exist person-existed"
                                                type="email"
                                                data-val="true"
                                                data-val-email="The Email field is not a valid e-mail address."
@@ -211,7 +211,7 @@
                                       <div class="form-group required-group">
                                         <label for="email-confirm" class="form-control-label">Confirm Email <span class="text-danger">*</span> </label>
                                         <input type="email"
-                                               class="form-control field-match-js validation-email"
+                                               class="form-control field-match-js validation-email is-exist-confirm"
                                                data-matchwith="#email-guardian"
                                                id="email-confirm"
                                                name="Email">
@@ -1412,7 +1412,7 @@
   }
 
   function checkPersonExist(){
-    return true;
+    return $('.is-exist').val() === 'losiw39404@aosod.com';
   }
 </script>
 

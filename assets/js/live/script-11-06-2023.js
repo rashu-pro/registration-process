@@ -93,12 +93,98 @@ if ($('#no-payment-js').is(':checked')) {
   enablePaymentForm();
 }
 
+if ($('.country-selector-holder-js').length < 1) {
+  loaderDisable(loaderDivClass);
+}
+
+
+/**
+ * country/state/city api
+ * https://countrystatecity.in/
+ */
+
+/**
+ let headers = new Headers();
+ headers.append("X-CSCAPI-KEY", "dERvN2VIc3c3QTNXNDZRaXlHRUpOcVEyWHVyYzNOZk1KSG9TN2xmcw==");
+
+ let requestOptions = {
+    method: 'GET',
+    headers: headers,
+    redirect: 'follow'
+};
+
+ let countryHolderSelector = '.country-selector-holder-js';
+ let stateHolderSelector = '.state-selector-holder-js';
+ let cityHolderSelector = '.city-selector-holder-js';
+
+ let countrySelector = '.selector-country-js';
+ let countryInput = '.input-country-js';
+ let stateSelector = '.selector-state-js';
+ let stateInput = '.input-state-js';
+ let citySelector = '.selector-city-js';
+ let cityInput = '.input-city-js';
+ let checkToShowDivSelector = '.check-to-show-div-js';
+
+ //=== fetch countries
+ if($('.country-selector-holder-js').length>0){
+  fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
+    .then(response => response.text())
+    .then(result => {
+      let objCountries = JSON.parse(result);
+      if (objCountries.length < 1) return;
+
+      $(countryHolderSelector).each(function (i, element) {
+        generateSelectDropdown($(element), $(element).find(countryInput), 'selector-country-js', 'Select country');
+
+        Object.keys(objCountries).forEach(function (key, index) {
+          let countryNameShort = objCountries[key]['iso2'];
+          let countryName = objCountries[key]['name'];
+          if (countryNameShort === 'CA' || countryNameShort === 'US') {
+            $(element).find(countrySelector).prepend('<option data-shortname="' + countryNameShort + '" value="' + countryName + '">' + countryName + '</option>');
+          } else {
+            $(element).find(countrySelector).append('<option data-shortname="' + countryNameShort + '" value="' + countryName + '">' + countryName + '</option>');
+          }
+        });
+
+        $(element).closest('.select-box').find('.ajax-loader').hide();
+        loaderDisable(loaderDivClass);
+      })
+      $('.selector-country-js').val('United States').trigger('change');
+    })
+    .catch(error => {
+      console.log('error', error);
+    });
+}
+
+ */
+
 
 /**
  * -------------------------------------
  * 4. EVENT LISTENER: CLICK
  * -------------------------------------
  */
+
+//=== CHECK WHETHER THE PERSON IS EXIST IN THE SYSTEM OR NOT
+/**
+$(document).on('blur', '.is-exist-confirm', function (e){
+  if($('.form-control.is-exist').hasClass('person-existed')){
+    e.preventDefault();
+    loaderEnable(loaderDivClass);
+    setTimeout(function (){
+      loaderDisable(loaderDivClass);
+      let result = checkPersonExist();
+      if(result){
+        $('.email-address-exist').html($('.is-exist').val());
+        $('#modal-isperson').modal('show');
+      }else{
+        $('.form-control.is-exist').removeClass('person-existed');
+      }
+    },2000)
+  }
+
+})
+*/
 
 $(document).on('click', '.btn-navigation-js', function (e) {
   e.preventDefault();
@@ -113,18 +199,19 @@ $(document).on('click', '.btn-navigation-js', function (e) {
     isPaymentConfirmSelector = '.is-payment-confirm',
     dataSidebarSelector = '.step-box.active .form-control.data-sidebar';
 
-  if (rootParent.hasClass('check-person-exist')) {
-    if ($('.is-exist').val() === '') {
+  if(rootParent.hasClass('check-person-exist')){
+    if($('.is-exist').val()===''){
       $('.is-exist').focus();
       return;
     }
     loaderEnable(loaderDivClass);
-    CheckRegistrationExists().done(function (result) {
+    setTimeout(function (){
       loaderDisable(loaderDivClass);
-      if (result) {
+      let result = checkPersonExist();
+      if(result){
         $('.email-address-exist').html($('.is-exist').val());
         $('#modal-isperson').modal('show');
-      } else {
+      }else{
         //=== SHOW THE PREVIOUS BUTTON AFTER STEP 1
         if (parseInt($(stepBoxActiveSelector).attr('data-step')) !== 1) {
           $('.step-details .btn-prev').css('display', 'inline-block');
@@ -196,7 +283,7 @@ $(document).on('click', '.btn-navigation-js', function (e) {
           loaderDisable(loaderDivClass);
         }, 600);
       }
-    })
+    },2000)
   }else{
     //=== SHOW THE PREVIOUS BUTTON AFTER STEP 1
     if (parseInt($(stepBoxActiveSelector).attr('data-step')) !== 1) {
@@ -266,6 +353,25 @@ $(document).on('click', '.btn-navigation-js', function (e) {
       }
       return;
     }
+
+    /**
+     if (formControl.hasClass('is-exist')) {
+    formControl.addClass('field-invalid');
+    let result = checkPersonExist();
+    if (result) {
+      $('.email-address-exist').html(formControl.val());
+      $('#modal-isperson').modal('show');
+      return;
+    }
+    // checkPersonExist().done(function (result) {
+    //   if(result){
+    //     $('.email-address-exist').html(formControl.val());
+    //     $('#modal-isperson').modal('show');
+    //     return;
+    //   }
+    // }
+  }
+     */
 
     //=== SHOW THE STEP FORM SUMMARY IN THE SIDEBAR
     if ($(dataSidebarSelector).length > 0) {
@@ -522,7 +628,7 @@ function get_plan_list(companyKey, unitCount, isAdmin) {
   };
 
   let plan_list;
-  let url = '/beta/api/v1/pricing-tier/' + companyKey + '/' + unitCount + '/' + isAdmin;
+  let url = '/api/v1/pricing-tier/' + companyKey + '/' + unitCount + '/' + isAdmin;
 
   fetch(url, requestOptions)
     .then(response => response.json())
