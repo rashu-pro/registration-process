@@ -14,6 +14,8 @@
  * -------------------------------------
  */
 
+const currentYear = new Date().getFullYear();
+
 let mainWrapperSelector = '.main-wrapper-js';
 let headerSelector = '.header-js';
 let footerSelector = '.footer-js';
@@ -74,12 +76,28 @@ if ($(datePickerSelector).length > 0) {
 }
 
 if ($(".date-picker-dob-js")) {
-  $(".date-picker-dob-js").datepicker({
-    startDate: '01/01/2007',
-    autoclose: true
-  });
+  $('.date-picker-dob-js').each(function (i, element){
+    dobDatePicker($(element));
+  })
 }
 
+function dobDatePicker(element){
+  let minYear = parseInt(element.attr('data-min-year')),
+      minMonth = parseInt(element.attr('data-min-target-month')) ? parseInt(element.attr('data-min-target-month')) : 0,
+      minDay = parseInt(element.attr('data-min-target-day')) ? parseInt(element.attr('data-min-target-day')) : 1,
+      maxYear = parseInt(element.attr('data-max-year')),
+      maxMonth = parseInt(element.attr('data-max-target-month')) ? parseInt(element.attr('data-max-target-month')) : 0,
+      maxDay = parseInt(element.attr('data-max-target-day')) ? parseInt(element.attr('data-max-target-day')) : 1;
+
+    let minDate = minYear ? new Date((currentYear - minYear), minMonth, minDay) : new Date();
+    let maxDate = maxYear ? new Date((currentYear - maxYear), maxMonth, maxDay) : null;
+
+    element.datepicker({
+      startDate: maxDate,
+      endDate: minDate,
+      autoclose: true
+    });
+}
 
 //=== select 2 initialization
 if ($('.select-2').length > 0) {
@@ -119,7 +137,7 @@ $(document).on('click', '.btn-navigation-js', function (e) {
       return;
     }
     loaderEnable(loaderDivClass);
-    CheckRegistrationExists().done(function (result) {
+    checkRegistrationExists().done(function (result) {
       loaderDisable(loaderDivClass);
       if (result) {
         $('.email-address-exist').html($('.is-exist').val());
@@ -197,7 +215,7 @@ $(document).on('click', '.btn-navigation-js', function (e) {
         }, 600);
       }
     })
-  }else{
+  } else {
     //=== SHOW THE PREVIOUS BUTTON AFTER STEP 1
     if (parseInt($(stepBoxActiveSelector).attr('data-step')) !== 1) {
       $('.step-details .btn-prev').css('display', 'inline-block');
@@ -408,16 +426,10 @@ $(document).on('click', '.btn-add-another-js', function (e) {
     });
   }
 
-
   if (self.closest('.step-box').find(".date-picker-dob-js")) {
-    $(".date-picker-dob-js").datepicker({
-      startDate: '01/01/2007',
-      autoclose: true
-    });
+    dobDatePicker(self.closest('.step-box').find(".date-picker-dob-js"));
   }
   countRow();
-
-
 })
 
 //=== save info
@@ -522,7 +534,7 @@ function get_plan_list(companyKey, unitCount, isAdmin) {
   };
 
   let plan_list;
-  let url = '/beta/api/v1/pricing-tier/' + companyKey + '/' + unitCount + '/' + isAdmin;
+  let url = '/api/v1/pricing-tier/' + companyKey + '/' + unitCount + '/' + isAdmin;
 
   fetch(url, requestOptions)
     .then(response => response.json())
@@ -535,6 +547,7 @@ function get_plan_list(companyKey, unitCount, isAdmin) {
         });
         $(paymentPlanSelector).empty();
         $(paymentPlanSelector).append(optionString);
+        $(paymentPlanSelector).change();
       }
     })
     .catch(error => {

@@ -113,6 +113,22 @@ fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
     console.log('error', error);
   });
 
+
+// Generate options for each month
+for (let i = 1; i <= 12; i++) {
+  let month = i < 10 ? '0' + i : i; // Add leading zero if month is single digit
+  let option = `<option value="${month}">${getMonthName(i)}</option>`;
+  $('.month-dropdown-js').append(option);
+}
+
+// Function to get month name based on index
+function getMonthName(index) {
+  let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return months[index - 1];
+}
+
+
+
 /**
  * -------------------------------------
  * 4. EVENT LISTENER: CLICK
