@@ -18,14 +18,14 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <script>
-    // document.querySelector('.btn-submit').addEventListener('click', function (e) {
-    //   e.preventDefault();
-    //   let self = this;
-    //   setTimeout(function () {
-    //     console.log('submitting...');
-    //     self.submit();
-    //   }, 1000)
-    // })
+    document.querySelector('.btn-submit').addEventListener('click', function (e) {
+      e.preventDefault();
+      let self = this;
+      setTimeout(function () {
+        console.log('submitting...');
+        self.submit();
+      }, 1000)
+    })
 
     window.onload = function () {
         var recaptcha = document.forms["form"]["g-recaptcha-response"];
