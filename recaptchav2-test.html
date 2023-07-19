@@ -9,7 +9,7 @@
 
 <body>
 
-  <form action="#" method="POST">
+  <form action="#" method="POST" id="form">
     <div class="g-recaptcha" data-sitekey="6LfzgzgnAAAAALNk0DqKqt4EW58DnXS87A2o6pYg"></div>
     <br />
     <input type="submit" value="Submit" class="btn-submit">
@@ -26,6 +26,15 @@
     //     self.submit();
     //   }, 1000)
     // })
+
+    window.onload = function () {
+        var recaptcha = document.forms["form"]["g-recaptcha-response"];
+        recaptcha.required = true;
+        recaptcha.oninvalid = function (e) {
+            // do something
+            alert("Please complete the captcha");
+        }
+    }
   </script>
 </body>
 
