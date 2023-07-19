@@ -21,20 +21,15 @@
     document.querySelector('.btn-submit').addEventListener('click', function (e) {
       e.preventDefault();
       let self = this;
-      setTimeout(function () {
-        console.log('submitting...');
-        document.querySelector('#form').submit();
-      }, 1000)
+      const recaptcha = document.forms["form"]["g-recaptcha-response"];
+      recaptcha.required = true;
+      recaptcha.oninvalid = function (e) {
+        // do something
+        alert("Please complete the captcha");
+        return;
+      }
+      document.querySelector('#form').submit();
     })
-
-    window.onload = function () {
-        var recaptcha = document.forms["form"]["g-recaptcha-response"];
-        recaptcha.required = true;
-        recaptcha.oninvalid = function (e) {
-            // do something
-            alert("Please complete the captcha");
-        }
-    }
   </script>
 </body>
 
