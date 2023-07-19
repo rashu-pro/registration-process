@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>recaptcha test</title>
+</head>
+
+<body>
+
+  <form action="#" method="POST">
+    <div class="g-recaptcha" data-sitekey="6LfzgzgnAAAAALNk0DqKqt4EW58DnXS87A2o6pYg"></div>
+    <br />
+    <input type="submit" value="Submit" class="btn-submit">
+  </form>
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+  <script>
+    document.querySelector('.btn-submit').addEventListener('click', function (e) {
+      e.preventDefault();
+      let self = this;
+      setTimeout(function () {
+        console.log('submitting...');
+        self.submit();
+      }, 1000)
+    })
+  </script>
+</body>
+
+</html>
