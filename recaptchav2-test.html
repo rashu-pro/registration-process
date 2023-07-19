@@ -20,21 +20,23 @@
   <script>
 
     window.onload = function () {
-      console.log('hi');
-      return;
-      const recaptcha = document.forms["loginForm"]["g-recaptcha-response"];
+      const recaptcha = document.forms["form"]["g-recaptcha-response"];
       recaptcha.required = true;
+      document.querySelector('body').setAttribute('recaptcha', 1);
+      recaptcha.oninvalid = function (e) {
+        // do something
+        document.querySelector('body').setAttribute('recaptcha', 0);
+        alert("Please complete the captcha");
+      }
     }
 
     document.querySelector('.btn-submit').addEventListener('click', function (e) {
-      e.preventDefault();
+      // e.preventDefault();
       let self = this;
-      recaptcha.oninvalid = function (e) {
-        // do something
-        alert("Please complete the captcha");
-        return;
-      }
-      document.querySelector('#form').submit();
+      console.log(recaptcha);
+      console.log('recaptcha status: ', recaptcha.oninvalid);
+
+      // document.querySelector('#form').submit();
     })
   </script>
 </body>

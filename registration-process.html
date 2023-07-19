@@ -70,7 +70,7 @@
                 <p class="text-center pt-2 mb-4 fw-semibold fs-5s">Returning Parent? <a href="#">Login here</a></p>
               </div>
               <div class="step-form-main">
-                <form action="#" method="post">
+                <form action="#" method="post" id="registrationForm">
                   <div class="row flex-row-reverse step-form-main-row">
                     <!-- sidebar -->
                     <div class="col-lg-4 step-form-sidebar">
@@ -1128,15 +1128,17 @@
 
                                 </div>
 
+                                <div class="pt-4">
+                                  <!-- recaptcha v2 -->
+                                  <div class="g-recaptcha" data-sitekey="6LfzgzgnAAAAALNk0DqKqt4EW58DnXS87A2o6pYg">
+                                  </div>
+                                </div>
+
                               </div>
                             </div>
                           </div>
 
                           <div class="step-box-foot mt-2 mt-sm-4">
-
-                            <!-- recaptcha v2 -->
-                            <div class="g-recaptcha" data-sitekey="6LfzgzgnAAAAALNk0DqKqt4EW58DnXS87A2o6pYg"></div>
-
                             <div class="button-group">
                               <button type="button"
                                 class="btn btn-dark btn-lg btn-long btn-prev btn-prev-js me-3 btn-navigation-js"
@@ -1344,9 +1346,22 @@
   <script src="assets/js/initmap.js"></script>
 
   <script>
+
+    window.onload = function () {
+      const recaptcha = document.forms["form"]["g-recaptcha-response"];
+      recaptcha.required = true;
+      document.querySelector('body').setAttribute('recaptcha', 1);
+      recaptcha.oninvalid = function (e) {
+        // do something
+        document.querySelector('body').setAttribute('recaptcha', 0);
+        alert("Please complete the captcha");
+      }
+    }
+
     function submitTheForm() {
       console.log('Form submitted!');
-      window.location.href = "success.html";
+      $('#registrationForm').submit();
+      // window.location.href = "success.html";
     }
 
     function get_plan_list(totalStudent) {
