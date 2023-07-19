@@ -18,11 +18,15 @@
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <script>
+
+    window.onload = function () {
+      const recaptcha = document.forms["loginForm"]["g-recaptcha-response"];
+      recaptcha.required = true;
+    }
+
     document.querySelector('.btn-submit').addEventListener('click', function (e) {
       e.preventDefault();
       let self = this;
-      const recaptcha = document.forms["form"]["g-recaptcha-response"];
-      recaptcha.required = true;
       recaptcha.oninvalid = function (e) {
         // do something
         alert("Please complete the captcha");
