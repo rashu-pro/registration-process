@@ -29,6 +29,15 @@
         alert("Please complete the captcha");
       }
     }
+
+    document.querySelector('.btn-submit').addEventListener('click', function (e) {
+      e.preventDefault();
+      let self = this;
+
+      setTimeout(() => {
+        document.querySelector('#form').submit();
+      }, 500);
+    })
   </script>
 </body>
 
