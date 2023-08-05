@@ -639,16 +639,19 @@ function matchFields(self, fieldToMatch) {
 $(document).on('change', '#payment-plan', function () {
   let self = $(this);
   let price = parseInt(self.find('option:selected').attr('data-initial-amount'));
+  let isPayment = parseInt(self.find('option:selected').attr('data-is-payment'));
   checkoutSummary(self);
   calculateSubTotal('.checkout-summary-table-js', '.subtotal-js');
   $(checkoutSummarySelector).addClass('d-none');
+  $('.checkout-summary-wrapper-js').addClass('d-none');
   $('.no-payment-check-js').addClass('d-none');
   disablePaymentForm();
 
   if (self.val()) $(checkoutSummarySelector).removeClass('d-none');
 
-  if (price > 0) {
+  if (price > 0 && isPayment ) {
     $('.no-payment-check-js').removeClass('d-none');
+    $('.checkout-summary-wrapper-js').removeClass('d-none');
     enablePaymentForm();
   }
 })

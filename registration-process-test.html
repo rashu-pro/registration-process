@@ -929,6 +929,7 @@
                                           data-installment-amount="0"
                                           data-number-of-payment="1"
                                           data-total-amount="500"
+                                          data-is-payment="1"
                                           data-first-installment-date="15/03/2023"
                                           data-cart-text="Plan A - Full Payment"
                                           data-note="Registration fee is $35">
@@ -939,30 +940,32 @@
                                           data-installment-amount="250"
                                           data-number-of-payment="2"
                                           data-total-amount="700"
+                                          data-is-payment="1"
                                           data-first-installment-date="15/03/2023"
                                           data-cart-text="Plan B - Initial Payment"
                                           data-note="Registration fee is $35">
                                     Plan B - Half Payment
                                   </option>
                                   <option value="Plan C - Scholarship"
-                                          data-initial-amount="0"
+                                          data-initial-amount="500"
                                           data-installment-amount="0"
                                           data-number-of-payment="0"
-                                          data-total-amount="0"
+                                          data-total-amount="500"
+                                          data-is-payment="0"
                                           data-cart-text="Plan C - Scholarship"
                                           data-first-installment-date="15/03/2023"
                                           data-note="You are eligible for the scholarship">
-                                    Plac C - Scholarship
+                                    Plan C - Scholarship
                                   </option>
                                 </select>
                               </div>
 
                               <!-- checkout summary and coupon section -->
-                              <div class="mt-4 bg-light checkout-summary checkout-summary-js d-none">
+                              <div class="mt-4 bg-light checkout-summary d-none checkout-summary-js">
                                 <div class="plan-info" id="plan-info">
 
                                 </div>
-                                <div class="table-responsive" style="border:1px solid #ddd;">
+                                <div class="table-responsive checkout-summary-wrapper-js d-none" style="border:1px solid #ddd;">
                                   <table class="table checkout-summary-table-js m-0">
                                     <thead>
                                     <tr>
@@ -1018,7 +1021,7 @@
                             </div>
 
                             <!-- no payment checkbox -->
-                            <div class="alert alert-secondary bg-white fw-semibold mt-3 mb-0 d-none no-payment-check no-payment-check-js" style="border-left:4px solid #2196F3;padding:5px 10px;">
+                            <div class="alert alert-secondary bg-white fw-semibold mt-3 mb-0 no-payment-check no-payment-check-js" style="border-left:4px solid #2196F3;padding:5px 10px;">
                               <div class="form-group m-0">
                                 <div class="form-check check-group">
                                   <input class="form-check-input check-md"
@@ -1412,7 +1415,7 @@
 <script src="assets/js/card_validation.js"></script>
 <!-- script -->
 <!--<script src="assets/js/script.js?v=1.0.4"></script>-->
-<script src="assets/js/live/script.js?v=2.0.0"></script>
+<script src="assets/js/live/script.js?v=2.0.1"></script>
 <!--<script src="assets/js/live/local-server/script.js?v=1.0.0"></script>-->
 
 <!-- google map api -->
