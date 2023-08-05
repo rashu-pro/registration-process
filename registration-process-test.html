@@ -587,7 +587,7 @@
                       </div>
 
                       <!-- step 4 --student information -->
-                      <div class="step-box active" data-step="4" data-function="get_plan_list">
+                      <div class="step-box" data-step="4" data-function="get_plan_list">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Students Information</h3>
@@ -907,7 +907,7 @@
                       </div>
 
                       <!-- step 5 --payment information  -->
-                      <div class="step-box" data-step="5">
+                      <div class="step-box active" data-step="5">
                         <div class="step-box-wrapper">
                           <div class="step-box-head">
                             <h3 class="font-600">Payment Information</h3>
@@ -930,7 +930,8 @@
                                           data-number-of-payment="1"
                                           data-total-amount="500"
                                           data-first-installment-date="15/03/2023"
-                                          data-cart-text="Plan A - Full Payment">
+                                          data-cart-text="Plan A - Full Payment"
+                                          data-note="Registration fee is $35">
                                     Plan A - Full Payment
                                   </option>
                                   <option value="full payment"
@@ -939,16 +940,19 @@
                                           data-number-of-payment="2"
                                           data-total-amount="700"
                                           data-first-installment-date="15/03/2023"
-                                          data-cart-text="Plan B - Initial Payment">
+                                          data-cart-text="Plan B - Initial Payment"
+                                          data-note="Registration fee is $35">
                                     Plan B - Half Payment
                                   </option>
-                                  <option value="scholarship"
+                                  <option value="Plan C - Scholarship"
                                           data-initial-amount="0"
                                           data-installment-amount="0"
                                           data-number-of-payment="0"
                                           data-total-amount="0"
-                                          data-first-installment-date="15/03/2023">
-                                    Scholarship
+                                          data-cart-text="Plan C - Scholarship"
+                                          data-first-installment-date="15/03/2023"
+                                          data-note="You are eligible for the scholarship">
+                                    Plac C - Scholarship
                                   </option>
                                 </select>
                               </div>
@@ -1014,13 +1018,13 @@
                             </div>
 
                             <!-- no payment checkbox -->
-                            <div class="alert alert-secondary bg-white fw-semibold mt-3 mb-0 no-payment-check no-payment-check-js" style="display:none;border-left:4px solid #2196F3;padding:5px 10px;">
+                            <div class="alert alert-secondary bg-white fw-semibold mt-3 mb-0 d-none no-payment-check no-payment-check-js" style="border-left:4px solid #2196F3;padding:5px 10px;">
                               <div class="form-group m-0">
                                 <div class="form-check check-group">
                                   <input class="form-check-input check-md"
                                          type="checkbox" value=""
                                          id="no-payment-js"
-                                         data-value="no-payment" checked="checked">
+                                         data-value="no-payment">
                                   <label class="form-check-label"
                                          for="no-payment-js">
                                     Complete registration without payment.
@@ -1408,7 +1412,7 @@
 <script src="assets/js/card_validation.js"></script>
 <!-- script -->
 <!--<script src="assets/js/script.js?v=1.0.4"></script>-->
-<script src="assets/js/live/script.js?v=1.0.9"></script>
+<script src="assets/js/live/script.js?v=2.0.0"></script>
 <!--<script src="assets/js/live/local-server/script.js?v=1.0.0"></script>-->
 
 <!-- google map api -->

@@ -41,10 +41,10 @@ let J = Payment.J,
 
 //=== coupon codes
 const couponCodes = [
-  {name: 'coupon', discount: '20', calculateMethod: 'percentage'},
-  {name: 'discount', discount: '30', calculateMethod: 'percentage'},
-  {name: 'voucher', discount: '40', calculateMethod: 'solid'},
-  {name: 'invalid', discount: '300', calculateMethod: 'solid'}
+  { name: 'coupon', discount: '20', calculateMethod: 'percentage' },
+  { name: 'discount', discount: '30', calculateMethod: 'percentage' },
+  { name: 'voucher', discount: '40', calculateMethod: 'solid' },
+  { name: 'invalid', discount: '300', calculateMethod: 'solid' }
 ];
 
 
@@ -76,27 +76,27 @@ if ($(datePickerSelector).length > 0) {
 }
 
 if ($(".date-picker-dob-js")) {
-  $('.date-picker-dob-js').each(function (i, element){
+  $('.date-picker-dob-js').each(function (i, element) {
     dobDatePicker($(element));
   })
 }
 
-function dobDatePicker(element){
+function dobDatePicker(element) {
   let minYear = parseInt(element.attr('data-min-year')),
-      minMonth = parseInt(element.attr('data-min-target-month')) ? parseInt(element.attr('data-min-target-month')) : 0,
-      minDay = parseInt(element.attr('data-min-target-day')) ? parseInt(element.attr('data-min-target-day')) : 1,
-      maxYear = parseInt(element.attr('data-max-year')),
-      maxMonth = parseInt(element.attr('data-max-target-month')) ? parseInt(element.attr('data-max-target-month')) : 0,
-      maxDay = parseInt(element.attr('data-max-target-day')) ? parseInt(element.attr('data-max-target-day')) : 1;
+    minMonth = parseInt(element.attr('data-min-target-month')) ? parseInt(element.attr('data-min-target-month')) : 0,
+    minDay = parseInt(element.attr('data-min-target-day')) ? parseInt(element.attr('data-min-target-day')) : 1,
+    maxYear = parseInt(element.attr('data-max-year')),
+    maxMonth = parseInt(element.attr('data-max-target-month')) ? parseInt(element.attr('data-max-target-month')) : 0,
+    maxDay = parseInt(element.attr('data-max-target-day')) ? parseInt(element.attr('data-max-target-day')) : 1;
 
-    let minDate = minYear ? new Date((currentYear - minYear), minMonth, minDay) : new Date();
-    let maxDate = maxYear ? new Date((currentYear - maxYear), maxMonth, maxDay) : null;
+  let minDate = minYear ? new Date((currentYear - minYear), minMonth, minDay) : new Date();
+  let maxDate = maxYear ? new Date((currentYear - maxYear), maxMonth, maxDay) : null;
 
-    element.datepicker({
-      startDate: maxDate,
-      endDate: minDate,
-      autoclose: true
-    });
+  element.datepicker({
+    startDate: maxDate,
+    endDate: minDate,
+    autoclose: true
+  });
 }
 
 //=== select 2 initialization
@@ -344,6 +344,7 @@ $(document).on('click', '.btn-navigation-js', function (e) {
 $(document).on('click', '.skip-step-js', function (e) {
   e.preventDefault();
   loaderEnable(loaderDivClass);
+  $(this).closest('.step-box').find('.form-control').val('');
   stepMoveNext(parseInt($(this).closest('.step-box').attr('data-step')));
   loaderDisable(loaderDivClass);
 })
@@ -541,9 +542,14 @@ function get_plan_list(companyKey, unitCount, isAdmin) {
     .then(result => {
       console.log(result);
       if (result.length > 0) {
-        let optionString = `<option value="">Choose Plan</option>`;
+        let optionString = '';
+        if (result.length > 1) {
+          optionString = `<option value="">Choose Plan</option>`;
+        }
+
         result.forEach((item) => {
-          optionString += `<option value="${item.value}" data-cart-text="${item.cartText}" data-initial-amount="${item.initialAmount}" data-total-amount="${item.totalAmount}" data-number-of-payment="${item.numberOfPayment}" data-installment-amount="${item.installmentAmount}" data-first-installment-date="${item.installmentDate}">${item.name} Student(s)</option>`;
+          // optionString += `<option value="${item.value}" data-cart-text="${item.cartText}" data-initial-amount="${item.initialAmount}" data-total-amount="${item.totalAmount}" data-number-of-payment="${item.numberOfPayment}" data-installment-amount="${item.installmentAmount}" data-first-installment-date="${item.installmentDate}">${item.name} Student(s)</option>`;
+          optionString += `<option value="${item.value}" data-cart-text="${item.cartText}" data-note="${item.note}" data-initial-amount="${item.initialAmount}" data-total-amount="${item.totalAmount}" data-number-of-payment="${item.numberOfPayment}" data-installment-amount="${item.installmentAmount}" data-first-installment-date="${item.installmentDate}">${item.name} Student(s)</option>`;
         });
         $(paymentPlanSelector).empty();
         $(paymentPlanSelector).append(optionString);
@@ -635,12 +641,14 @@ $(document).on('change', '#payment-plan', function () {
   let price = parseInt(self.find('option:selected').attr('data-initial-amount'));
   checkoutSummary(self);
   calculateSubTotal('.checkout-summary-table-js', '.subtotal-js');
-  $('.no-payment-check-js').hide();
   $(checkoutSummarySelector).addClass('d-none');
+  $('.no-payment-check-js').addClass('d-none');
   disablePaymentForm();
+
+  if (self.val()) $(checkoutSummarySelector).removeClass('d-none');
+
   if (price > 0) {
-    $('.no-payment-check-js').show();
-    $(checkoutSummarySelector).removeClass('d-none');
+    $('.no-payment-check-js').removeClass('d-none');
     enablePaymentForm();
   }
 })
@@ -675,22 +683,27 @@ function checkoutSummary(planSelector) {
   let planName = planSelector.find('option:selected').text();
   let cartText = selectedOption.attr('data-cart-text');
   let planPrice = parseInt(planSelector.find('option:selected').attr('data-initial-amount'));
+  let planNote = planSelector.find('option:selected').attr('data-note');
   let installmentString = '';
   if (parseInt(selectedOption.attr('data-number-of-payment')) > 1) {
     installmentString += `<p class="text-danger m-0">${selectedOption.attr('data-number-of-payment')} installment<span class="ps-2 me-2">/</span> Total amount: ${selectedOption.attr('data-total-amount')}</p>`;
+  }
+  let note = '';
+  if (planNote) {
+    note = `<hr class="mb-0 mt-2" /><p class="m-0 fw-semibold">${planNote}</p>`;
   }
 
   let installmentInfoString = '';
   if (parseInt(selectedOption.attr('data-installment-amount')) > 0) {
     installmentInfoString += `
-    <p class="mb-2">Initial Payment: $${selectedOption.attr('data-initial-amount')}</p>
-    <p class="fw-semibold m-0">${selectedOption.attr('data-number-of-payment')} installments to pay, each of $${selectedOption.attr('data-installment-amount')}, for a total of $${parseInt(selectedOption.attr('data-installment-amount') * parseInt(selectedOption.attr('data-number-of-payment')))}.</p>
-    <p class="text-danger fw-semibold m-0">Installment start date: ${selectedOption.attr('data-first-installment-date')}</p>
-    `;
+        <p class="mb-2">Initial Payment: $${selectedOption.attr('data-initial-amount')}</p>
+        <p class="fw-semibold m-0">${selectedOption.attr('data-number-of-payment')} installments to pay, each of $${selectedOption.attr('data-installment-amount')}, for a total of $${parseInt(selectedOption.attr('data-installment-amount') * parseInt(selectedOption.attr('data-number-of-payment')))}. </p>
+        <p class="text-danger fw-semibold m-0">Installment start date: ${selectedOption.attr('data-first-installment-date')}</p>
+        `;
   }
 
   let infoString = `
-  <div class="alert alert-primary">
+            <div class="alert alert-primary">
                                   <h5 class="alert-heading fw-bold d-flex align-items-center">
                                     <img src="/Content/school-registration-assets/img/info.png" alt="info">
                                     Plan Information
@@ -699,7 +712,7 @@ function checkoutSummary(planSelector) {
                                   <p class="m-0">${planName}</p>
                                   <p class="m-0">Total Amount: $${selectedOption.attr('data-total-amount')}</p>
                                   ${installmentInfoString}
-
+                                  ${note}
                                 </div>
   `
   let checkoutSummaryString = `<tr class="body-row">
@@ -1186,7 +1199,7 @@ function countRow() {
 function nameStringBuilder(fullNameSelector) {
   $(fullNameSelector).val($(fullNameSelector).closest('.row-field')
     .find('.fname-js').val() + ' ' + $(fullNameSelector).closest('.row-field')
-    .find('.lname-js').val());
+      .find('.lname-js').val());
 }
 
 
